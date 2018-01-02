@@ -8,6 +8,7 @@ param([scriptblock]$Contents)
                                                     Width=250
                                                   }
    [array]$c=& $Contents
+   
    $sp=new-object System.Windows.Controls.StackPanel -Property @{
                                                                     Height=$w.Height
                                                                     Orientation=[System.Windows.Controls.Orientation]::Vertical
@@ -70,6 +71,36 @@ Param($Name,[Boolean]$InitialValue="")
                                                             } 
     $chk | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.IsChecked} -PassThru
 }
+
+
+function Invoke-ObjectEditor {
+[CmdletBinding()]
+Param([Parameter(ValueFromPipeline=$true)]$inputobject,
+      [string[]]$Property,[switch]$Update)
+
+      $Controls=$(
+        foreach($item in $inputObject | get-member -name $property -MemberType Properties){
+            $value=$inputobject.$($item.Name)
+            switch ($value.GetType()){
+                'Int32' {TextBox -Name $item.Name -InitialValue $value}
+                'String'{TextBox -Name $item.Name -InitialValue $value}
+                'bool' {CheckBox -Name $Item.Name -InitialValue $value}
+                'DateTime' {TextBox -Name $item.Name -InitialValue $value}
+            }
+          }
+      )
+
+      $out=Window {$controls}
+      if($update){
+        foreach($item in $out | get-member $Property -MemberType Properties){
+           $inputobject.$($item.Name)=$out.$($item.Name)
+        }
+        $inputobject
+      } else {
+        $out
+      }
+}
+New-Alias -Name Edit-Object -Value Invoke-ObjectEditor 
 
 <#
 #example code
