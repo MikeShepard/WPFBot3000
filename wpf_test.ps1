@@ -1,5 +1,5 @@
 ﻿ipmo wpf_dsl -Force
-$o=Dialog { TextBox Fred 'hello world' -property @{FontFamily='Comic Sans MS'} 
+Dialog { TextBox Fred 'hello world' -property @{FontFamily='Comic Sans MS'} 
          TextBox Barney 'hey there!'
          Textbox Bubba 'another textbox' 
          Checkbox Wilma 1

@@ -1,6 +1,8 @@
 Add-Type -AssemblyName PresentationFramework
 Add-Type -AssemblyName System.Windows.Forms
 
+$window=new-object System.Collections.Stack 3 
+
 function Merge-HashTable {
     [CmdletBinding()]
     Param([Hashtable]$Base,
@@ -18,6 +20,7 @@ function Window {
     $w = new-object system.windows.window -Property @{
         SizeToContent = 'HeightandWidth'
     }
+    $script:Window.Push($w)
     [array]$c = & $Contents
    
     $sp = new-object System.Windows.Controls.StackPanel -Property @{
@@ -36,6 +39,7 @@ function Window {
         $c | ForEach-Object {       $output.Add($_.Name, $_.GetControlValue()) }
         [pscustomobject]$output
     }
+    $script:window.Pop() | out-null
 }
 
 function Dialog {
@@ -44,13 +48,14 @@ function Dialog {
         SizeToContent = 'WidthAndHeight'
         Margin        = New-object System.Windows.Thickness 10
     }
+    $script:Window.Push($w)
     [System.Windows.UIElement[]]$c = & $Contents
     $border = new-object system.windows.controls.border -property @{Padding = 10}
     $w.Content = $border
     $grid = new-object System.Windows.Controls.Grid -Property @{
         Height = $w.Height
     }
-    1..$C.Count | ForEach-Object { $grid.RowDefinitions.Add( (new-object System.Windows.Controls.RowDefinition -Property @{Height = 'Auto'}))}
+    1..$C.Count+1 | ForEach-Object { $grid.RowDefinitions.Add( (new-object System.Windows.Controls.RowDefinition -Property @{Height = 'Auto'}))}
     $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{Width = 'Auto'}))
     $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{Width = '*'}))
     $border.Child = $grid
@@ -66,13 +71,22 @@ function Dialog {
         $grid.Children.Add($control) | out-null
         $row += 1
     }
+    $stackPanel=StackPanel {
+                            Button OK {  $script:Window.Peek().DialogResult=$true } -property @{Margin='5,5,5,5'}
+                            Button Cancel { $script:Window.Peek().DialogResult=$false} -property @{Margin='5,5,5,5'}
+                           } -Property @{HorizontalAlignment='Right'}
+    [System.Windows.Controls.Grid]::SetRow($StackPanel, $row)
+    [System.Windows.Controls.Grid]::SetColumn($StackPanel, 1)
+    $grid.Children.Add($StackPanel) | out-null
+                        
     $w.Width = $grid.width
     $output = @{}
     $dialogResult = $w.Showdialog()
-    if ($true -or $dialogResult) {
+    if ($dialogResult) {
         $c | ForEach-Object {       $output.Add($_.Name, $_.GetControlValue()) }
         [pscustomobject]$output
     }
+    $script:window.Pop() | out-null
 }
 
 function LabeledControl {
@@ -199,7 +213,7 @@ Function CredentialPicker {
             Param($sender, $e) 
             $txt = [System.Windows.Controls.TextBox]$sender.Tag
 
-           $cred=get-credential $txt.tag
+           $cred=New-CredentialDialog $txt.tag
            $txt.Tag=$cred
            $txt.Text=$cred.GetNetworkCredential().Username 
         })
@@ -251,6 +265,29 @@ function CheckBox {
     $chk | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.IsChecked} -PassThru
 }
 
+function StackPanel{
+Param([Scriptblock]$Contents,$Property=@{})
+    $baseProperties = @{
+        Name        = $name
+        Orientation = [System.Windows.Controls.Orientation]::Horizontal
+    }
+    $properties = Merge-HashTable $baseProperties $property  
+    $stack = new-object System.Windows.Controls.StackPanel -Property $properties
+    [System.Windows.UIElement[]]$c = & $Contents
+    $c | foreach-object{    $stack.Children.Add($_) | out-null }
+    $stack
+}
+
+function Button {
+Param($Caption,[ScriptBlock]$Action,$property=@{})
+    $baseProperties = @{
+                                                             Content=$Caption
+                                                            }
+    $properties = Merge-HashTable $baseProperties $property  
+   $btn=new-object System.Windows.Controls.Button -Property $properties 
+   $btn.Add_Click($action)
+   $btn
+}
 
 function DatePicker {
     Param($Name, [DateTime]$InitialValue = "", $property = @{})
@@ -300,3 +337,12 @@ window { TextBox Fred 'hello world'
          Combobox Betty Able,Baker,Charlie}  
 #>
 
+function New-CredentialDialog{
+  Param([PSCredential]$username) 
+  $o=Dialog {Textbox UserName -InitialValue $username.UserName
+          Password Password}
+  if($o) {
+  $secpasswd = ConvertTo-SecureString $o.Password -AsPlainText -Force
+  New-Object System.Management.Automation.PSCredential ($o.UserName, $secpasswd)
+  }
+}
