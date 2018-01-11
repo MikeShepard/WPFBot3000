@@ -112,14 +112,14 @@ function TextBox {
 }
 
 function Password {
-    Param($Name, $InitialValue = "", $property = @{})
+    Param($Name, [SecureString]$InitialValue, $property = @{})
     $baseProperties = @{
         Name     = $name
-        Password = $InitialValue
+        SecurePassword = $InitialValue
     }
     $properties = Merge-HashTable $baseProperties $property
     $o = new-object System.Windows.Controls.PasswordBox -Property $properties
-    $o | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Password} -PassThru
+    $o | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.SecurePassword} -PassThru
 }
 
 function Label {
@@ -213,7 +213,7 @@ Function CredentialPicker {
             Param($sender, $e) 
             $txt = [System.Windows.Controls.TextBox]$sender.Tag
 
-           $cred=New-CredentialDialog $txt.tag
+           $cred=CredentialDialog $txt.tag
            $txt.Tag=$cred
            $txt.Text=$cred.GetNetworkCredential().Username 
         })
@@ -337,12 +337,11 @@ window { TextBox Fred 'hello world'
          Combobox Betty Able,Baker,Charlie}  
 #>
 
-function New-CredentialDialog{
+function CredentialDialog{
   Param([PSCredential]$username) 
   $o=Dialog {Textbox UserName -InitialValue $username.UserName
           Password Password}
   if($o) {
-  $secpasswd = ConvertTo-SecureString $o.Password -AsPlainText -Force
-  New-Object System.Management.Automation.PSCredential ($o.UserName, $secpasswd)
+  New-Object System.Management.Automation.PSCredential ($o.UserName, $o.Password )
   }
 }
