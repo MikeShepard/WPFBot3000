@@ -266,10 +266,10 @@ function CheckBox {
 }
 
 function StackPanel{
-Param([Scriptblock]$Contents,$Property=@{})
+Param([Scriptblock]$Contents,$Property=@{},[ValidateSet('Horizontal','Vertical')]$Orientation='Horizontal')
     $baseProperties = @{
         Name        = $name
-        Orientation = [System.Windows.Controls.Orientation]::Horizontal
+        Orientation = [System.Windows.Controls.Orientation]$Orientation
     }
     $properties = Merge-HashTable $baseProperties $property  
     $stack = new-object System.Windows.Controls.StackPanel -Property $properties
