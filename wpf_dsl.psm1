@@ -36,14 +36,15 @@ function Window {
     $dialogResult = $w.Showdialog()
     if ($true -or $dialogResult) {
         #$w.SelectNodes("//*[@*[contains(translate(name(.),'n','N'),'Name')]]")| ForEach {
-        $c | ForEach-Object {       $output.Add($_.Name, $_.GetControlValue()) }
+        $c | ForEach-Object {if($_| get-member GetControlValue){       $output.Add($_.Name, $_.GetControlValue())} }
         [pscustomobject]$output
     }
     $script:window.Pop() | out-null
 }
 
 function Dialog {
-    param([scriptblock]$Contents)
+    param([scriptblock]$Contents,
+    [hashtable]$labelMap=@{})
     $w = new-object system.windows.window -Property @{
         SizeToContent = 'WidthAndHeight'
         Margin        = New-object System.Windows.Thickness 10
@@ -61,8 +62,12 @@ function Dialog {
     $border.Child = $grid
     $Row = 0
     foreach ($control in $c) {
-        $l = Label $control.Name -property {Width='Auto'; }
-        [System.Windows.Controls.Grid]::SetRow($l, $row)
+        $labelText=$Control.Name
+        if($labelMap.ContainsKey($control.Name)){
+            $labelText=$labelMap[$control.Name]
+        }
+        $l = Label $labelText -property {Width='Auto'; }
+       [System.Windows.Controls.Grid]::SetRow($l, $row)
         [System.Windows.Controls.Grid]::SetColumn($l, 0)
         $grid.Children.Add($l) | out-null
      
@@ -83,7 +88,7 @@ function Dialog {
     $output = @{}
     $dialogResult = $w.Showdialog()
     if ($dialogResult) {
-        $c | ForEach-Object {       $output.Add($_.Name, $_.GetControlValue()) }
+        $c | ForEach-Object { if($_ | get-member GetControlValue){      $output.Add($_.Name, $_.GetControlValue()) }}
         [pscustomobject]$output
     }
     $script:window.Pop() | out-null
@@ -266,16 +271,24 @@ function CheckBox {
 }
 
 function StackPanel{
-Param([Scriptblock]$Contents,$Property=@{},[ValidateSet('Horizontal','Vertical')]$Orientation='Horizontal')
+Param([Scriptblock]$Contents,$Property=@{},[ValidateSet('Horizontal','Vertical')]$Orientation='Horizontal',$name)
     $baseProperties = @{
-        Name        = $name
         Orientation = [System.Windows.Controls.Orientation]$Orientation
+    }
+    if($name){
+      $baseProperties.Name=$name
     }
     $properties = Merge-HashTable $baseProperties $property  
     $stack = new-object System.Windows.Controls.StackPanel -Property $properties
     [System.Windows.UIElement[]]$c = & $Contents
     $c | foreach-object{    $stack.Children.Add($_) | out-null }
-    $stack
+    $stack | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d=@{}
+                                                                               $this.Children | ForEach-Object{if($_| get-member GetControlValue){$d.Add($_.Name,$_.GetControlValue())}} 
+                                                                               if($d.Count -eq 1){
+                                                                                 $d.Values| Select-Object -first 1}
+                                                                                 else {
+                                                                                 $d 
+                                                                               }} -PassThru      
 }
 
 function Button {
@@ -302,7 +315,9 @@ function DatePicker {
 function Invoke-ObjectEditor {
     [CmdletBinding()]
     Param([Parameter(ValueFromPipeline = $true)]$inputobject,
-        [string[]]$Property, [switch]$Update)
+        [string[]]$Property, 
+        [hashtable]$LabelMap=@{},
+        [switch]$Update)
 
     $Controls = $(
         foreach ($item in $inputObject | get-member -name $property -MemberType Properties) {
@@ -316,7 +331,7 @@ function Invoke-ObjectEditor {
         }
     )
 
-    $out = Dialog {$controls}
+    $out = Dialog {$controls} -LabelMap $labelMap
     if ($update) {
         foreach ($item in $out | get-member $Property -MemberType Properties) {
             $inputobject.$($item.Name) = $out.$($item.Name)

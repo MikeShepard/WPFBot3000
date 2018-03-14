@@ -1,5 +1,5 @@
-﻿ipmo wpf_dsl -Force
-$files=dir c:\temp
+﻿Import-Module wpf_dsl -Force
+<#$files=dir c:\temp
 Dialog { 
          TextBox Fred 'hello world' -property @{FontFamily='Comic Sans MS'} 
          TextBox Barney 'hey there!'
@@ -15,3 +15,12 @@ $file=dir c:\temp | select-object -first 1
 
 $ob=[PSCustomObject]@{Prop1='hello';Prop2='World'}
 Edit-Object $ob -Property Prop1,Prop2 -Update
+#>
+
+$o=Dialog {StackPanel -name Blah -contents {LAbel Fred;TextBox Barney -InitialValue Blah!
+                                         LAbel Fred2;TextBox Barney2 -InitialValue Blah2!
+                                        }}
+
+                                        $o=Dialog {StackPanel -name Blah -contents {LAbel Fred;TextBox Barney -InitialValue Blah!
+                                
+                                        }}
