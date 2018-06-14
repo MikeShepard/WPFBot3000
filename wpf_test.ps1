@@ -1,6 +1,6 @@
 ﻿Import-Module wpf_dsl -Force
-<#$files=dir c:\temp
-Dialog { 
+$files=dir c:\temp | select -first 5
+ Dialog{ 
          TextBox Fred 'hello world' -property @{FontFamily='Comic Sans MS'} 
          TextBox Barney 'hey there!'
          Textbox Bubba 'another textbox' 
