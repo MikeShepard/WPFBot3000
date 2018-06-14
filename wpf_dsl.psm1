@@ -17,7 +17,8 @@ function Merge-HashTable {
 
 function Window {
     param([scriptblock]$Contents,
-    [hashtable]$labelMap=@{})
+    [hashtable]$labelMap=@{},
+    [hashtable[]]$Events)
     $w = new-object system.windows.window -Property @{
         SizeToContent = 'WidthAndHeight'
         Margin        = New-object System.Windows.Thickness 10
@@ -50,39 +51,28 @@ function Window {
         $grid.Children.Add($control) | out-null
         $row += 1
     }
-    $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {Param($name) $this.Content.Child.Children | where Name -eq $Name}         
+    $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {Param($name) $this.Content.Child.Children | Where-Object Name -eq $Name}         
+    foreach($item in $events){
+        $control=$w.GetControlByName($item.Name)
+        if($control){
+          $control."Add_$($item.EventName)"($item.Action) 
+        }
+    }
+ 
     $w.Width = $grid.width
     $w
     
 }
-function Window2 {
-    param([scriptblock]$Contents,
-    [hashtable]$labelMap=@{},
-    [hashtable[]]$Events)
-    $w=Window -contents $Contents -labelMap $labelMap
-    foreach($item in $events){
-       $control=$w.Content.Child.Children | where Name -eq $item.Name
-       if($control){
-         $control."Add_$($item.EventName)"($item.Action) 
-       }
-    }
-    
-    $w
-}
+
 function Dialog {
     param([scriptblock]$Contents,
     [hashtable]$labelMap=@{})
     $c=& $contents
     $w=Window { 
                 $c
-<<<<<<< HEAD
                 StackPanel {Button OK {  $script:Window.Peek().DialogResult=$true } -property @{Margin='5,5,5,5'}
                 Button Cancel { $script:Window.Peek().DialogResult=$false} -property @{Margin='5,5,5,5'}
                 } -Orientation Horizontal
-=======
-                Button OK {  $script:Window.Peek().DialogResult=$true } -property @{Margin='5,5,5,5'}
-                Button Cancel { $script:Window.Peek().DialogResult=$false} -property @{Margin='5,5,5,5'}
->>>>>>> f4c8ff91656562eb8fd392e751539a73e57b08f5
                 }  
     $w.Width = $grid.width
     $output = @{}
@@ -278,12 +268,8 @@ function ListBox {
                     $l.SelectedItem = $lvi
                 }
         } 
-<<<<<<< HEAD
      $l | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)} 
      $l | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$this.SelectedItem} -PassThru
-=======
-        $l | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$this.SelectedItem} -PassThru
->>>>>>> f4c8ff91656562eb8fd392e751539a73e57b08f5
 }
 
 function Add-TreeviewContents{
@@ -293,7 +279,7 @@ Param($parent,$items)
         foreach($h in ([hashtable]$item).GetEnumerator()){
             $node=New-object System.Windows.Controls.TreeViewItem -Property @{Header=$h.Name}
             $Node.Tag=$h.Name
-            $newNode=$parent.Items.Add($node)
+            [void]$parent.Items.Add($node)
             Add-TreeViewContents -parent $Node -items $h.Value
             $node.ExpandSubtree()
         }
@@ -315,10 +301,7 @@ function Treeview {
     $tree = new-object System.Windows.Controls.TreeView -Property $properties
   
     Add-TreeviewContents -parent $tree -items $contents
-<<<<<<< HEAD
     $tree | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)} 
-=======
->>>>>>> f4c8ff91656562eb8fd392e751539a73e57b08f5
     $tree | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$this.SelectedItem} -PassThru
 }
 function ComboBox {
