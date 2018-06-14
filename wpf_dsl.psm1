@@ -75,9 +75,14 @@ function Dialog {
     $c=& $contents
     $w=Window { 
                 $c
+<<<<<<< HEAD
                 StackPanel {Button OK {  $script:Window.Peek().DialogResult=$true } -property @{Margin='5,5,5,5'}
                 Button Cancel { $script:Window.Peek().DialogResult=$false} -property @{Margin='5,5,5,5'}
                 } -Orientation Horizontal
+=======
+                Button OK {  $script:Window.Peek().DialogResult=$true } -property @{Margin='5,5,5,5'}
+                Button Cancel { $script:Window.Peek().DialogResult=$false} -property @{Margin='5,5,5,5'}
+>>>>>>> f4c8ff91656562eb8fd392e751539a73e57b08f5
                 }  
     $w.Width = $grid.width
     $output = @{}
@@ -125,6 +130,21 @@ function MultiLineTextBox {
     $properties = Merge-HashTable $baseProperties $property
     $o = new-object System.Windows.Controls.TextBox -Property $properties
     $o | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)} 
+    $o | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Text} -PassThru
+}
+
+
+function MultiLineTextBox {
+    Param($Name, $InitialValue = "", $property = @{})
+    $baseProperties = @{
+        Name = $name
+        Text = $InitialValue
+        TextWrapping="Wrap"
+        AcceptsReturn="True"
+        VerticalScrollBarVisibility="Visible"
+    }
+    $properties = Merge-HashTable $baseProperties $property
+    $o = new-object System.Windows.Controls.TextBox -Property $properties
     $o | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Text} -PassThru
 }
 
@@ -258,8 +278,12 @@ function ListBox {
                     $l.SelectedItem = $lvi
                 }
         } 
+<<<<<<< HEAD
      $l | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)} 
      $l | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$this.SelectedItem} -PassThru
+=======
+        $l | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$this.SelectedItem} -PassThru
+>>>>>>> f4c8ff91656562eb8fd392e751539a73e57b08f5
 }
 
 function Add-TreeviewContents{
@@ -291,7 +315,10 @@ function Treeview {
     $tree = new-object System.Windows.Controls.TreeView -Property $properties
   
     Add-TreeviewContents -parent $tree -items $contents
+<<<<<<< HEAD
     $tree | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)} 
+=======
+>>>>>>> f4c8ff91656562eb8fd392e751539a73e57b08f5
     $tree | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$this.SelectedItem} -PassThru
 }
 function ComboBox {

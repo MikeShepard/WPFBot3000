@@ -1,5 +1,9 @@
 ﻿Import-Module wpf_dsl -Force
+<<<<<<< HEAD:wpf_test.ps1
 $files=dir c:\temp | select -first 5
+=======
+$files=Get-ChildItem c:\temp | Select-Object -first 5
+>>>>>>> f4c8ff91656562eb8fd392e751539a73e57b08f5:Examples/wpf_test.ps1
  Dialog{ 
          TextBox Fred 'hello world' -property @{FontFamily='Comic Sans MS'} 
          TextBox Barney 'hey there!'
@@ -11,7 +15,6 @@ $files=dir c:\temp | select -first 5
          ListBox List -contents $files -initialValue $files[2]
         }  
 
-$file=dir c:\temp | select-object -first 1
 
 $ob=[PSCustomObject]@{Prop1='hello';Prop2='World'}
 Edit-Object $ob -Property Prop1,Prop2 -Update
@@ -21,6 +24,6 @@ $o=Dialog {StackPanel -name Blah -contents {LAbel Fred;TextBox Barney -InitialVa
                                          LAbel Fred2;TextBox Barney2 -InitialValue Blah2!
                                         }}
 
-                                        $o=Dialog {StackPanel -name Blah -contents {LAbel Fred;TextBox Barney -InitialValue Blah!
+                                        $o=Dialog {StackPanel -name Blah -contents {Label Fred;TextBox Barney -InitialValue Blah!
                                 
                                         }}
