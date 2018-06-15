@@ -1,8 +1,6 @@
 Add-Type -AssemblyName PresentationFramework
 Add-Type -AssemblyName System.Windows.Forms
 
-$window=new-object System.Collections.Stack 3 
-
 function Merge-HashTable {
     [CmdletBinding()]
     Param([Hashtable]$Base,
@@ -23,7 +21,6 @@ function Window {
         SizeToContent = 'WidthAndHeight'
         Margin        = New-object System.Windows.Thickness 10
     }
-    $script:Window.Push($w)
     [System.Windows.UIElement[]]$c = & $Contents
     $border = new-object system.windows.controls.border -property @{Padding = 10}
     $w.Content = $border
@@ -70,8 +67,8 @@ function Dialog {
     $c=& $contents
     $w=Window { 
                 $c
-                StackPanel {Button OK {  $script:Window.Peek().DialogResult=$true } -property @{Margin='5,5,5,5'}
-                Button Cancel { $script:Window.Peek().DialogResult=$false} -property @{Margin='5,5,5,5'}
+                StackPanel {Button OK {  $this.Window.DialogResult=$true } -property @{Margin='5,5,5,5'}
+                Button Cancel { $this.Window.DialogResult=$false} -property @{Margin='5,5,5,5'}
                 } -Orientation Horizontal
                 }  
     $w.Width = $grid.width
@@ -81,7 +78,6 @@ function Dialog {
         $c | ForEach-Object { if($_ | get-member GetControlValue){      $output.Add($_.Name, $_.GetControlValue()) }}
         [pscustomobject]$output
     }
-    #$script:window.Pop() | out-null
 }
 
 function LabeledControl {
