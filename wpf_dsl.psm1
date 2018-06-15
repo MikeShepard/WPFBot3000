@@ -33,7 +33,9 @@ function Window {
     $border.Child = $grid
     $Row = 0
     foreach ($control in $c) {
-        if(-not ($control -is [System.Windows.Controls.CheckBox])){
+        if(-not ($control -is [System.Windows.Controls.CheckBox]) -and
+          (-not ($control -is [System.Windows.Controls.Label]))
+          ){
         $labelText=$Control.Name
         if($labelMap.ContainsKey($control.Name)){
             $labelText=$labelMap[$control.Name]
@@ -120,20 +122,6 @@ function MultiLineTextBox {
 }
 
 
-function MultiLineTextBox {
-    Param($Name, $InitialValue = "", $property = @{})
-    $baseProperties = @{
-        Name = $name
-        Text = $InitialValue
-        TextWrapping="Wrap"
-        AcceptsReturn="True"
-        VerticalScrollBarVisibility="Visible"
-    }
-    $properties = Merge-HashTable $baseProperties $property
-    $o = new-object System.Windows.Controls.TextBox -Property $properties
-    $o | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Text} -PassThru
-}
-
 function Password {
     Param($Name, [SecureString]$InitialValue, $property = @{})
     $baseProperties = @{
@@ -147,10 +135,14 @@ function Password {
 }
 
 function Label {
-    Param($Text)
-    new-object System.Windows.Controls.Label -Property @{
+    Param($Text, $name)
+    $label=new-object System.Windows.Controls.Label -Property @{
         Content = $text
     }
+    if($name){
+        $label.Name=$name
+    }
+    $label
 }
 
 Function FilePicker {
