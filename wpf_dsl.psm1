@@ -48,29 +48,29 @@ function Window {
         $grid.Children.Add($control) | out-null
         $row += 1
     }
-    $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {Param($name) $this.Content.Child.Children | Where-Object Name -eq $Name}         
+    $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {Param($name) $this.Content.Child.Children | Where-Object Name -eq $Name}
     foreach($item in $events){
         $control=$w.GetControlByName($item.Name)
         if($control){
-          $control."Add_$($item.EventName)"($item.Action) 
+          $control."Add_$($item.EventName)"($item.Action)
         }
     }
- 
+
     $w.Width = $grid.width
     $w
-    
+
 }
 
 function Dialog {
     param([scriptblock]$Contents,
     [hashtable]$labelMap=@{})
     $c=& $contents
-    $w=Window { 
+    $w=Window {
                 $c
                 StackPanel {Button OK {  $this.Window.DialogResult=$true } -property @{Margin='5,5,5,5'}
                 Button Cancel { $this.Window.DialogResult=$false} -property @{Margin='5,5,5,5'}
                 } -Orientation Horizontal
-                }  
+                }
     $w.Width = $grid.width
     $output = @{}
     $dialogResult = $w.Showdialog()
@@ -81,14 +81,14 @@ function Dialog {
 }
 
 function LabeledControl {
-    Param($ctrl, $text) 
+    Param($ctrl, $text)
     $stack = new-object System.Windows.Controls.StackPanel -Property @{
         Name        = $text
         Orientation = [System.Windows.Controls.Orientation]::Horizontal
     }
     $stack.Children.Add((Label $text)) | out-null
-    $stack.Children.Add($o) | out-null 
-    $stack | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Children[1].GetControlValue()} -PassThru                                                    
+    $stack.Children.Add($o) | out-null
+    $stack | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Children[1].GetControlValue()} -PassThru
 
 }
 function TextBox {
@@ -99,7 +99,7 @@ function TextBox {
     }
     $properties = Merge-HashTable $baseProperties $property
     $o = new-object System.Windows.Controls.TextBox -Property $properties
-    $o | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)} 
+    $o | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $o | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Text} -PassThru
 }
 
@@ -115,7 +115,7 @@ function MultiLineTextBox {
     }
     $properties = Merge-HashTable $baseProperties $property
     $o = new-object System.Windows.Controls.TextBox -Property $properties
-    $o | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)} 
+    $o | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $o | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Text} -PassThru
 }
 
@@ -142,15 +142,15 @@ function Password {
     }
     $properties = Merge-HashTable $baseProperties $property
     $o = new-object System.Windows.Controls.PasswordBox -Property $properties
-    $o | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)} 
+    $o | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $o | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.SecurePassword} -PassThru
 }
 
 function Label {
     Param($Text)
-    new-object System.Windows.Controls.Label -Property @{ 
+    new-object System.Windows.Controls.Label -Property @{
         Content = $text
-    } 
+    }
 }
 
 Function FilePicker {
@@ -160,14 +160,14 @@ Function FilePicker {
         Name        = $name
         Orientation = [System.Windows.Controls.Orientation]::Horizontal
     }
-    $t = TextBox -Name "Temp_$name" -InitialValue $InitialValue -property @{IsReadOnly = $true}                                      
+    $t = TextBox -Name "Temp_$name" -InitialValue $InitialValue -property @{IsReadOnly = $true}
     $stack.Children.Add($t) | out-null
     $btn = new-object System.Windows.Controls.Button -Property @{
         Content = 'Browse'
         Tag     = $t
     }
     $btn.Add_Click( {
-            PAram($sender, $e) 
+            PAram($sender, $e)
             $ofd = new-object Microsoft.Win32.OpenFileDialog
             $txt = [System.Windows.Controls.TextBox]$sender.Tag
             if ($txt.Text) {
@@ -179,8 +179,8 @@ Function FilePicker {
             }
         })
     $stack.Children.Add($btn) | out-null
-    $stack | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)} 
-    $stack | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Children[0].GetControlValue()} -PassThru                                                    
+    $stack | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
+    $stack | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Children[0].GetControlValue()} -PassThru
 
 }
 
@@ -191,14 +191,14 @@ Function DirectoryPicker {
         Name        = $name
         Orientation = [System.Windows.Controls.Orientation]::Horizontal
     }
-    $t = TextBox -Name "Temp_$name" -InitialValue $InitialValue -property @{IsReadOnly = $true}                                      
+    $t = TextBox -Name "Temp_$name" -InitialValue $InitialValue -property @{IsReadOnly = $true}
     $stack.Children.Add($t) | out-null
     $btn = new-object System.Windows.Controls.Button -Property @{
         Content = 'Browse'
         Tag     = $t
     }
     $btn.Add_Click( {
-            PAram($sender, $e) 
+            PAram($sender, $e)
             $ofd = new-object System.Windows.Forms.FolderBrowserDialog
             $txt = [System.Windows.Controls.TextBox]$sender.Tag
             if ($txt.Text) {
@@ -209,7 +209,7 @@ Function DirectoryPicker {
             }
         })
     $stack.Children.Add($btn) | out-null
-    $stack | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Children[0].GetControlValue()} -PassThru                                                    
+    $stack | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Children[0].GetControlValue()} -PassThru
 
 }
 
@@ -221,7 +221,7 @@ Function CredentialPicker {
         Orientation = [System.Windows.Controls.Orientation]::Horizontal
     }
 
-    $t = TextBox -Name "Temp_$name" -property @{IsReadOnly = $true}   
+    $t = TextBox -Name "Temp_$name" -property @{IsReadOnly = $true}
     if($InitialValue){
         $t.tag=$InitialValue
         $t.text=$initialvalue.GetNetworkCredential().UserName
@@ -235,15 +235,15 @@ Function CredentialPicker {
         Tag     = $t
     }
     $btn.Add_Click( {
-            Param($sender, $e) 
+            Param($sender, $e)
             $txt = [System.Windows.Controls.TextBox]$sender.Tag
 
            $cred=CredentialDialog $txt.tag
            $txt.Tag=$cred
-           $txt.Text=$cred.GetNetworkCredential().Username 
+           $txt.Text=$cred.GetNetworkCredential().Username
         })
     $stack.Children.Add($btn) | out-null
-    $stack | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Children[0].Tag} -PassThru                                                    
+    $stack | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Children[0].Tag} -PassThru
 
 }
 function ListBox {
@@ -254,17 +254,17 @@ function ListBox {
     $properties = Merge-HashTable $baseProperties $property
 
     $l = new-object System.Windows.Controls.ListBox -Property $properties
-  
+
     $contents | ForEach-Object {
-                $lvi=new-object System.Windows.Controls.ListBoxItem 
+                $lvi=new-object System.Windows.Controls.ListBoxItem
                 $lvi.Tag=$_
                 $lvi.Content=$_.ToString()
-                $l.Items.Add($lvi) | out-null 
+                $l.Items.Add($lvi) | out-null
                 if ($initialValue -and $_ -eq $initialValue) {
                     $l.SelectedItem = $lvi
                 }
-        } 
-     $l | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)} 
+        }
+     $l | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
      $l | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$this.SelectedItem} -PassThru
 }
 
@@ -295,9 +295,9 @@ function Treeview {
     $properties = Merge-HashTable $baseProperties $property
 
     $tree = new-object System.Windows.Controls.TreeView -Property $properties
-  
+
     Add-TreeviewContents -parent $tree -items $contents
-    $tree | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)} 
+    $tree | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $tree | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$this.SelectedItem} -PassThru
 }
 function ComboBox {
@@ -310,9 +310,9 @@ function ComboBox {
     if ($initialValue) {
         $l.SelectedItem = $initialValue
     }
-  
-    $contents | ForEach-Object {$l.Items.Add($_) | out-null } 
-    $l | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)} 
+
+    $contents | ForEach-Object {$l.Items.Add($_) | out-null }
+    $l | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $l | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$this.SelectedItem} -PassThru
 }
 
@@ -322,11 +322,11 @@ function CheckBox {
     $baseProperties = @{
         Name      = $name
         Content   = $Name
-        IsChecked = $InitialValue                   
+        IsChecked = $InitialValue
     }
-    $properties = Merge-HashTable $baseProperties $property  
+    $properties = Merge-HashTable $baseProperties $property
     $chk = new-object System.Windows.Controls.CheckBox -Property $properties
-    $chk | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)} 
+    $chk | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $chk | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.IsChecked} -PassThru
 }
 
@@ -338,18 +338,18 @@ Param([Scriptblock]$Contents,$Property=@{},[ValidateSet('Horizontal','Vertical')
     if($name){
       $baseProperties.Name=$name
     }
-    $properties = Merge-HashTable $baseProperties $property  
+    $properties = Merge-HashTable $baseProperties $property
     $stack = new-object System.Windows.Controls.StackPanel -Property $properties
     [System.Windows.UIElement[]]$c = & $Contents
     $c | foreach-object{    $stack.Children.Add($_) | out-null }
-    $stack | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)} 
+    $stack | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $stack | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d=@{}
-                                                                               $this.Children | ForEach-Object{if($_| get-member GetControlValue){$d.Add($_.Name,$_.GetControlValue())}} 
+                                                                               $this.Children | ForEach-Object{if($_| get-member GetControlValue){$d.Add($_.Name,$_.GetControlValue())}}
                                                                                if($d.Count -eq 1){
                                                                                  $d.Values| Select-Object -first 1}
                                                                                  else {
-                                                                                 $d 
-                                                                               }} -PassThru      
+                                                                                 [pscustomobject]$d
+                                                                               }} -PassThru
 }
 
 function Button {
@@ -357,9 +357,9 @@ Param($Caption,[ScriptBlock]$Action,$property=@{})
     $baseProperties = @{
                                                              Content=$Caption
                                                             }
-   $properties = Merge-HashTable $baseProperties $property  
-   $btn=new-object System.Windows.Controls.Button -Property $properties 
-   $btn | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)} 
+   $properties = Merge-HashTable $baseProperties $property
+   $btn=new-object System.Windows.Controls.Button -Property $properties
+   $btn | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
    $btn.Add_Click($action)
    $btn
 }
@@ -368,17 +368,17 @@ function DatePicker {
     Param($Name, [DateTime]$InitialValue = (get-date), $property = @{})
     $baseProperties = @{
         Name = $name
-        Text = $InitialValue                   
+        Text = $InitialValue
     }
-    $properties = Merge-HashTable $baseProperties $property  
+    $properties = Merge-HashTable $baseProperties $property
     $dpck = new-object System.Windows.Controls.DatePicker -Property $properties
-    $dpck | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)} 
+    $dpck | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $dpck | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Text} -PassThru
 }
 function Invoke-ObjectEditor {
     [CmdletBinding()]
     Param([Parameter(ValueFromPipeline = $true)]$inputobject,
-        [string[]]$Property, 
+        [string[]]$Property,
         [hashtable]$LabelMap=@{},
         [switch]$Update)
 
@@ -404,19 +404,19 @@ function Invoke-ObjectEditor {
         $out
     }
 }
-New-Alias -Name Edit-Object -Value Invoke-ObjectEditor 
+New-Alias -Name Edit-Object -Value Invoke-ObjectEditor
 
 <#
 #example code
 window { TextBox Fred 'hello world'
          TextBox Barney 'hey there!'
-         Textbox Bubba 'another textbox' 
+         Textbox Bubba 'another textbox'
          Checkbox Wilma 1
-         Combobox Betty Able,Baker,Charlie}  
+         Combobox Betty Able,Baker,Charlie}
 #>
 
 function CredentialDialog{
-  Param([PSCredential]$username) 
+  Param([PSCredential]$username)
   $o=Dialog {Textbox UserName -InitialValue $username.UserName
           Password Password}
   if($o) {
