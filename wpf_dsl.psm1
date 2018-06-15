@@ -365,7 +365,7 @@ Param($Caption,[ScriptBlock]$Action,$property=@{})
 }
 
 function DatePicker {
-    Param($Name, [DateTime]$InitialValue = "", $property = @{})
+    Param($Name, [DateTime]$InitialValue = (get-date), $property = @{})
     $baseProperties = @{
         Name = $name
         Text = $InitialValue                   
