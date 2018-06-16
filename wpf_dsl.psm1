@@ -239,14 +239,14 @@ Function CredentialPicker {
 
 }
 function ListBox {
-    Param($name, $contents, $initialValue, $property = @{})
+    Param($name, $contents=@(), $initialValue, $property = @{})
     $baseProperties = @{
         Name = $name
     }
     $properties = Merge-HashTable $baseProperties $property
 
     $l = new-object System.Windows.Controls.ListBox -Property $properties
-
+    if($Contents){
     $contents | ForEach-Object {
                 $lvi=new-object System.Windows.Controls.ListBoxItem
                 $lvi.Tag=$_
@@ -256,6 +256,7 @@ function ListBox {
                     $l.SelectedItem = $lvi
                 }
         }
+     }
      $l | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
      $l | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$this.SelectedItem} -PassThru
 }
