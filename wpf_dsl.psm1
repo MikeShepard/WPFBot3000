@@ -13,6 +13,35 @@ function Merge-HashTable {
     $out
 }
 
+Function FindChild{
+    Param($parent, $childName)
+
+
+  if ($parent -eq $null) {return $null}
+
+  $foundChild =$null;
+
+  $childrenCount = [System.Windows.Media.VisualTreeHelper]::GetChildrenCount($parent)
+  if($childrenCount -eq 0) {break}
+  foreach ($i in 0..($childrenCount-1))
+  {
+    $child = [System.Windows.Media.VisualTreeHelper]::GetChild($parent, $i)
+    if($child.Name -ne $childName) {
+      $foundChild = FindChild $child  $childName
+
+      if ($foundChild -ne $null) {break}
+    } else {
+       $foundChild = $child
+      break
+    }
+
+  }
+  return $foundChild
+
+}
+
+
+
 function Window {
     param([scriptblock]$Contents,
     [hashtable]$labelMap=@{},
@@ -50,7 +79,7 @@ function Window {
         $grid.Children.Add($control) | out-null
         $row += 1
     }
-    $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {Param($name) $this.Content.Child.Children | Where-Object Name -eq $Name}
+    $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {Param($name) FindChild -parent $this -childName $name}
     foreach($item in $events){
         $control=$w.GetControlByName($item.Name)
         if($control){
