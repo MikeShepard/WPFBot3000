@@ -15,6 +15,7 @@ function Merge-HashTable {
 }
 
 Function FindChild {
+    [CmdletBinding()]
     Param($parent, $childName)
 
 
@@ -50,6 +51,7 @@ Function FindChild {
 
 
 function Window {
+    [CmdletBinding()]
     param([scriptblock]$Contents,
         [hashtable]$labelMap = @{},
         [hashtable[]]$Events,
@@ -77,7 +79,7 @@ function Window {
             if ($labelMap.ContainsKey($control.Name)) {
                 $labelText = $labelMap[$control.Name]
             }
-            $l = Label $labelText -property {Width='Auto'; }
+            $l = Label $labelText
             [System.Windows.Controls.Grid]::SetRow($l, $row)
             [System.Windows.Controls.Grid]::SetColumn($l, 0)
             $grid.Children.Add($l) | out-null
@@ -103,6 +105,7 @@ function Window {
 }
 
 function Dialog {
+    [CmdletBinding()]
     param([scriptblock]$Contents,
         [hashtable]$labelMap = @{},
         [hashtable[]]$Events,
@@ -129,6 +132,7 @@ function Dialog {
 }
 
 function LabeledControl {
+    [CmdletBinding()]
     Param($ctrl, $text)
     $stack = new-object System.Windows.Controls.StackPanel -Property @{
         Name        = $text
@@ -140,6 +144,7 @@ function LabeledControl {
 
 }
 function TextBox {
+    [CmdletBinding()]
     Param($Name, $InitialValue = "", $property = @{})
     $baseProperties = @{
         Name = $name
@@ -153,6 +158,7 @@ function TextBox {
 
 
 function MultiLineTextBox {
+    [CmdletBinding()]
     Param($Name, $InitialValue = "", $property = @{})
     $baseProperties = @{
         Name                        = $name
@@ -169,6 +175,7 @@ function MultiLineTextBox {
 
 
 function Password {
+    [CmdletBinding()]
     Param($Name, [SecureString]$InitialValue, $property = @{})
     $baseProperties = @{
         Name           = $name
@@ -181,10 +188,16 @@ function Password {
 }
 
 function Label {
-    Param($Text, $name)
-    $label = new-object System.Windows.Controls.Label -Property @{
+    [CmdletBinding()]
+    Param($Text, $name, $property = @{})
+
+    $BaseProperties=@{
         Content = $text
     }
+
+    $properties = Merge-HashTable $baseProperties $property
+
+    $label = new-object System.Windows.Controls.Label -Property $properties
     if ($name) {
         $label.Name = $name
     }
@@ -192,6 +205,7 @@ function Label {
 }
 
 Function FilePicker {
+    [CmdletBinding()]
     Param($Name, $InitialValue)
 
     $stack = new-object System.Windows.Controls.StackPanel -Property @{
@@ -223,6 +237,7 @@ Function FilePicker {
 }
 
 Function DirectoryPicker {
+    [CmdletBinding()]
     Param($Name, $InitialValue)
 
     $stack = new-object System.Windows.Controls.StackPanel -Property @{
@@ -252,6 +267,7 @@ Function DirectoryPicker {
 }
 
 Function CredentialPicker {
+    [CmdletBinding()]
     Param($Name, [PSCredential]$InitialValue)
 
     $stack = new-object System.Windows.Controls.StackPanel -Property @{
@@ -286,6 +302,7 @@ Function CredentialPicker {
 
 }
 function ListBox {
+    [CmdletBinding()]
     Param($name, $contents = @(), $initialValue, $property = @{})
     $baseProperties = @{
         Name = $name
@@ -309,6 +326,7 @@ function ListBox {
 }
 
 function Add-TreeviewContents {
+    [CmdletBinding()]
     Param($parent, $items)
     foreach ($item in $items) {
         if ($item -is [Hashtable]) {
@@ -329,6 +347,7 @@ function Add-TreeviewContents {
 
 }
 function Treeview {
+    [CmdletBinding()]
     Param($name, $contents, $initialValue, $property = @{})
     $baseProperties = @{
         Name = $name
@@ -342,6 +361,7 @@ function Treeview {
     $tree | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$this.SelectedItem} -PassThru
 }
 function ComboBox {
+    [CmdletBinding()]
     Param($name, $contents, $initialValue, $property = @{})
     $baseProperties = @{
         Name = $name
@@ -359,6 +379,7 @@ function ComboBox {
 
 
 function CheckBox {
+    [CmdletBinding()]
     Param($Name, [Boolean]$InitialValue = $false, $property = @{})
     $baseProperties = @{
         Name      = $name
@@ -372,6 +393,7 @@ function CheckBox {
 }
 
 function StackPanel {
+    [CmdletBinding()]
     Param([Scriptblock]$Contents, $Property = @{}, [ValidateSet('Horizontal', 'Vertical')]$Orientation = 'Horizontal', $name)
     $baseProperties = @{
         Orientation = [System.Windows.Controls.Orientation]$Orientation
@@ -397,6 +419,7 @@ function StackPanel {
 }
 
 function Grid {
+    [CmdletBinding()]
     Param([Scriptblock]$Contents, $Property = @{}, $name, $ColumnCount = 1, $RowCount = 1)
     $baseProperties = @{}
     if ($name) {
@@ -435,6 +458,7 @@ function Grid {
 }
 
 function Button {
+    [CmdletBinding()]
     Param($Caption, [ScriptBlock]$Action, $property = @{})
     $baseProperties = @{
         Content = $Caption
@@ -447,6 +471,7 @@ function Button {
 }
 
 function DatePicker {
+    [CmdletBinding()]
     Param($Name, [DateTime]$InitialValue = (get-date), $property = @{})
     $baseProperties = @{
         Name = $name
@@ -507,6 +532,7 @@ window { TextBox Fred 'hello world'
 #>
 
 function CredentialDialog {
+    [CmdletBinding()]
     Param([PSCredential]$username)
     $o = Dialog {Textbox UserName -InitialValue $username.UserName
         Password Password}
