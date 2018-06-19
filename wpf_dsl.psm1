@@ -1,3 +1,4 @@
+Using Namespace System.Windows.Controls
 Add-Type -AssemblyName PresentationFramework
 Add-Type -AssemblyName System.Windows.Forms
 
@@ -106,7 +107,7 @@ function Dialog {
     $output = @{}
     $dialogResult = $w.Showdialog()
     if ($dialogResult) {
-        $c | ForEach-Object { if($_ | get-member GetControlValue){      $output.Add($_.Name, $_.GetControlValue()) }}
+        $c | ForEach-Object { if(($_ | get-member GetControlValue) -and ($_| get-member Name)){  if ($_.Name){    $output.Add($_.Name, $_.GetControlValue()) }}}
         [pscustomobject]$output
     }
 }
@@ -374,7 +375,42 @@ Param([Scriptblock]$Contents,$Property=@{},[ValidateSet('Horizontal','Vertical')
                                                                                }} -PassThru
 }
 
-function Button {
+function Grid{
+    Param([Scriptblock]$Contents,$Property=@{},$name,$ColumnCount=1,$RowCount=1)
+    $baseProperties = @{}
+    if($name){
+      $baseProperties.Name=$name
+    }
+    $properties = Merge-HashTable $baseProperties $property
+    $Grid = new-object Grid -Property $properties
+    $grid.RowDefinitions.Clear()
+    $grid.ColumnDefinitions.Clear()
+    1..$RowCount | ForEach-Object { $grid.RowDefinitions.Add( (new-object RowDefinition -Property @{Height='Auto'}))}
+    1..$ColumnCount |  ForEach-Object { $grid.ColumnDefinitions.Add((new-object ColumnDefinition -property @{Width='Auto'}))}
+
+
+    [System.Windows.UIElement[]]$c = & $Contents
+    $objectCount=0
+    $c | foreach-object{
+      $row=[Math]::Truncate($objectCount/ $columnCount)
+      $col=$objectCount % $columnCount
+      $Grid.Children.Add($_) | out-null
+      [Grid]::SetColumn( $_, $col)
+      [Grid]::SetRow($_,$row)
+      $objectCount+=1
+    }
+    $Grid | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
+    $Grid | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d=@{}
+      $this.Children | ForEach-Object{if($_| get-member GetControlValue){$d.Add($_.Name,$_.GetControlValue())}}
+      if($d.Count -eq 1){
+      $d.Values| Select-Object -first 1}
+      else {
+        [pscustomobject]$d
+      }
+    } -PassThru
+  }
+
+  function Button {
 Param($Caption,[ScriptBlock]$Action,$property=@{})
     $baseProperties = @{
                                                              Content=$Caption
