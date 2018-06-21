@@ -28,7 +28,7 @@ param([string]$typename,
 
 $files=get-childitem c:\temp -file | Select-Object -first 5
 
-$w= window2 {textbox Fred 'Hello world'
+$w= window {textbox Fred 'Hello world'
                 ListBox files $files
                 Checkbox Blah} -Events @{Name='Fred';EventName='TextChanged';Action={
                $this.Text=$this.Text.ToUpper();$this.CaretIndex=$this.Text.Length}
@@ -37,7 +37,7 @@ $w= window2 {textbox Fred 'Hello world'
     Param($sender,$e)
     $selectedItem=$lb.SelectedItem
     if($selectedItem -eq $null){
-        $e.handled=$true 
+        $e.handled=$true
     } else {
         $items=get-RelevantMenuItems -item $selectedItem
         $items |foreach-object {
@@ -48,7 +48,7 @@ $w= window2 {textbox Fred 'Hello world'
                        write-host '--------------------'
                        & $script $selectedItem | out-host
                        write-host '--------------------'
-                    }.GetNewClosure()) 
+                    }.GetNewClosure())
                  $this.ContextMenu.Items.Add($item) | out-null}
     }
 }},
@@ -58,6 +58,6 @@ add-typemenuitem -typename System.Object -label 'Show Details' -action {$args[0]
 add-typemenuitem -typename System.ServiceProcess.ServiceController -label 'Stop Service' -action {$args[0] | stop-service}
 
 $c=$w.Content.Child.Children | Where-Object Name -eq 'Files'
-$c.ContextMenu=new-object System.Windows.Controls.ContextMenu 
+$c.ContextMenu=new-object System.Windows.Controls.ContextMenu
 #$t.Add_TextChanged({$t.Text=$t.Text.ToUpper();$t.CaretIndex=$t.Text.Length})
 $w.ShowDialog()
