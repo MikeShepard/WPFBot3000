@@ -45,5 +45,10 @@ function ListBox {
         }
     }
     $l | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
-    $l | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$this.SelectedItem} -PassThru
+    $l | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$item=$this.SelectedItem
+                                                                           if($item -is [listboxitem] -and $item.Tag){
+                                                                               $item.Tag
+                                                                           } else {
+                                                                               $item
+                                                                           }} -PassThru
 }
