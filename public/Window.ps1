@@ -92,7 +92,7 @@ function Window {
     }
     $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {Param($name) FindChild -parent $this -childName $name}
     foreach ($item in $events) {
-        $control = $w.GetControlByName($item.Name)
+        $control = FindChild -parent $w -childName $item.Name
         if ($control) {
             $control."Add_$($item.EventName)"($item.Action)
         }

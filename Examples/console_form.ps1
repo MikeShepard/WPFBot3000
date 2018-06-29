@@ -10,7 +10,7 @@ $w=Window {
          
       } -Property @{ShowGridLines=$true;MinHeight=400;VerticalAlignment='Stretch';HorizontalAlignment='Stretch';Margin='5,0,0,5'} -name Right
     } -Property @{ShowGridLines=$true;MinHeight=400;MaxHeight=700;VerticalAlignment='Stretch';Margin='5,0,0,5'} -Name win 
-   } -nolabels
+} #-nolabels
 
 
 
