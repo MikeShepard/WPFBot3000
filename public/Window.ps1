@@ -56,37 +56,42 @@ function Window {
     param([scriptblock]$Contents,
         [hashtable]$labelMap = @{},
         [hashtable[]]$Events,
-        [string]$title)
+        [string]$title,
+        [switch]$HideLabels)
     $w = new-object system.windows.window -Property @{
         SizeToContent = 'WidthAndHeight'
-        Margin        = New-object System.Windows.Thickness 10
+        Margin        = 10
     }
     [System.Windows.UIElement[]]$c = & $Contents
-    $border = new-object system.windows.controls.border -property @{Padding = 10}
-    $w.Content = $border
     $grid = new-object System.Windows.Controls.Grid -Property @{
-        Height = $w.Height
+        Margin=5
     }
+    $w.Content = $grid
     1..$C.Count + 1 | ForEach-Object { $grid.RowDefinitions.Add( (new-object System.Windows.Controls.RowDefinition -Property @{Height = 'Auto'}))}
-    $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{Width = 'Auto'}))
+    $controlColumn = 0
+    if (-not $HideLabels) {
+        $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{Width = 'Auto'}))
+        $controlColumn = 1
+    }
     $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{Width = '*'}))
-    $border.Child = $grid
     $Row = 0
     foreach ($control in $c) {
         if (-not ($control -is [System.Windows.Controls.CheckBox]) -and
             (-not ($control -is [System.Windows.Controls.Label]))
         ) {
-            $labelText = $Control.Name
-            if ($labelMap.ContainsKey($control.Name)) {
-                $labelText = $labelMap[$control.Name]
+            if (-not $HideLabels) {
+                $labelText = $Control.Name
+                if ($labelMap.ContainsKey($control.Name)) {
+                    $labelText = $labelMap[$control.Name]
+                }
+                $l = Label $labelText
+                [System.Windows.Controls.Grid]::SetRow($l, $row)
+                [System.Windows.Controls.Grid]::SetColumn($l, 0)
+                $grid.Children.Add($l) | out-null
             }
-            $l = Label $labelText
-            [System.Windows.Controls.Grid]::SetRow($l, $row)
-            [System.Windows.Controls.Grid]::SetColumn($l, 0)
-            $grid.Children.Add($l) | out-null
         }
         [System.Windows.Controls.Grid]::SetRow($control, $row)
-        [System.Windows.Controls.Grid]::SetColumn($control, 1)
+        [System.Windows.Controls.Grid]::SetColumn($control, $controlColumn)
         $grid.Children.Add($control) | out-null
         $row += 1
     }
