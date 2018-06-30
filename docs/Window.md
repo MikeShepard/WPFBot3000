@@ -8,7 +8,7 @@ schema: 2.0.0
 # Window
 
 ## SYNOPSIS
-Short description
+Creates a window object with the controls from $Contents
 
 ## SYNTAX
 
@@ -18,27 +18,30 @@ Window [[-Contents] <ScriptBlock>] [[-labelMap] <Hashtable>] [[-Events] <Hashtab
 ```
 
 ## DESCRIPTION
-Long description
+Creates a window object with the controls from $Contents.  Associates events with controls using $Events hashtable (See examples).
+Optionally sets title and allows for alternate labels for controls.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $w=Window {
-    StackPanel {
         TextBox Fred
         CheckBox Barney
-    }
 }
 
-FindChild -Parent $w -childName Barney
-
 Output
-<The "Barney checkbox control\>
+A window with 2 controls
 
 ### EXAMPLE 2
 ```
-An example
+$w=Window {
+        TextBox Fred
+        CheckBox Barney
+} -labelmap @{Fred='First Textbox'}
+
+Output
+A same window as in example 1, but textbox is now labled "First textbox" instead of "Fred".
 ```
 
 ## PARAMETERS
