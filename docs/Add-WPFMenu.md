@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-WPFMenu
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Adds a context menu to a given control.
 
 ## SYNTAX
 
@@ -17,21 +17,25 @@ Add-WPFMenu [[-Control] <Object>] [[-Items] <Hashtable>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Uses the hashtable (form -> MenuItemName={action}) to create a context menu for the given control.  For convenience, the menu item's tag is set to the control.
+You can get to the control in the action (i.e. event handler) using $this.Tag.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> dialog {
+textbox Fred 'Hello' | Add-WPFMenu -items @{UpperCase={
+    $txtBox=$this.tag;$txtBox.Text=$txtBox.Text.ToUpper()}}
+ }
 ```
 
-{{ Add example description here }}
+Adds a context menu to the text box with a single item (UpperCase) that when clicked converts the textbox contents to upper case.
 
 ## PARAMETERS
 
 ### -Control
-{{Fill Control Description}}
+The control that the context menu will be attached to.
 
 ```yaml
 Type: Object
@@ -46,7 +50,7 @@ Accept wildcard characters: False
 ```
 
 ### -Items
-{{Fill Items Description}}
+Hashtable.  The keys in the hashtable will be the labels of the context menu items.  The corresponding values should be scriptblocks that will be invoked if the menu item is clicked.
 
 ```yaml
 Type: Hashtable
@@ -66,12 +70,13 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### System.Object
-
+### None
+This command does not accept pipeline input
 
 ## OUTPUTS
 
-### System.Object
+### System.Windows.Controls.Control
+This command outputs the passed in $control parameter.
 
 ## NOTES
 

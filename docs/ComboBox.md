@@ -8,7 +8,7 @@ schema: 2.0.0
 # ComboBox
 
 ## SYNOPSIS
-Short description
+A combobox control
 
 ## SYNTAX
 
@@ -18,19 +18,22 @@ ComboBox [[-name] <Object>] [[-contents] <Object>] [[-initialValue] <Object>] [[
 ```
 
 ## DESCRIPTION
-Long description
+Outputs a combobox control with a given set of contents and optionally a selected value.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-An example
+dialog {
+    Combobox Guess -contents 'a','b','c' -initialvalue 'b'
+}
 ```
+Dialog box with combobox having 3 choices, the second is selected.
 
 ## PARAMETERS
 
 ### -name
-Parameter description
+The name of the control.  This will be the name of a property of the output of the Dialog function.
 
 ```yaml
 Type: Object
@@ -45,7 +48,7 @@ Accept wildcard characters: False
 ```
 
 ### -contents
-Parameter description
+A list of items to fill the combobox.
 
 ```yaml
 Type: Object
@@ -60,7 +63,7 @@ Accept wildcard characters: False
 ```
 
 ### -initialValue
-Parameter description
+The item from $Contents that is initially selected.
 
 ```yaml
 Type: Object
@@ -75,7 +78,7 @@ Accept wildcard characters: False
 ```
 
 ### -property
-Parameter description
+Property values for the control
 
 ```yaml
 Type: Object
@@ -94,8 +97,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
+This command accepts no pipleline input
 
 ## OUTPUTS
+A combobox control
 
 ## NOTES
 General notes

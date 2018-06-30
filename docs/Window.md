@@ -119,5 +119,3 @@ System.Windows.Window
 
 ## RELATED LINKS
 [Dialog]()
-
-[FindChild]()
