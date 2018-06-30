@@ -20,7 +20,7 @@ An example
 .NOTES
 General notes
 #>
-function Label {
+function TextBlock {
     [CmdletBinding()]
     Param($Text, $name, $property = @{})
 
@@ -30,9 +30,9 @@ function Label {
 
     $properties = Merge-HashTable $baseProperties $property
 
-    $label = new-object System.Windows.Controls.Label -Property $properties
+    $textblock = new-object System.Windows.Controls.TextBlock -Property $properties
     if ($name) {
-        $label.Name = $name
+        $textblock.Name = $name
     }
-    $label  | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
+    $textblock | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
 }

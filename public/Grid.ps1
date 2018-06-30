@@ -66,5 +66,6 @@ function Grid {
         else {
             [pscustomobject]$d
         }
-    } -PassThru
+    }
+    $grid | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
 }
