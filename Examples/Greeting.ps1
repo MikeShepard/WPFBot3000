@@ -1,7 +1,7 @@
 Import-Module WPF_DSL -force
 $w=Window {
     Textbox Name
-    Button Personalize -action {
+    Button Personalize -name mike -action {
                                  $txt=$this.Window.GetControlByName('Name')
                                  $lbl=$this.Window.GetControlByName('Greeting')
                                  $lbl.Content="Hello, $($txt.Text)"}
