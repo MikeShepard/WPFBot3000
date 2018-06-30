@@ -65,15 +65,16 @@ function Window {
     [System.Windows.UIElement[]]$c = & $Contents
     $grid = new-object System.Windows.Controls.Grid -Property @{
         Margin=5
+        ShowGridLines=$true
     }
     $w.Content = $grid
-    1..$C.Count + 1 | ForEach-Object { $grid.RowDefinitions.Add( (new-object System.Windows.Controls.RowDefinition -Property @{Height = 'Auto'}))}
+    1..$C.Count | ForEach-Object { $grid.RowDefinitions.Add( (new-object System.Windows.Controls.RowDefinition -Property @{}))}
     $controlColumn = 0
     if (-not $HideLabels) {
-        $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{Width = 'Auto'}))
+        $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{}))
         $controlColumn = 1
     }
-    $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{Width = '*'}))
+    #$grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{}))
     $Row = 0
     foreach ($control in $c) {
         if (-not ($control -is [System.Windows.Controls.CheckBox]) -and

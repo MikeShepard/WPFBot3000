@@ -36,7 +36,7 @@ function TabControl {
     [System.Windows.UIElement[]]$c = & $Contents
     $c | foreach-object {    $tabControl.Items.Add($_) | out-null }
     $tabControl | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
-    $tabControl | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
+    $tabControl | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = [Ordered]@{}
         $this.Items | ForEach-Object {if ($_| get-member GetControlValue) {
                 $d.Add($_.Name, $_.GetControlValue())
             }}

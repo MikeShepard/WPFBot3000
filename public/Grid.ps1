@@ -30,7 +30,7 @@ General notes
 function Grid {
     [CmdletBinding()]
     Param([Scriptblock]$Contents, $Property = @{}, $name, $ColumnCount = 1, $RowCount = 1)
-    $baseProperties = @{}
+    $baseProperties = @{VerticalAlignment='Stretch';HorizontalAlignment='Stretch'}
     if ($name) {
         $baseProperties.Name = $name
     }
@@ -38,8 +38,8 @@ function Grid {
     $Grid = new-object Grid -Property $properties
     $grid.RowDefinitions.Clear()
     $grid.ColumnDefinitions.Clear()
-    1..$RowCount | ForEach-Object { $grid.RowDefinitions.Add( (new-object RowDefinition -Property @{Height = 'Auto'}))}
-    1..$ColumnCount |  ForEach-Object { $grid.ColumnDefinitions.Add((new-object ColumnDefinition -property @{Width = 'Auto'}))}
+    1..$RowCount | ForEach-Object { $grid.RowDefinitions.Add( (new-object RowDefinition -Property @{}))}
+    1..$ColumnCount |  ForEach-Object { $grid.ColumnDefinitions.Add((new-object ColumnDefinition -property @{}))}
 
 
     [System.Windows.UIElement[]]$c = & $Contents
@@ -47,6 +47,9 @@ function Grid {
     $c | foreach-object {
         $row = [Math]::Truncate($objectCount / $columnCount)
         $col = $objectCount % $columnCount
+        if($_ -is [System.Windows.Controls.GridSplitter]){
+            $grid.ColumnDefinitions[$col].Width=5
+        }
         $Grid.Children.Add($_) | out-null
         [Grid]::SetColumn( $_, $col)
         [Grid]::SetRow($_, $row)
