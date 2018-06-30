@@ -5,7 +5,8 @@ $w=Window {
     CheckBox Barney
 } -Events @{Name='Barney'
             EventName='Checked'
-            Action={$txt=$this.Window.FindControl('Fred')
+            Action={
+                    $txt=$this.Window.GetControlByName('Fred')
                     write-host $txt.Text
                     $txt.Text=$txt.Text.ToUpper()
                   }

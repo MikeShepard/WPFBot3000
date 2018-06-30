@@ -94,9 +94,17 @@ function Window {
         $grid.Children.Add($control) | out-null
         $row += 1
     }
-    $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {Param($name) FindChild -parent $this -childName $name}
+    $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {
+                        Param($name) 
+                        if($this.Content.Name -eq $name){
+                           $this.Content
+                        } else {
+                          $this.Content.GetControlByName($name)
+                        }
+        }
+    $control=$null
     foreach ($item in $events) {
-        $control = FindChild -parent $w -childName $item.Name
+        $control = $w.GetControlByName($item.Name)
         if ($control) {
             $control."Add_$($item.EventName)"($item.Action)
         }
