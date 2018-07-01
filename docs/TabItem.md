@@ -5,45 +5,32 @@ online version:
 schema: 2.0.0
 ---
 
-# FindChild
+# TabItem
 
 ## SYNOPSIS
-Find a control in a WPF window
+Short description
 
 ## SYNTAX
 
 ```
-FindChild [[-parent] <Object>] [[-childName] <Object>] [<CommonParameters>]
+TabItem [[-label] <Object>] [[-Contents] <ScriptBlock>] [[-Property] <Object>] [[-name] <Object>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Unlike FindName(), FindChild actually works with dynamically created controls. 
-It walks the
-visual control tree to find all of the controls in the window, returning the first one that
-has the right name.
+Long description
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-$w=Window {
+An example
 ```
-
-StackPanel {
-        TextBox Fred
-        CheckBox Barney
-    }
-}
-
-FindChild -Parent $w -childName Barney
-
-Output
-\<The "Barney checkbox control\>
 
 ## PARAMETERS
 
-### -parent
-A wpf control that contains other controls (generally a window or page)
+### -label
+{{Fill label Description}}
 
 ```yaml
 Type: Object
@@ -57,8 +44,23 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -childName
-The name of the control to find
+### -Contents
+Parameter description
+
+```yaml
+Type: ScriptBlock
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Property
+Parameter description
 
 ```yaml
 Type: Object
@@ -66,7 +68,22 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 2
+Position: 3
+Default value: @{}
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -name
+Parameter description
+
+```yaml
+Type: Object
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -81,5 +98,6 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
+General notes
 
 ## RELATED LINKS
