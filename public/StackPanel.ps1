@@ -46,5 +46,6 @@ function StackPanel {
         }
         else {
             [pscustomobject]$d
-        }} -PassThru
+        }}
+        $stack  | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
 }

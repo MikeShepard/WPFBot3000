@@ -5,41 +5,31 @@ online version:
 schema: 2.0.0
 ---
 
-# CheckBox
+# TextBlock
 
 ## SYNOPSIS
-Outputs a checkbox control
+Short description
 
 ## SYNTAX
 
 ```
-CheckBox [[-Name] <Object>] [[-InitialValue] <Boolean>] [[-property] <Object>] [<CommonParameters>]
+TextBlock [[-Text] <Object>] [[-name] <Object>] [[-property] <Object>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Outputs a checkbox control.  Set the initial "checked" state with the -InitialValue parameter, and set any control properties using the -Property parameter.
+Long description
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Import-Module wpf_dsl -force
-
-Dialog {
-    StackPanel -Name Options -orientation Horizontal {
-       CheckBox Eeny
-       CheckBox Meeny
-       CheckBox Miny
-    }
-    TextBox Moe
-}
+An example
 ```
-In the window there will be three checkboxes, labeled Eeny, Meeny, and Miny.
 
 ## PARAMETERS
 
-### -Name
-The name of the control.  This will be the name of a property in the output of the Dialog function.
+### -Text
+Parameter description
 
 ```yaml
 Type: Object
@@ -53,23 +43,23 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -InitialValue
-True means checked, False means not checked
+### -name
+Parameter description
 
 ```yaml
-Type: Boolean
+Type: Object
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: 2
-Default value: False
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -property
-Property values for the control.
+Parameter description
 
 ```yaml
 Type: Object
@@ -88,12 +78,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
-This command does not accept pipeline input.
 
 ## OUTPUTS
-This command outputs a checkbox control.
 
 ## NOTES
-
+General notes
 
 ## RELATED LINKS

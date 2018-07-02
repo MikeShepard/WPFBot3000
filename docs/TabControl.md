@@ -5,43 +5,35 @@ online version:
 schema: 2.0.0
 ---
 
-# Merge-HashTable
+# TabControl
 
 ## SYNOPSIS
-Adds items from the "Extension" hashtable to the "Base" hashtable
+Short description
 
 ## SYNTAX
 
 ```
-Merge-HashTable [[-Base] <Hashtable>] [[-Extension] <Hashtable>] [<CommonParameters>]
+TabControl [[-Contents] <ScriptBlock>] [[-Property] <Object>] [[-Orientation] <Object>] [[-name] <Object>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Used to override a hashtable of base properties and values with customised versions.
+Long description
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-$prop1=@{Height=30;Title='Example'}
+An example
 ```
-
-$prop2=@{Title='Updated'}
-
-Merge-Hashtable -base $prop1 -extension $prop2
-
-Name                           Value
-----                           -----
-Title                          Updated
-Height                         30
 
 ## PARAMETERS
 
-### -Base
-Hashtable with base values
+### -Contents
+Parameter description
 
 ```yaml
-Type: Hashtable
+Type: ScriptBlock
 Parameter Sets: (All)
 Aliases:
 
@@ -52,16 +44,46 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Extension
-Hashtable with overrides of base values or extra properties
+### -Property
+Parameter description
 
 ```yaml
-Type: Hashtable
+Type: Object
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: 2
+Default value: @{}
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Orientation
+Parameter description
+
+```yaml
+Type: Object
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
+Default value: Horizontal
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -name
+Parameter description
+
+```yaml
+Type: Object
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -76,5 +98,6 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
+General notes
 
 ## RELATED LINKS

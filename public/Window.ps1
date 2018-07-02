@@ -68,18 +68,16 @@ function Window {
         ShowGridLines=$true
     }
     $w.Content = $grid
-    1..$C.Count | ForEach-Object { $grid.RowDefinitions.Add( (new-object System.Windows.Controls.RowDefinition -Property @{}))}
+    1..$C.Count | ForEach-Object { $grid.RowDefinitions.Add( (new-object System.Windows.Controls.RowDefinition -Property @{Height='Auto'}))}
     $controlColumn = 0
     if (-not $HideLabels) {
-        $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{}))
+        $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{Width='Auto'}))
         $controlColumn = 1
     }
-    #$grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{}))
+    $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{}))
     $Row = 0
     foreach ($control in $c) {
-        if (-not ($control -is [System.Windows.Controls.CheckBox]) -and
-            (-not ($control -is [System.Windows.Controls.Label]))
-        ) {
+        if (-not (Get-Member -InputObject $control -Name HideLabel )) {
             if (-not $HideLabels) {
                 $labelText = $Control.Name
                 if ($labelMap.ContainsKey($control.Name)) {
@@ -96,9 +94,17 @@ function Window {
         $grid.Children.Add($control) | out-null
         $row += 1
     }
-    $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {Param($name) FindChild -parent $this -childName $name}
+    $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {
+                        Param($name) 
+                        if($this.Content.Name -eq $name){
+                           $this.Content
+                        } else {
+                          $this.Content.GetControlByName($name)
+                        }
+        }
+    $control=$null
     foreach ($item in $events) {
-        $control = FindChild -parent $w -childName $item.Name
+        $control = $w.GetControlByName($item.Name)
         if ($control) {
             $control."Add_$($item.EventName)"($item.Action)
         }

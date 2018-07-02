@@ -8,7 +8,7 @@ schema: 2.0.0
 # Dialog
 
 ## SYNOPSIS
-Short description
+Creates a window with the requested controls, OK, and Cancel and outputs an object representing the values in the window.
 
 ## SYNTAX
 
@@ -18,19 +18,26 @@ Dialog [[-Contents] <ScriptBlock>] [[-labelMap] <Hashtable>] [[-Events] <Hashtab
 ```
 
 ## DESCRIPTION
-Long description
+Creates a window with the requested controls, OK, and Cancel and outputs an object representing the values in the window.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-An example
+Import-Module wpf_dsl -force
+Dialog {
+TextBox FirstName
+TextBox LastName
+TextBox EmailAddress
+DatePicker ReminderDate
+}
 ```
+Displays a window with 3 textboxes and a date picker and if the user presses ok (instead of cancel) it outputs an object with 4 properties (populated from the controls)
 
 ## PARAMETERS
 
 ### -Contents
-Parameter description
+Controls that you want in the dialog.
 
 ```yaml
 Type: ScriptBlock
@@ -45,7 +52,7 @@ Accept wildcard characters: False
 ```
 
 ### -labelMap
-Parameter description
+A hashtable with items of the form ControlName='Desired label'.  If the control is labeled it will use this text instead of the control name.
 
 ```yaml
 Type: Hashtable
@@ -60,7 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -Events
-Parameter description
+An array of hashtables of event handlers for controls in the dialog.  Each should have Name (control name), EventName, and Action.
 
 ```yaml
 Type: Hashtable[]
