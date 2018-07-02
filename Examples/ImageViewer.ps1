@@ -1,4 +1,4 @@
-$path='C:\Users\mike\Pictures\2018-06'
+$path='C:\Users\mike_sh\Pictures\'
 
 $images=get-childitem $path -INCLUDE  '*.BMP','*.GIF','*.JPG','*.PNG','*.TIFF' -Recurse
 
@@ -11,12 +11,12 @@ if ($images.count -eq 0){
 
 $w=window {
 
-    Image Viewer -property @{Height=400} -ImageURI $images[0]
+    Image Viewer -property @{Height=400;MaxWidth=600} -ImageURI $images[0]
     StackPanel {
-                    Button Prev -Action {$this.Window.PreviousImage()}
-                    Button Next -Action {$this.Window.PreviousImage()}
+                    Button '<-' -name Prev -Action {$this.Window.PreviousImage()} 
+                    Button '->' -name Next -Action {$this.Window.NextImage()}
     }
-} -labelMap @{Prev="<-";Next="->"}
+} 
 
 $w | add-member -MemberType ScriptMethod -Name NextImage -Value {$image=$this.GetControlByName('Viewer')
                                                                  $script:currentImage=($currentImage +1) % $images.Count
