@@ -4,16 +4,15 @@ function Image {
     $baseProperties = @{
         Name = $name
     }
-    if($ImageURI){
-        $baseProperties=@{
-          BaseURI=$imageURI
-        }
-    }
+
     $properties = Merge-HashTable $baseProperties $property
     $o = new-object System.Windows.Controls.Image -Property $properties
+    $o | add-member -Name LoadImage -MemberType ScriptMethod -Value {param($URI)
+                                                                        $imageSource=new-object System.Windows.Media.Imaging.BitmapImage (new-object  System.Uri $URI )
+                                                                        $this.Source=$imageSource
+                                                                    }
     if($ImageURI){
-        $imageSource = new-object  System.Windows.Media.Imaging.BitmapImage (new-object  System.Uri $imageURI )
-        $o.Source = $imageSource;
+        $o.LoadImage($ImageURI)
 
     }
      $o | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)} -PassThru
