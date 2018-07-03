@@ -1,29 +1,3 @@
-
-<#
-.SYNOPSIS
-Short description
-
-.DESCRIPTION
-Long description
-
-.PARAMETER inputobject
-Parameter description
-
-.PARAMETER Property
-Parameter description
-
-.PARAMETER LabelMap
-Parameter description
-
-.PARAMETER Update
-Parameter description
-
-.EXAMPLE
-An example
-
-.NOTES
-General notes
-#>
 function Invoke-ObjectEditor {
     [CmdletBinding()]
     Param([Parameter(ValueFromPipeline = $true)]$inputobject,

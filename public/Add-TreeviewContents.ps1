@@ -1,22 +1,3 @@
-<#
-.SYNOPSIS
-Short description
-
-.DESCRIPTION
-Long description
-
-.PARAMETER parent
-Parameter description
-
-.PARAMETER items
-Parameter description
-
-.EXAMPLE
-An example
-
-.NOTES
-General notes
-#>
 function Add-TreeviewContents {
     [CmdletBinding()]
     Param($parent, $items)

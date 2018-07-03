@@ -1,22 +1,3 @@
-<#
-.SYNOPSIS
-Short description
-
-.DESCRIPTION
-Long description
-
-.PARAMETER Name
-Parameter description
-
-.PARAMETER InitialValue
-Parameter description
-
-.EXAMPLE
-An example
-
-.NOTES
-General notes
-#>
 Function CredentialPicker {
     [CmdletBinding()]
     Param($Name, [PSCredential]$InitialValue)

@@ -1,32 +1,3 @@
-
-<#
-.SYNOPSIS
-Short description
-
-.DESCRIPTION
-Long description
-
-.PARAMETER Contents
-Parameter description
-
-.PARAMETER Property
-Parameter description
-
-.PARAMETER name
-Parameter description
-
-.PARAMETER ColumnCount
-Parameter description
-
-.PARAMETER RowCount
-Parameter description
-
-.EXAMPLE
-An example
-
-.NOTES
-General notes
-#>
 function Grid {
     [CmdletBinding()]
     Param([Scriptblock]$Contents, $Property = @{}, $name, $ColumnCount = 1, $RowCount = 1)

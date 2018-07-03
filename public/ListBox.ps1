@@ -1,29 +1,3 @@
-
-<#
-.SYNOPSIS
-Short description
-
-.DESCRIPTION
-Long description
-
-.PARAMETER name
-Parameter description
-
-.PARAMETER contents
-Parameter description
-
-.PARAMETER initialValue
-Parameter description
-
-.PARAMETER property
-Parameter description
-
-.EXAMPLE
-An example
-
-.NOTES
-General notes
-#>
 function ListBox {
     [CmdletBinding()]
     Param($name, $contents = @(), $initialValue, $property = @{})

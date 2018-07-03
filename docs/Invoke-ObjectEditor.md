@@ -1,6 +1,6 @@
 ---
 external help file: wpf_dsl-help.xml
-Module Name: wpf_dsl
+Module Name: WPF_DSL
 online version:
 schema: 2.0.0
 ---
