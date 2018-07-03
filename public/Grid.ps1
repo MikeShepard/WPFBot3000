@@ -29,7 +29,7 @@ General notes
 #>
 function Grid {
     [CmdletBinding()]
-    Param([Scriptblock]$Contents, $Property = @{}, $name, $ColumnCount = 1, $RowCount = 1)
+    Param([Scriptblock]$Contents, $Property = @{}, $name, $ColumnCount = 1)
     $baseProperties = @{VerticalAlignment='Stretch';HorizontalAlignment='Stretch'}
     if ($name) {
         $baseProperties.Name = $name
@@ -38,7 +38,7 @@ function Grid {
     $Grid = new-object Grid -Property $properties
     $grid.RowDefinitions.Clear()
     $grid.ColumnDefinitions.Clear()
-    1..$RowCount | ForEach-Object { $grid.RowDefinitions.Add( (new-object RowDefinition -Property @{}))}
+    
     1..$ColumnCount |  ForEach-Object { $grid.ColumnDefinitions.Add((new-object ColumnDefinition -property @{}))}
 
 
@@ -47,6 +47,9 @@ function Grid {
     $c | foreach-object {
         $row = [Math]::Truncate($objectCount / $columnCount)
         $col = $objectCount % $columnCount
+        if($col -eq 0){
+            $grid.RowDefinitions.Add( (new-object RowDefinition -Property @{}))
+        }
         if($_ -is [System.Windows.Controls.GridSplitter]){
             $grid.ColumnDefinitions[$col].Width=5
         }
