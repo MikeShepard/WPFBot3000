@@ -1,29 +1,3 @@
-
-<#
-.SYNOPSIS
-Short description
-
-.DESCRIPTION
-Long description
-
-.PARAMETER Contents
-Parameter description
-
-.PARAMETER labelMap
-Parameter description
-
-.PARAMETER Events
-Parameter description
-
-.PARAMETER title
-Parameter description
-
-.EXAMPLE
-An example
-
-.NOTES
-General notes
-#>
 function Dialog {
     [CmdletBinding()]
     param([scriptblock]$Contents,
