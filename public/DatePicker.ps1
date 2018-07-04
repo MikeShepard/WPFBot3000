@@ -1,6 +1,8 @@
 function DatePicker {
     [CmdletBinding()]
-    Param($Name, [DateTime]$InitialValue = (get-date), $property = @{})
+    Param([string]$Name,
+          [DateTime]$InitialValue = (get-date),
+          [HashTable]$property = @{})
     $baseProperties = @{
         Name = $name
         Text = $InitialValue

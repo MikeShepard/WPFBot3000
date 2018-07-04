@@ -15,6 +15,7 @@ function GridSplitter {
         }
     }
     $properties = Merge-HashTable $baseProperties $property
-    new-object System.Windows.Controls.GridSplitter -Property $properties
-    
+    $splitter=new-object System.Windows.Controls.GridSplitter -Property $properties
+    $splitter | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)} -PassThru
+
 }

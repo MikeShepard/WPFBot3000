@@ -1,8 +1,10 @@
 function TabItem {
     [CmdletBinding()]
-    Param($label,[Scriptblock]$Contents, $Property = @{}, $name)
-    $baseProperties = @{
-      }
+    Param([string]$label,
+          [Scriptblock]$Contents,
+          [hashtable]$Property = @{},
+          [string]$name)
+    $baseProperties = @{}
     if($label) {
         $baseProperties.Header=$label
         $baseProperties.Name=$label
@@ -15,6 +17,7 @@ function TabItem {
     [System.Windows.UIElement[]]$c = & $Contents
     $tabItem.Content = StackPanel -Contents { $c }
     $tabItem | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
+    $tabitem  | add-member -MemberType NoteProperty -Name HideLabel -Value $True
     $tabitem | add-member -Name GetControlValue -MemberType ScriptMethod -Value { $this.Content.GetControlValue()
     } -PassThru
 }

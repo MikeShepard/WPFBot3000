@@ -1,7 +1,7 @@
-
 Function DirectoryPicker {
     [CmdletBinding()]
-    Param($Name, $InitialValue)
+    Param([string]$Name,
+          [String]$InitialValue)
 
     $stack = new-object System.Windows.Controls.StackPanel -Property @{
         Name        = $name

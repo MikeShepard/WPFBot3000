@@ -1,6 +1,9 @@
 function ListBox {
     [CmdletBinding()]
-    Param($name, $contents = @(), $initialValue, $property = @{})
+    Param([string]$name,
+          [Array]$contents = @(),
+          $initialValue,
+          [Hashtable]$property = @{})
     $baseProperties = @{
         Name = $name
     }

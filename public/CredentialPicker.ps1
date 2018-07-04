@@ -1,6 +1,7 @@
 Function CredentialPicker {
     [CmdletBinding()]
-    Param($Name, [PSCredential]$InitialValue)
+    Param([string]$Name,
+          [PSCredential]$InitialValue)
 
     $stack = new-object System.Windows.Controls.StackPanel -Property @{
         Name        = $name
@@ -30,6 +31,7 @@ Function CredentialPicker {
             $txt.Text = $cred.GetNetworkCredential().Username
         })
     $stack.Children.Add($btn) | out-null
+    $o | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $stack | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Children[0].Tag} -PassThru
 
 }

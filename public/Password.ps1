@@ -1,6 +1,8 @@
 function Password {
     [CmdletBinding()]
-    Param($Name, [SecureString]$InitialValue, $property = @{})
+    Param([string]$Name,
+          [SecureString]$InitialValue,
+          [hashtable]$property = @{})
     $baseProperties = @{
         Name           = $name
         SecurePassword = $InitialValue

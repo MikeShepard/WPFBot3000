@@ -1,6 +1,8 @@
 function MultiLineTextBox {
     [CmdletBinding()]
-    Param($Name, $InitialValue = "", $property = @{})
+    Param([string]$Name,
+          [string]$InitialValue = "",
+          [string]$property = @{})
     $baseProperties = @{
         Name                        = $name
         Text                        = $InitialValue

@@ -1,6 +1,8 @@
 function Image {
     [CmdletBinding()]
-    Param($Name, $ImageURI, $property = @{})
+    Param([string]$Name,
+          [string]$ImageURI,
+          [hashtable]$property = @{})
     $baseProperties = @{
         Name = $name
     }

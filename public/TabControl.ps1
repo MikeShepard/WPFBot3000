@@ -1,6 +1,8 @@
 function TabControl {
     [CmdletBinding()]
-    Param([Scriptblock]$Contents, $Property = @{}, [ValidateSet('Horizontal', 'Vertical')]$Orientation = 'Horizontal', $name)
+    Param([Scriptblock]$Contents,
+          [hashtable]$Property = @{},
+          [string]$name)
     $baseProperties = @{
          }
     if ($name) {
@@ -11,6 +13,7 @@ function TabControl {
     [System.Windows.UIElement[]]$c = & $Contents
     $c | foreach-object {    $tabControl.Items.Add($_) | out-null }
     $tabControl | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
+    $tabControl  | add-member -MemberType NoteProperty -Name HideLabel -Value $True
     $tabControl | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = [Ordered]@{}
         $this.Items | ForEach-Object {if ($_| get-member GetControlValue) {
                 $d.Add($_.Name, $_.GetControlValue())

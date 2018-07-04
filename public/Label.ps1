@@ -1,6 +1,8 @@
 function Label {
     [CmdletBinding()]
-    Param($Text, $name, $property = @{})
+    Param([string]$Text,
+          [string]$name,
+          [hashtable]$property = @{})
 
     $BaseProperties=@{
         Content = $text

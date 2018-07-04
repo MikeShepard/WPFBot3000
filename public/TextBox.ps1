@@ -1,6 +1,8 @@
 function TextBox {
     [CmdletBinding()]
-    Param($Name, $InitialValue = "", $property = @{})
+    Param([string]$Name,
+          [string]$InitialValue = "",
+          [hashtable]$property = @{})
     $baseProperties = @{
         Name = $name
         Text = $InitialValue

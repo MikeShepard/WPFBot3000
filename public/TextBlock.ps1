@@ -1,6 +1,8 @@
 function TextBlock {
     [CmdletBinding()]
-    Param($Text, $name, $property = @{})
+    Param([string]$Text,
+          [string]$name,
+          [hashtable]$property = @{})
 
     $BaseProperties=@{
         Content = $text
@@ -12,5 +14,6 @@ function TextBlock {
     if ($name) {
         $textblock.Name = $name
     }
+    $textblock | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $textblock | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
 }
