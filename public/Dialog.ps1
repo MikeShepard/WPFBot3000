@@ -13,14 +13,8 @@ function Dialog {
         } -Orientation Horizontal -Property @{}
     } @PSBoundParameters
     $w.Content.RowDefinitions[-1].Height='Auto'
-    $output = @{}
     $dialogResult = $w.Showdialog()
     if ($dialogResult) {
-        $c | ForEach-Object { if (($_ | get-member GetControlValue) -and ($_| get-member Name)) {
-                if ($_.Name) {
-                    $output.Add($_.Name, $_.GetControlValue())
-                }
-            }}
-        [pscustomobject]$output
+        $w.GetWindowOutput()
     }
 }

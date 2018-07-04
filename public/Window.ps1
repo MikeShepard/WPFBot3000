@@ -49,6 +49,16 @@ function Window {
                           $this.Content.GetControlByName($name)
                         }
         }
+    $w | add-member -MemberType ScriptMethod -Name GetWindowOutput -value {
+            $output=[Ordered]@{}
+            $this.Content.Children | ForEach-Object { if (($_ | get-member GetControlValue) -and ($_| get-member Name)) {
+                    if ($_.Name) {
+                        $output.Add($_.Name, $_.GetControlValue())
+                    }
+                }}
+            $output
+        }
+    
     $control=$null
     foreach ($item in $events) {
         $control = $w.GetControlByName($item.Name)
