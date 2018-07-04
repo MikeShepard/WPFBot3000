@@ -28,8 +28,3 @@ Foreach($import in @($Public + $Private))
 
 Export-ModuleMember -Function $Public.Basename -alias 'Edit-Object'
 
-$p=new-object System.Windows.Controls.StackPanel
-if(-not ($p | get-member GEtControlByName)){
-  Update-TypeData -TypeName System.Windows.Controls.Panel -MemberType ScriptMethod -MemberName GetControlByName -Value $function:GetControlByName
-}
-Remove-Variable -Name p
