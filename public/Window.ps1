@@ -1,56 +1,3 @@
-<#
-.SYNOPSIS
-Find a control in a WPF window
-
-.DESCRIPTION
-Unlike FindName(), FindChild actually works with dynamically created controls.  It walks the
-visual control tree to find all of the controls in the window, returning the first one that
-has the right name.
-
-.PARAMETER parent
-A wpf control that contains other controls (generally a window or page)
-
-.PARAMETER childName
-The name of the control to find
-
-.EXAMPLE
-$w=Window {
-    StackPanel {
-        TextBox Fred
-        CheckBox Barney
-    }
-}
-
-FindChild -Parent $w -childName Barney
-
-Output
-<The "Barney checkbox control>
-
-#><#
-.SYNOPSIS
-Short description
-
-.DESCRIPTION
-Long description
-
-.PARAMETER Contents
-Parameter description
-
-.PARAMETER labelMap
-Parameter description
-
-.PARAMETER Events
-Parameter description
-
-.PARAMETER title
-Parameter description
-
-.EXAMPLE
-An example
-
-.NOTES
-General notes
-#>
 function Window {
     [CmdletBinding()]
     param([scriptblock]$Contents,
@@ -95,7 +42,7 @@ function Window {
         $row += 1
     }
     $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {
-                        Param($name) 
+                        Param($name)
                         if($this.Content.Name -eq $name){
                            $this.Content
                         } else {

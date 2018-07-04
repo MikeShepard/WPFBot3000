@@ -1,25 +1,3 @@
-<#
-.SYNOPSIS
-Short description
-
-.DESCRIPTION
-Long description
-
-.PARAMETER Name
-Parameter description
-
-.PARAMETER InitialValue
-Parameter description
-
-.PARAMETER property
-Parameter description
-
-.EXAMPLE
-An example
-
-.NOTES
-General notes
-#>
 function CheckBox {
     [CmdletBinding()]
     Param($Name, [Boolean]$InitialValue = $false, $property = @{})

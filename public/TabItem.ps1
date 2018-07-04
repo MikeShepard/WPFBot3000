@@ -1,28 +1,3 @@
-<#
-.SYNOPSIS
-Short description
-
-.DESCRIPTION
-Long description
-
-.PARAMETER Contents
-Parameter description
-
-.PARAMETER Property
-Parameter description
-
-.PARAMETER Orientation
-Parameter description
-
-.PARAMETER name
-Parameter description
-
-.EXAMPLE
-An example
-
-.NOTES
-General notes
-#>
 function TabItem {
     [CmdletBinding()]
     Param($label,[Scriptblock]$Contents, $Property = @{}, $name)

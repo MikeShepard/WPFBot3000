@@ -4,7 +4,6 @@ function Image {
     $baseProperties = @{
         Name = $name
     }
-
     $properties = Merge-HashTable $baseProperties $property
     $o = new-object System.Windows.Controls.Image -Property $properties
     $o | add-member -Name LoadImage -MemberType ScriptMethod -Value {param($URI)
