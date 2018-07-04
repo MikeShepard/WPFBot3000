@@ -9,7 +9,7 @@ function Dialog {
     $w = Window {
         $c
         StackPanel {Button OK {  $this.Window.DialogResult = $true } -property @{}
-            Button Cancel { $this.Window.DialogResult = $false} -property @{}
+                    Button Cancel { $this.Window.DialogResult = $false} -property @{}
         } -Orientation Horizontal -Property @{}
     } @PSBoundParameters
     $w.Content.RowDefinitions[-1].Height='Auto'

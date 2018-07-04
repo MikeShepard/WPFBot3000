@@ -1,6 +1,8 @@
 function Treeview {
     [CmdletBinding()]
-    Param($name, $contents, $initialValue, $property = @{})
+    Param([string]$name,
+          [scriptblock]$contents,
+          [hashtable]$property = @{})
     $baseProperties = @{
         Name = $name
     }

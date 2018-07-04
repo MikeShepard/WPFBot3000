@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-TreeviewContents
 
 ## SYNOPSIS
-Short description
+Adds items from a hashtable to the treeview.
 
 ## SYNTAX
 
@@ -17,7 +17,7 @@ Add-TreeviewContents [[-parent] <Object>] [[-items] <Object>] [<CommonParameters
 ```
 
 ## DESCRIPTION
-Long description
+Adds items from a hashtable to the treeview.
 
 ## EXAMPLES
 

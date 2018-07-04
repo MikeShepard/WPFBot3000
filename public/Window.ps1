@@ -58,7 +58,7 @@ function Window {
                 }}
             $output
         }
-    
+
     $control=$null
     foreach ($item in $events) {
         $control = $w.GetControlByName($item.Name)

@@ -1,6 +1,9 @@
 function StackPanel {
     [CmdletBinding()]
-    Param([Scriptblock]$Contents, $Property = @{}, [ValidateSet('Horizontal', 'Vertical')]$Orientation = 'Horizontal', $name)
+    Param([Scriptblock]$Contents,
+          [hashtable]$Property = @{},
+          [ValidateSet('Horizontal', 'Vertical')]$Orientation = 'Horizontal',
+          [string]$name)
     $baseProperties = @{
         Orientation = [System.Windows.Controls.Orientation]$Orientation
     }

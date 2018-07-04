@@ -8,7 +8,7 @@ schema: 2.0.0
 # CredentialDialog
 
 ## SYNOPSIS
-Short description
+A control that encapsulates a credential.  Output value is a PSCredential object.
 
 ## SYNTAX
 
@@ -17,19 +17,22 @@ CredentialDialog [[-username] <PSCredential>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Long description
+A control that encapsulates a credential.  Output value is a PSCredential object.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-An example
+Dialog {
+       CredentialPicker User -username Mike
+}
+
 ```
 
 ## PARAMETERS
 
 ### -username
-Parameter description
+The username for a new credential.
 
 ```yaml
 Type: PSCredential

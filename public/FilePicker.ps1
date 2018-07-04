@@ -1,6 +1,7 @@
 Function FilePicker {
     [CmdletBinding()]
-    Param($Name, $InitialValue)
+    Param([string]$Name,
+          [string]$InitialValue)
 
     $stack = new-object System.Windows.Controls.StackPanel -Property @{
         Name        = $name

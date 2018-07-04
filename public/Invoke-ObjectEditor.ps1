@@ -3,7 +3,7 @@ function Invoke-ObjectEditor {
     Param([Parameter(ValueFromPipeline = $true)]$inputobject,
         [string[]]$Property,
         [hashtable]$LabelMap = @{},
-        [switch]$Update)
+        [switch]$InPlace)
 
     $Controls = $(
         foreach ($item in $inputObject | get-member -name $property -MemberType Properties) {
@@ -26,11 +26,10 @@ function Invoke-ObjectEditor {
     )
 
     $out = Dialog {$controls} -LabelMap $labelMap
-    if ($update) {
+    if ($InPlace) {
         foreach ($item in $out | get-member $Property -MemberType Properties) {
             $inputobject.$($item.Name) = $out.$($item.Name)
         }
-        $inputobject
     }
     else {
         $out
