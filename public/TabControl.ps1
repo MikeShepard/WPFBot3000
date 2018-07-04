@@ -1,8 +1,35 @@
+<#
+.SYNOPSIS
+A tabcontrol (container for tabs)
+
+.DESCRIPTION
+A tabcontrol (container for tabs)
+
+.PARAMETER Contents
+A scriptblock that outputs tabitem controls to embed in the tabcontrol
+
+.PARAMETER Property
+Properties to extend/override the base properties defined in the function
+
+.PARAMETER name
+The name of the tabcontrol
+
+.EXAMPLE
+Dialog {
+    TabControl Tabs {
+        TabItem Before { TextBox Description -prop @{MinWidth=100;MinHeight=100} }
+        TabItem After { TextBox Description2 -prop @{MinWidth=100;MinHeight=100}}
+    }
+}
+.NOTES
+General notes
+#>
 function TabControl {
     [CmdletBinding()]
-    Param([Scriptblock]$Contents,
-          [hashtable]$Property = @{},
-          [string]$name)
+    Param([string]$name,
+          [Scriptblock]$Contents,
+          [hashtable]$Property = @{}
+          )
     $baseProperties = @{
          }
     if ($name) {

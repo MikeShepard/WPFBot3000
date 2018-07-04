@@ -1,3 +1,26 @@
+<#
+.SYNOPSIS
+A control that allows input of credentials
+
+.DESCRIPTION
+A control that allows input of credentials
+
+.PARAMETER Name
+The name of the control.
+
+.PARAMETER InitialValue
+The credentials loaded into the control
+
+.EXAMPLE
+Dialog {
+    CredentialPicker MyCreds
+}
+
+#dialog with a place to request credentials (initially blank)
+
+.NOTES
+General notes
+#>
 Function CredentialPicker {
     [CmdletBinding()]
     Param([string]$Name,
@@ -31,7 +54,7 @@ Function CredentialPicker {
             $txt.Text = $cred.GetNetworkCredential().Username
         })
     $stack.Children.Add($btn) | out-null
-    $o | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
+    $stack | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $stack | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Children[0].Tag} -PassThru
 
 }

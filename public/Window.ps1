@@ -1,3 +1,41 @@
+<#
+.SYNOPSIS
+Outputs a window with the indicated wpf controls.
+
+.DESCRIPTION
+Creates a window object with 2-columns (labels and controls) or 1-column (using -HideLabels, with controls only).
+Outputs the window without displaying it.
+Note, the window doesn't build its own ok/cancel buttons so you are responsible for that.
+
+.PARAMETER Contents
+A scriptblock that outputs the controls you want in the window
+
+.PARAMETER labelMap
+A hashtable with items of the form ControlName='Desired label'.  If the control is labeled it will use this text instead of the control name.
+
+.PARAMETER Events
+An array of hashtables of event handlers for controls in the dialog.  Each should have Name (control name), EventName, and Action.
+
+.PARAMETER title
+The window title
+
+.PARAMETER HideLabels
+Use this switch if you want no labels at all (no column for them, even)
+
+.EXAMPLE
+$w=Window {
+    Textbox Name
+    Button Personalize -name mike -action {
+                                 $txt=$this.Window.GetControlByName('Name')
+                                 $lbl=$this.Window.GetControlByName('Greeting')
+                                 $lbl.Content="Hello, $($txt.Text)"}
+    Label 'Hello, World' -name 'Greeting'
+}
+$w.ShowDialog()
+
+.NOTES
+General notes
+#>
 function Window {
     [CmdletBinding()]
     param([scriptblock]$Contents,

@@ -1,3 +1,25 @@
+<#
+.SYNOPSIS
+A treeview control
+
+.DESCRIPTION
+A treeview control
+
+.PARAMETER name
+The name of the control
+
+.PARAMETER contents
+The contents of the control (hashtable...may be refactored)
+
+.PARAMETER property
+Properties to extend/override the base properties defined in the function
+
+.EXAMPLE
+TBD
+
+.NOTES
+General notes
+#>
 function Treeview {
     [CmdletBinding()]
     Param([string]$name,

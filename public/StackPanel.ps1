@@ -1,3 +1,35 @@
+<#
+.SYNOPSIS
+A stackpanel control
+
+.DESCRIPTION
+A stackpanel control that contains other controls
+
+.PARAMETER Contents
+A scriptblock that outputs controls you want in this stackpanel
+
+.PARAMETER Property
+Properties to extend/override the base properties defined in the function
+
+.PARAMETER Orientation
+Horizontal or vertical (how it "stacks" the controls)
+
+.PARAMETER name
+The name of the stackpanel control
+
+.EXAMPLE
+Dialog {
+    StackPanel -Name Options -orientation Horizontal {
+       CheckBox Eeny
+       CheckBox Meeny
+       CheckBox Miny
+    }
+    TextBox Moe
+}
+
+.NOTES
+General notes
+#>
 function StackPanel {
     [CmdletBinding()]
     Param([Scriptblock]$Contents,

@@ -1,10 +1,10 @@
 ﻿Import-Module wpf_Dsl -force
 $w=Window {
-   Grid -columnCount 3 -RowCount 1 {
+   Grid -columnCount 3  {
       $script:l=ListBox Items -property @{MinWidth=200;VerticalAlignment='Stretch'} -contents (get-service)
       $l
       GridSplitter -Orientation Horizontal
-      Grid -columnCount 1 -RowCount 3 {
+      Grid -columnCount 1  {
          MultilineTextBox Editor -property @{MinWidth=300;MinHeight=200;MaxHeight=200;HorizontalAlignment='Stretch'}
          TextBox CommandLine -property @{MinWidth=300;Height=20;HorizontalAlignment='Stretch'} -InitialValue Prompt
          MultilineTextBox Output -property @{MinWidth=300;MinHeight=200;FontFamily='Consolas';HorizontalAlignment='Stretch'}

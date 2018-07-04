@@ -1,7 +1,39 @@
+<#
+.SYNOPSIS
+A button control
 
+.DESCRIPTION
+Outputs a WPF Button control with a caption and an action.
+
+.PARAMETER Caption
+The text on the button
+
+.PARAMETER Action
+The action performed when the button is clicked
+
+.PARAMETER property
+Properties to extend/override the base properties defined in the function
+
+.PARAMETER name
+The Name of the control.
+
+.EXAMPLE
+(Window {
+    TextBox Name
+    Button "Say Hello" -Action {$t=$this.Window.GetControlByName('Name');
+                                                  Write-Host "Hello, $($t.Text)"}
+}).ShowDialog()
+
+
+.NOTES
+General notes
+#>
 function Button {
     [CmdletBinding()]
-    Param($Caption, [ScriptBlock]$Action, $property = @{},$name)
+    Param([string]$Caption,
+          [ScriptBlock]$Action,
+          [hashtable]$property = @{},
+          [string]$name)
     $baseProperties = @{
         Content = $Caption
     }

@@ -1,3 +1,33 @@
+<#
+.SYNOPSIS
+A tabitem control (A tab in a TabControl)
+
+.DESCRIPTION
+A tabitem control (A tab in a TabControl)
+
+.PARAMETER label
+The label of the tab
+
+.PARAMETER Contents
+A scriptblock that outputs controls you want in the tab
+
+.PARAMETER Property
+Properties to extend/override the base properties defined in the function
+
+.PARAMETER name
+The name of the control
+
+.EXAMPLE
+Dialog {
+    TabControl Tabs {
+        TabItem Before { TextBox Description -prop @{MinWidth=100;MinHeight=100} }
+        TabItem After { TextBox Description2 -prop @{MinWidth=100;MinHeight=100}}
+    }
+}
+
+.NOTES
+General notes
+#>
 function TabItem {
     [CmdletBinding()]
     Param([string]$label,

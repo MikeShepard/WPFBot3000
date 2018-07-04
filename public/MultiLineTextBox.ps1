@@ -1,8 +1,32 @@
+<#
+.SYNOPSIS
+A multi-line textbox control
+
+.DESCRIPTION
+A multi-line textbox control
+
+.PARAMETER Name
+The name of the control
+
+.PARAMETER InitialValue
+The text initially loaded into the control
+
+.PARAMETER property
+Properties to extend/override the base properties defined in the function
+
+.EXAMPLE
+Dialog {
+    MultilineTextBox Editor
+}
+
+.NOTES
+General notes
+#>
 function MultiLineTextBox {
     [CmdletBinding()]
     Param([string]$Name,
           [string]$InitialValue = "",
-          [string]$property = @{})
+          [hashtable]$property = @{})
     $baseProperties = @{
         Name                        = $name
         Text                        = $InitialValue

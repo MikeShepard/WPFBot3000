@@ -1,3 +1,24 @@
+<#
+.SYNOPSIS
+A file picker control
+
+.DESCRIPTION
+A file picker control
+
+.PARAMETER Name
+The name of the control
+
+.PARAMETER InitialValue
+The file the control initially points to
+
+.EXAMPLE
+dialog {
+    FilePicker TheFile -initialvalue c:\temp\web.config
+}
+
+.NOTES
+General notes
+#>
 Function FilePicker {
     [CmdletBinding()]
     Param([string]$Name,

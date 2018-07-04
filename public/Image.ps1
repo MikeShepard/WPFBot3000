@@ -1,3 +1,27 @@
+<#
+.SYNOPSIS
+An image control
+
+.DESCRIPTION
+An Image control
+
+.PARAMETER Name
+The name of the control
+
+.PARAMETER ImageURI
+What image to display (in uri/path form)
+
+.PARAMETER property
+Properties to extend/override the base properties defined in the function
+
+.EXAMPLE
+Dialog {
+    Image -ImageUri C:\temp\Picture.png
+}
+
+.NOTES
+General notes
+#>
 function Image {
     [CmdletBinding()]
     Param([string]$Name,

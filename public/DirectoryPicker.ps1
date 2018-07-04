@@ -1,3 +1,24 @@
+<#
+.SYNOPSIS
+A directory picker control
+
+.DESCRIPTION
+A directory picker control
+
+.PARAMETER Name
+The name of the control
+
+.PARAMETER InitialValue
+The folder to set it to initially
+
+.EXAMPLE
+dialog {
+    DirectoryPicker Folder -InitialValue C:\temp
+}
+
+.NOTES
+General notes
+#>
 Function DirectoryPicker {
     [CmdletBinding()]
     Param([string]$Name,

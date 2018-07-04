@@ -1,3 +1,32 @@
+<#
+.SYNOPSIS
+A grid panel, which displays its contents in rows and columns
+
+.DESCRIPTION
+A grid panel, which displays its contents in rows and columns
+
+.PARAMETER Contents
+A scriptblock that outputs controls that you want in the grid
+
+.PARAMETER Property
+Properties to extend/override the base properties defined in the function
+
+.PARAMETER name
+The name of the grid control.  This name will be a property in the output of the dialog function
+
+.PARAMETER ColumnCount
+The number of columns in the grid.  The number of rows is determined by the number of controls in $Contents.
+
+.EXAMPLE
+Dialog {
+      Grid -columnCount 3   {
+        1..12 | ForEach-Object { label -name "Blah$_" -Text "Blah$_"}
+      } -Property @{ShowGridlines=$true}
+   }
+
+.NOTES
+General notes
+#>
 function Grid {
     [CmdletBinding()]
     Param([Scriptblock]$Contents,
@@ -24,8 +53,13 @@ function Grid {
         if ($col -eq 0) {
             $grid.RowDefinitions.Add( (new-object RowDefinition -Property @{}))
         }
+        #fix width or height of column or row with a gridsplitter in it
         if ($_ -is [System.Windows.Controls.GridSplitter]) {
-            $grid.ColumnDefinitions[$col].Width = 5
+            if($_.Width -eq 5){
+                $grid.ColumnDefinitions[$col].Width = 5
+            } else {
+                $grid.RowDefinitions[$row].Height=5
+            }
         }
         $Grid.Children.Add($_) | out-null
         [Grid]::SetColumn( $_, $col)
