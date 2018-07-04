@@ -96,7 +96,7 @@ PrivateData = @{
         # Tags = @()
 
         # A URL to the license for this module.
-         LicenseUri = 'https://github.com/MikeShepard/WPF_DSL/blob/master/LICENSE'
+         LicenseUri = 'https://raw.githubusercontent.com/MikeShepard/WPF_DSL/master/WPF_DSL/LICENSE'
 
         # A URL to the main website for this project.
          ProjectUri = 'https://github.com/MikeShepard/WPF_DSL'
