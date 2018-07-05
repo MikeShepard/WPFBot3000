@@ -1,4 +1,4 @@
-﻿Import-Module wpf_Dsl -force
+﻿Import-Module WPFBot3000 -force
 $w=Window {
    Grid -columnCount 3  {
       $script:l=ListBox Items -property @{MinWidth=200;VerticalAlignment='Stretch'} -contents (get-service)

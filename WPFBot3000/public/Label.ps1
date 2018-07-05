@@ -15,7 +15,7 @@ The name of the control
 Properties to extend/override the base properties defined in the function
 
 .EXAMPLE
-Import-Module WPF_DSL -force
+Import-Module WPFBot3000 -force
 $w=Window {
     Textbox Name
     Button Personalize -name mike -action {

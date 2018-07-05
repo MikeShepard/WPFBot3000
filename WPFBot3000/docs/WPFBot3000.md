@@ -1,16 +1,16 @@
 ---
-Module Name: wpf_dsl
+Module Name: WPFBot3000
 Module Guid: {{ Update Module Guid }}
 Download Help Link: {{ Update Download Link }}
 Help Version: {{ Update Help Version }}
 Locale: {{ Update Locale }}
 ---
 
-# wpf_dsl Module
+# WPFBot3000 Module
 ## Description
 {{Manually Enter Description Here}}
 
-## wpf_dsl Cmdlets
+## WPFBot3000 Cmdlets
 ### [Add-TreeviewContents](Add-TreeviewContents.md)
 Adds items from a hashtable to the treeview.
 

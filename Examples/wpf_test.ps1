@@ -1,4 +1,4 @@
-﻿Import-Module wpf_dsl -Force
+﻿Import-Module WPFBot3000 -Force
 $files=get-childitem c:\temp | Select-Object -first 5
  Dialog{
          TextBox Fred 'hello world' -property @{FontFamily='Comic Sans MS'}

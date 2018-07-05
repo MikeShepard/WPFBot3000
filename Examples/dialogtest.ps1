@@ -1,4 +1,4 @@
-﻿Import-Module wpf_dsl -force
+﻿Import-Module WPFBot3000 -force
 
 $typeMenuItems=@{}
 function get-RelevantMenuItems{

@@ -1,6 +1,6 @@
 ---
-external help file: wpf_dsl-help.xml
-Module Name: wpf_dsl
+external help file: WPFBot3000-help.xml
+Module Name: WPFBot3000
 online version:
 schema: 2.0.0
 ---
@@ -47,7 +47,7 @@ A same window as in example 1, but textbox is now labled "First textbox" instead
 ## PARAMETERS
 
 ### -Contents
-The controls found in the window.  A scriptblock containing commands that output controls (from WPF_DSL primarily, but you can emit your own WPF controls if you'd like)
+The controls found in the window.  A scriptblock containing commands that output controls (from WPFBot3000 primarily, but you can emit your own WPF controls if you'd like)
 
 ```yaml
 Type: ScriptBlock

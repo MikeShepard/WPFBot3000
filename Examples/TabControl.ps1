@@ -1,4 +1,4 @@
-Import-Module wpf_dsl -force
+Import-Module WPFBot3000 -force
 $output=dialog {
     TabControl -name Top {
         TabItem Fred  {
@@ -13,5 +13,5 @@ $output=dialog {
         TabItem Betty {
             listbox -contents (dir c:\temp | select -first 10)
         }
-    } 
-} 
+    }
+}

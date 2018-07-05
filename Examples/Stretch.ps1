@@ -1,4 +1,4 @@
-Import-Module wpf_Dsl -force
+Import-Module WPFBot3000 -force
 $w=Window {
       ListBox Items -property @{MinWidth=200;VerticalAlignment='Stretch';HorizontalAlignment='Stretch'} -contents (get-service)
 } -hidelabels

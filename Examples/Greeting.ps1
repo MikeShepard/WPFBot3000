@@ -1,4 +1,4 @@
-Import-Module WPF_DSL -force
+Import-Module WPFBot3000 -force
 $w=Window {
     Textbox Name
     Button Personalize -name mike -action {

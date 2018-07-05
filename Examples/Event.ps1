@@ -1,4 +1,4 @@
-ipmo wpf_dsl -force
+ipmo WPFBot3000 -force
 
 $w=Window {
     TextBox Fred
