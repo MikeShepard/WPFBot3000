@@ -49,14 +49,14 @@ function Window {
     }
     [System.Windows.UIElement[]]$c = & $Contents
     $grid = new-object System.Windows.Controls.Grid -Property @{
-        Margin=5
-        ShowGridLines=$true
+        Margin        = 5
+        ShowGridLines = $true
     }
     $w.Content = $grid
-    1..$C.Count | ForEach-Object { $grid.RowDefinitions.Add( (new-object System.Windows.Controls.RowDefinition -Property @{Height='Auto'}))}
+    1..$C.Count | ForEach-Object { $grid.RowDefinitions.Add( (new-object System.Windows.Controls.RowDefinition -Property @{Height = 'Auto'}))}
     $controlColumn = 0
     if (-not $HideLabels) {
-        $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{Width='Auto'}))
+        $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{Width = 'Auto'}))
         $controlColumn = 1
     }
     $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{}))
@@ -80,25 +80,34 @@ function Window {
         $row += 1
     }
     $Grid | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
-    $this.Children | ForEach-Object {if ($_| get-member GetControlValue) {
-            $d.Add($_.Name, $_.GetControlValue())
-        }}
-    if ($d.Count -eq 1) {
-        $d.Values| Select-Object -first 1
-    } else {
-        [pscustomobject]$d
-    }
+        $this.Children | ForEach-Object {if ($_| get-member GetControlValue) {
+                $d.Add($_.Name, $_.GetControlValue())
+            }}
+        if ($d.Count -eq 1) {
+            $d.Values| Select-Object -first 1
+        } else {
+            [pscustomobject]$d
+        }
     }
     $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {
-                        Param($name)
-                        if($this.Content.Name -eq $name){
-                           $this.Content
-                        } else {
-                          $this.Content.GetControlByName($name)
-                        }
+        Param($name)
+        if ($this.Content.Name -eq $name) {
+            $this.Content
+        } else {
+            $this.Content.GetControlByName($name)
         }
+    }
     $grid | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
-    $control=$null
+    $w | add-member -MemberType ScriptMethod -Name GetWindowOutput -value {
+        $output = [Ordered]@{}
+        $this.Content.Children | ForEach-Object { if (($_ | get-member GetControlValue) -and ($_| get-member Name)) {
+                if ($_.Name) {
+                    $output.Add($_.Name, $_.GetControlValue())
+                }
+            }}
+        $output
+    }
+    $control = $null
     foreach ($item in $events) {
         $control = $w.GetControlByName($item.Name)
         if ($control) {
