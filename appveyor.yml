@@ -19,4 +19,4 @@ branches:
 
 #Kick off the CI/CD pipeline
 test_script:
-  - ps: .  .\build.ps1 Deploy
+  - ps: . .\build.ps1 Deploy
