@@ -40,9 +40,9 @@ function Label {
         Content = $text
     }
 
-    $properties = Merge-HashTable $baseProperties $property
-
-    $label = new-object System.Windows.Controls.Label -Property $properties
+    #$properties = Merge-HashTable $baseProperties $property
+    $label=New-WPFControl -type System.Windows.Controls.Label -Properties $baseProperties,$property
+    #$label = new-object System.Windows.Controls.Label -Property $properties
     if ($name) {
         $label.Name = $name
     }

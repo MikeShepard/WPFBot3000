@@ -1,5 +1,5 @@
 Using Namespace System.Windows.Controls
-Add-Type -AssemblyName PresentationFramework
+$WPFTypes=Add-Type -AssemblyName PresentationFramework -PassThru 
 Add-Type -AssemblyName System.Windows.Forms
 
 Set-StrictMode -Version Latest
@@ -7,6 +7,8 @@ Set-StrictMode -Version Latest
 #Get public and private function definition files.
 $Public  = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction SilentlyContinue )
 $Private = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction SilentlyContinue )
+
+$TypeCache=@{}
 
 #Dot source the files
 Foreach($import in @($Public + $Private))

@@ -67,7 +67,7 @@ Copyright = '(c) 2018 Mike Shepard. All rights reserved.'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = @('Add-TreeviewContents','Add-WPFMenu','Bottom','Button','CheckBox','ComboBox','CredentialPicker','DatePicker','Dialog','DirectoryPicker','DockPanel','FilePicker','Grid','GridSplitter','Image','Invoke-ObjectEditor','Label','Left','ListBox','MultiLineTextBox','Password','Right','StackPanel','TabControl','TabItem','TextBlock','TextBox','Top','Treeview','Window')
+FunctionsToExport = @('Add-TreeviewContents','Add-WPFMenu','Bottom','Button','Center','CheckBox','ComboBox','CredentialPicker','DatePicker','Dialog','DirectoryPicker','DockPanel','FilePicker','Grid','GridSplitter','Image','Invoke-ObjectEditor','Label','Left','ListBox','MultiLineTextBox','Password','Right','StackPanel','TabControl','TabItem','TextBlock','TextBox','Top','Treeview','Window')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = '*'
