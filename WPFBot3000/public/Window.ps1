@@ -79,6 +79,16 @@ function Window {
         $grid.Children.Add($control) | out-null
         $row += 1
     }
+    $Grid | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
+    $this.Children | ForEach-Object {if ($_| get-member GetControlValue) {
+            $d.Add($_.Name, $_.GetControlValue())
+        }}
+    if ($d.Count -eq 1) {
+        $d.Values| Select-Object -first 1
+    } else {
+        [pscustomobject]$d
+    }
+    }
     $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {
                         Param($name)
                         if($this.Content.Name -eq $name){
@@ -87,16 +97,7 @@ function Window {
                           $this.Content.GetControlByName($name)
                         }
         }
-    $w | add-member -MemberType ScriptMethod -Name GetWindowOutput -value {
-            $output=[Ordered]@{}
-            $this.Content.Children | ForEach-Object { if (($_ | get-member GetControlValue) -and ($_| get-member Name)) {
-                    if ($_.Name) {
-                        $output.Add($_.Name, $_.GetControlValue())
-                    }
-                }}
-            $output
-        }
-
+    $grid | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
     $control=$null
     foreach ($item in $events) {
         $control = $w.GetControlByName($item.Name)
