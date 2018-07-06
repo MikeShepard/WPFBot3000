@@ -64,4 +64,4 @@ function Invoke-ObjectEditor {
         $out
     }
 }
-New-Alias -Name Edit-Object -Value Invoke-ObjectEditor
+New-Alias -Name Edit-Object -Value Invoke-ObjectEditor -Force
