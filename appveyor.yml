@@ -12,7 +12,10 @@ os: WMF 5
 skip_commits:
   message: /updated readme.*|update readme.*s/
 
-build: false
+branches:
+  only:
+    - master
+
 
 #Kick off the CI/CD pipeline
 test_script:
