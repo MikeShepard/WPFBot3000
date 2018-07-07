@@ -35,7 +35,7 @@ function ListBox {
     $baseProperties = @{
         Name = $name
     }
-    $l=New-WPFControl -type System.Windows.Controls.Image -Properties $baseProperties,$property
+    $l=New-WPFControl -type System.Windows.Controls.ListBox -Properties $baseProperties,$property
 
     if ($Contents) {
         $contents | ForEach-Object {

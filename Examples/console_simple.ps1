@@ -1,6 +1,6 @@
 Import-Module WPFBot3000 -force
 $w=Window {
-   Grid -columnCount 3 -RowCount 1 {
+   Grid -columnCount 3 {
       ListBox Items -property @{MinWidth=200;VerticalAlignment='Stretch'} -contents (get-service)
       GridSplitter -Orientation Horizontal
       ListBox Items2 -property @{MinWidth=200;VerticalAlignment='Stretch'} -contents (get-service)
