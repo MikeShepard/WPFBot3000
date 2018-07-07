@@ -37,8 +37,8 @@ function Grid {
     if ($name) {
         $baseProperties.Name = $name
     }
-    $properties = Merge-HashTable $baseProperties $property
-    $Grid = new-object Grid -Property $properties
+    $grid=New-WPFControl -type System.Windows.Controls.Grid -Properties $baseProperties,$property
+
     $grid.RowDefinitions.Clear()
     $grid.ColumnDefinitions.Clear()
 

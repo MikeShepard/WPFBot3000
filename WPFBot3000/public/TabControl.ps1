@@ -35,8 +35,8 @@ function TabControl {
     if ($name) {
         $baseProperties.Name = $name
     }
-    $properties = Merge-HashTable $baseProperties $property
-    $tabControl = new-object System.Windows.Controls.TabControl -Property $properties
+    $tabControl=New-WPFControl -type System.Windows.Controls.TabControl -Properties $baseProperties,$property
+
     [System.Windows.UIElement[]]$c = & $Contents
     $c | foreach-object {    $tabControl.Items.Add($_) | out-null }
     $tabControl | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}

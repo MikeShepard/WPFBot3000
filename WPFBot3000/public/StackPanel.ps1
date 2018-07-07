@@ -42,8 +42,8 @@ function StackPanel {
     if ($name) {
         $baseProperties.Name = $name
     }
-    $properties = Merge-HashTable $baseProperties $property
-    $stack = new-object System.Windows.Controls.StackPanel -Property $properties
+    $stack=New-WPFControl -type System.Windows.Controls.StackPanel -Properties $baseProperties,$property
+
     [System.Windows.UIElement[]]$c = & $Contents
     $c | foreach-object {    $stack.Children.Add($_) | out-null }
     $stack | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
