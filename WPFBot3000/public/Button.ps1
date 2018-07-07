@@ -40,8 +40,8 @@ function Button {
     if($name){
       $baseProperties.Name=$name
     }
-    $properties = Merge-HashTable $baseProperties $property
-    $btn = new-object System.Windows.Controls.Button -Property $properties
+    $btn=New-WPFControl -type System.Windows.Controls.Button -Properties $baseProperties,$property
+
     $btn | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $btn.Add_Click($action)
     $btn

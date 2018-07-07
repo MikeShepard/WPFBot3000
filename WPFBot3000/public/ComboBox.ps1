@@ -35,8 +35,8 @@ function ComboBox {
     $baseProperties = @{
         Name = $name
     }
-    $properties = Merge-HashTable $baseProperties $property
-    $l = new-object System.Windows.Controls.ComboBox -Property $properties
+    $l=New-WPFControl -type System.Windows.Controls.Combobox -Properties $baseProperties,$property
+
     if ($initialValue) {
         $l.SelectedItem = $initialValue
     }

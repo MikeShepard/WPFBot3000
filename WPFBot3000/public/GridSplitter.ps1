@@ -34,8 +34,7 @@ function GridSplitter {
             MaxHeight=5
         }
     }
-    $properties = Merge-HashTable $baseProperties $property
-    $splitter=new-object System.Windows.Controls.GridSplitter -Property $properties
+    $splitter=New-WPFControl -type System.Windows.Controls.GridSplitter -Properties $baseProperties,$property
     $splitter | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)} -PassThru
 
 }

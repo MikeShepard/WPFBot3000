@@ -35,9 +35,8 @@ function ListBox {
     $baseProperties = @{
         Name = $name
     }
-    $properties = Merge-HashTable $baseProperties $property
+    $l=New-WPFControl -type System.Windows.Controls.ListBox -Properties $baseProperties,$property
 
-    $l = new-object System.Windows.Controls.ListBox -Property $properties
     if ($Contents) {
         $contents | ForEach-Object {
             $lvi = new-object System.Windows.Controls.ListBoxItem

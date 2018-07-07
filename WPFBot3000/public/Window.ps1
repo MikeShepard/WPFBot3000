@@ -105,7 +105,7 @@ function Window {
                     $output.Add($_.Name, $_.GetControlValue())
                 }
             }}
-        $output
+        [PSCustomObject]$output
     }
     $control = $null
     foreach ($item in $events) {

@@ -35,9 +35,8 @@ function TextBlock {
         Text = $text
     }
 
-    $properties = Merge-HashTable $baseProperties $property
+    $textblock=New-WPFControl -type System.Windows.Controls.TextBlock -Properties $baseProperties,$property
 
-    $textblock = new-object System.Windows.Controls.TextBlock -Property $properties
     if ($name) {
         $textblock.Name = $name
     }

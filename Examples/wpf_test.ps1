@@ -11,15 +11,3 @@ $files=get-childitem c:\temp | Select-Object -first 5
          ListBox -contents $files -initialValue $files[2]
         }
 
-
-$ob=[PSCustomObject]@{Prop1='hello';Prop2='World'}
-Edit-Object $ob -Property Prop1,Prop2 -Update
-
-
-$o=Dialog {StackPanel -name Blah -contents {LAbel Fred;TextBox Barney -InitialValue Blah!
-                                         LAbel Fred2;TextBox Barney2 -InitialValue Blah2!
-                                        }}
-
-                                        $o=Dialog {StackPanel -name Blah -contents {Label Fred;TextBox Barney -InitialValue Blah!
-
-                                        }}

@@ -30,8 +30,8 @@ function Image {
     $baseProperties = @{
         Name = $name
     }
-    $properties = Merge-HashTable $baseProperties $property
-    $o = new-object System.Windows.Controls.Image -Property $properties
+    $o=New-WPFControl -type System.Windows.Controls.Image -Properties $baseProperties,$property
+
     $o | add-member -Name LoadImage -MemberType ScriptMethod -Value {param($URI)
                                                                         $imageSource=new-object System.Windows.Media.Imaging.BitmapImage (new-object  System.Uri $URI )
                                                                         $this.Source=$imageSource
