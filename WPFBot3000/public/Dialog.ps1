@@ -37,7 +37,8 @@ function Dialog {
     param([scriptblock]$Contents,
         [hashtable]$labelMap = @{},
         [hashtable[]]$Events,
-        [string]$title)
+        [string]$title,
+        [hashtable]$property)
     $c = & $contents
     $PSBoundParameters.Remove('Contents')| out-null
     $w = Window {

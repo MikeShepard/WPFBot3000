@@ -42,11 +42,12 @@ function Window {
         [hashtable]$labelMap = @{},
         [hashtable[]]$Events,
         [string]$title,
-        [switch]$HideLabels)
-    $w = new-object system.windows.window -Property @{
+        [switch]$HideLabels,[hashtable]$property)
+    $baseProperties= @{
         SizeToContent = 'WidthAndHeight'
         Margin        = 10
     }
+    $w=New-WPFControl -type system.windows.window -properties $BaseProperties,$property
     [System.Windows.UIElement[]]$c = & $Contents
     $grid = new-object System.Windows.Controls.Grid -Property @{
         Margin        = 5
