@@ -1,3 +1,5 @@
+# Example showing how to use a DockPanel and the DockPanel.Dock attached properties!
+
 dialog {
     DockPanel {
        Label 'Left' -property @{verticalalignment='Center';'DockPanel.Dock'='Left'}

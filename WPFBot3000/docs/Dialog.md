@@ -5,43 +5,40 @@ online version:
 schema: 2.0.0
 ---
 
-# Window
+# Dialog
 
 ## SYNOPSIS
-Outputs a window with the indicated wpf controls.
+Creates a window with the requested controls, OK, and Cancel and outputs an object representing the values in the window.
 
 ## SYNTAX
 
 ```
-Window [[-Contents] <ScriptBlock>] [[-labelMap] <Hashtable>] [[-Events] <Hashtable[]>] [[-title] <String>]
- [-HideLabels] [[-property] <Hashtable>] [<CommonParameters>]
+Dialog [[-Contents] <ScriptBlock>] [[-labelMap] <Hashtable>] [[-Events] <Hashtable[]>] [[-title] <String>]
+ [[-property] <Hashtable>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Creates a window object with 2-columns (labels and controls) or 1-column (using -HideLabels, with controls only).
-Outputs the window without displaying it.
-Note, the window doesn't build its own ok/cancel buttons so you are responsible for that.
+Creates a window with the requested controls, OK, and Cancel and outputs an object representing the values in the window.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-$w=Window {
+Dialog {
 ```
 
-Textbox Name
-    Button Personalize -name mike -action {
-                                 $txt=$this.Window.GetControlByName('Name')
-                                 $lbl=$this.Window.GetControlByName('Greeting')
-                                 $lbl.Content="Hello, $($txt.Text)"}
-    Label 'Hello, World' -name 'Greeting'
+TextBox FirstName
+TextBox LastName
+TextBox EmailAddress
+DatePicker ReminderDate
 }
-$w.ShowDialog()
+
+# Displays a window with 3 textboxes and a date picker and if the user presses ok (instead of cancel) it outputs an object with 4 properties (populated from the controls)
 
 ## PARAMETERS
 
 ### -Contents
-A scriptblock that outputs the controls you want in the window
+Scriptblock containing statements that output controls that you want in the dialog.
 
 ```yaml
 Type: ScriptBlock
@@ -98,21 +95,6 @@ Aliases:
 Required: False
 Position: 4
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -HideLabels
-Use this switch if you want no labels at all (no column for them, even)
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

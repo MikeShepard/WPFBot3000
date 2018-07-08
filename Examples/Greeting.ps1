@@ -1,3 +1,5 @@
+# Another button and GetControlByName example.
+
 Import-Module WPFBot3000 -force
 $w=Window {
     Textbox Name

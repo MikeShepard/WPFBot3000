@@ -1,3 +1,30 @@
+<#
+.SYNOPSIS
+A border control
+
+.DESCRIPTION
+Outputs a border control, along with control(s) contained in it.  If more than one control is in $Contents, a stackpanel is inserted (because borders only have one child)
+
+.PARAMETER Contents
+The control(s) contained in the border
+
+.PARAMETER Property
+Additional properties to be set on the border.
+
+.PARAMETER name
+The name of the border control.  The name will be used as a property name in the output of the Dialog function.
+
+.EXAMPLE
+dialog {
+    Border  {
+        TextBox Fred -property @{MinWidth=50}
+        TextBox Barney
+    } -property @{BorderBrush='Red';BorderThickness=5} -name Flintstones
+}
+
+.NOTES
+General notes
+#>
 function Border {
     [CmdletBinding()]
     Param([Scriptblock]$Contents,

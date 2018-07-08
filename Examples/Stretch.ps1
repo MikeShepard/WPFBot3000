@@ -1,4 +1,5 @@
-Import-Module WPFBot3000 -force
+#Example showing stretching layout
+
 $w=Window {
       ListBox Items -property @{MinWidth=200;VerticalAlignment='Stretch';HorizontalAlignment='Stretch'} -contents (get-service)
 } -hidelabels

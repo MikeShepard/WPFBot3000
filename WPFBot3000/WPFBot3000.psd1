@@ -12,7 +12,7 @@
 RootModule = '.\WPFBot3000.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.9.6'
+ModuleVersion = '0.9.7'
 
 
 # ID used to uniquely identify this module
@@ -67,7 +67,7 @@ Copyright = '(c) 2018 Mike Shepard. All rights reserved.'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = @('Add-TreeviewContents','Add-WPFMenu','Border','Button','CheckBox','ComboBox','CredentialPicker','DatePicker','Dialog','DirectoryPicker','DockPanel','FilePicker','Grid','GridSplitter','Image','Invoke-ObjectEditor','Label','ListBox','MultiLineTextBox','Password','StackPanel','TabControl','TabItem','TextBlock','TextBox','Treeview','Window')
+FunctionsToExport = @('Add-TreeviewContent','Add-WPFMenu','Border','Button','CheckBox','ComboBox','CredentialPicker','DatePicker','Dialog','DirectoryPicker','DockPanel','FilePicker','Grid','GridSplitter','GroupBox','Image','Invoke-ObjectEditor','Label','ListBox','MultiLineTextBox','Password','StackPanel','TabControl','TabItem','TextBlock','TextBox','Treeview','Window')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = '*'

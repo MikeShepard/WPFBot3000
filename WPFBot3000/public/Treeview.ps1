@@ -31,7 +31,7 @@ function Treeview {
     $tree=New-WPFControl -type System.Windows.Controls.TreeView -Properties $baseProperties,$property
 
 
-    Add-TreeviewContents -parent $tree -items $contents
+    Add-TreeviewContent -parent $tree -items $contents
     $tree | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $tree | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$item=$this.SelectedItem
         if($item -is [listboxitem] -and $item.Tag){

@@ -1,8 +1,25 @@
+<#
+.SYNOPSIS
+Short description
 
+.DESCRIPTION
+Long description
 
+.PARAMETER Contents
+Parameter description
 
+.PARAMETER name
+Parameter description
 
+.PARAMETER property
+Parameter description
 
+.EXAMPLE
+An example
+
+.NOTES
+General notes
+#>
 function DockPanel {
     [CmdletBinding()]
     Param([Scriptblock]$Contents, $name,$property=@{})
