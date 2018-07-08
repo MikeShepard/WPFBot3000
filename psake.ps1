@@ -31,7 +31,7 @@ Task Init {
 Task Docs -Depends Init {
     Set-ModuleFunctions
     Remove-Item $ModulePath\Docs -Recurse -Force
-    Import-Module $env:BHPSModuleManifest -force
+    Import-Module $ENV:BHPSModuleManifest -force -Global -verbose
     New-MarkdownHelp -Module $env:BHProjectName -OutputFolder $ModulePath\Docs
 }
 
