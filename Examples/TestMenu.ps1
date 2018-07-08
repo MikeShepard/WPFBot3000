@@ -1,4 +1,4 @@
-﻿Import-Module WPFBot3000 -force
+﻿#Example showing a context menu on a control
 
 dialog {
 textbox Fred 'Hello' | Add-WPFMenu -items @{UpperCase={

@@ -1,4 +1,4 @@
-﻿Import-Module WPFBot3000 -force
+﻿#Simple stackpanel example
 
 Dialog {
     StackPanel -Name Options -orientation Horizontal {

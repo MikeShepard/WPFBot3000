@@ -1,4 +1,5 @@
-Import-Module WPFBot3000 -force
+# Example showing TabControls and TabItems
+
 $output=dialog {
     TabControl -name Top {
         TabItem Fred  {

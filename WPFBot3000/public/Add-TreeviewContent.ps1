@@ -17,7 +17,7 @@ An example
 .NOTES
 General notes - Needs to be refactored/rewritten
 #>
-function Add-TreeviewContents {
+function Add-TreeviewContent {
     [CmdletBinding()]
     Param($parent, $items)
     foreach ($item in $items) {

@@ -1,3 +1,5 @@
+#Example with several types of controls
+
 Dialog {
     TextBox Fred 'hello world' -property @{FontFamily='Comic Sans MS'}
     TextBox Barney 'hey there!'

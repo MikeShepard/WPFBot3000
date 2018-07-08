@@ -1,4 +1,4 @@
-ipmo WPFBot3000 -force
+# Example showing how to add an event to an object.
 
 $w=Window {
     TextBox Fred

@@ -1,4 +1,6 @@
-Import-Module WPFBot3000 -force
+# Another "complex" layout example.
+# Stretching works a bit better here.
+
 $w=Window {
    Grid -columnCount 3 {
       ListBox Items -property @{MinWidth=200;VerticalAlignment='Stretch'} -contents (get-service)
