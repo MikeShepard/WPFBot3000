@@ -6,7 +6,7 @@ Properties {
     if (-not $ProjectRoot) {
         $ProjectRoot = Resolve-Path "$PSScriptRoot\.."
     }
-
+    $modulePath=$env:BHModulePath
     $Timestamp = Get-Date -UFormat "%Y%m%d-%H%M%S"
     $PSVersion = $PSVersionTable.PSVersion.Major
     $TestFile = "TestResults_PS$PSVersion`_$TimeStamp.xml"
