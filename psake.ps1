@@ -28,7 +28,14 @@ Task Init {
     "`n"
 }
 
-Task Test -Depends Init {
+Task Docs -Depends Init {
+    Set-ModuleFunctions
+    Remove-Item $ModulePath\Docs -Recurse -Force
+    Import-Module $env:BHProjectName -force
+    New-MarkdownHelp -Module $env:BHProjectName -OutputFolder $ModulePath\Docs
+}
+
+Task Test -Depends Docs {
     $lines
     "`n`tSTATUS: Testing with PowerShell $PSVersion"
 
