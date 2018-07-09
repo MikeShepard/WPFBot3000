@@ -100,6 +100,9 @@ function Window {
     }
     $grid | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
     $w | add-member -MemberType ScriptMethod -Name GetWindowOutput -value {
+        if($this | Get-Member -Name OverrideOutput -MemberType NoteProperty){
+            return $this.OverrideOutput
+        }
         $output = [Ordered]@{}
         $this.Content.Children | ForEach-Object { if (($_ | get-member GetControlValue) -and ($_| get-member Name)) {
                 if ($_.Name) {
