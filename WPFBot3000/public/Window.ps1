@@ -42,16 +42,18 @@ function Window {
         [hashtable]$labelMap = @{},
         [hashtable[]]$Events,
         [string]$title,
-        [switch]$HideLabels,[hashtable]$property)
-    $baseProperties= @{
+        [switch]$HideLabels, [hashtable]$property,
+        [Switch]$ShowGridLines)
+    $script:ShowGridLines = $ShowGridLines.IsPresent
+    $baseProperties = @{
         SizeToContent = 'WidthAndHeight'
         Margin        = 10
     }
-    $w=New-WPFControl -type system.windows.window -properties $BaseProperties,$property
+    $w = New-WPFControl -type system.windows.window -properties $BaseProperties, $property
     [System.Windows.UIElement[]]$c = & $Contents
     $grid = new-object System.Windows.Controls.Grid -Property @{
         Margin        = 5
-        ShowGridLines = $true
+        ShowGridLines = $ShowGridLines
     }
     $w.Content = $grid
     1..$C.Count | ForEach-Object { $grid.RowDefinitions.Add( (new-object System.Windows.Controls.RowDefinition -Property @{Height = 'Auto'}))}
@@ -100,7 +102,7 @@ function Window {
     }
     $grid | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
     $w | add-member -MemberType ScriptMethod -Name GetWindowOutput -value {
-        if($this | Get-Member -Name OverrideOutput -MemberType NoteProperty){
+        if ($this | Get-Member -Name OverrideOutput -MemberType NoteProperty) {
             return $this.OverrideOutput
         }
         $output = [Ordered]@{}
