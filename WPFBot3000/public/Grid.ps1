@@ -33,12 +33,14 @@ function Grid {
             [hashtable]$Property = @{},
                [string]$name,
                   [int]$ColumnCount = 1)
-    $baseProperties = @{VerticalAlignment = 'Stretch'; HorizontalAlignment = 'Stretch'}
+    $baseProperties = @{VerticalAlignment = 'Stretch'
+                        HorizontalAlignment = 'Stretch'
+                        ShowGridLines=$Script:ShowGridLines}
     if ($name) {
         $baseProperties.Name = $name
     }
     $grid=New-WPFControl -type System.Windows.Controls.Grid -Properties $baseProperties,$property
-
+    
     $grid.RowDefinitions.Clear()
     $grid.ColumnDefinitions.Clear()
 
