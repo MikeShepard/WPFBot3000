@@ -25,23 +25,22 @@ General notes
 #>
 function Add-TreeviewItem {
     [CmdletBinding()]
-    Param($treeview,
-        $parent, 
+    Param($parent, 
         $items,
-        $nameProperty)
+        $nameProperty=$null)
    
     #find parent in Treeview (label or object)
     if ($parent) {
         if ($parent -is [String]) {
-            $parentNode = Get-TreeViewItemByLabel -treeView $TreeView -label $parent
+            $parentNode = $this.GetTreeViewItemByLabel($null,$parent)
         } else {
-            $parentNode = Get-TreeViewItemByObject -treeview $TreeView -object $parent 
+            $parentNode = $this.GetTreeViewItemByObject($null,$parent)
         }
         if (-not $parentNode ) {
             throw "ParentNode ($parent) not found"
         }
     } else {
-        $parentnode = $treeview
+        $parentnode = $this
     }
     foreach ($item in $items) {
         if ($nameProperty) {

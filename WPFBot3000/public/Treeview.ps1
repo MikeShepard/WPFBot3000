@@ -23,15 +23,15 @@ General notes
 function Treeview {
     [CmdletBinding()]
     Param([string]$name,
-          [scriptblock]$contents,
           [hashtable]$property = @{})
     $baseProperties = @{
         Name = $name
     }
     $tree=New-WPFControl -type System.Windows.Controls.TreeView -Properties $baseProperties,$property
 
-
-    Add-TreeviewContent -parent $tree -items $contents
+    $tree | add-member -Name AddTreeViewItem -membertype ScriptMethod -value ${function:Add-TreeViewItem}
+    $tree | add-member -Name GetTreeViewItemByLabel -membertype ScriptMethod -value ${function:Get-TreeViewItemByLabel}
+    $tree | add-member -Name GetTreeViewItemByObject -membertype ScriptMethod -value ${function:Get-TreeViewItemByObject}
     $tree | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $tree | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$item=$this.SelectedItem
         if($item -is [listboxitem] -and $item.Tag){

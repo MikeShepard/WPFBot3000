@@ -11,7 +11,7 @@ Parameter description
 .PARAMETER fromNode
 Parameter description
 
-.PARAMETER object
+.PARAMETER label
 Parameter description
 
 .EXAMPLE
@@ -20,20 +20,19 @@ An example
 .NOTES
 General notes
 #>
-function Get-TreeViewItemByObject{
+function Get-TreeViewItemByLabel{
     [CmdletBinding()]
-    Param($treeView,
-          $fromNode,
-          $object)
+    Param($fromNode,
+          $label)
     if(-not $fromNode){
-        $FromNode=$treeview 
+        $FromNode=$this 
     }
     foreach($item in $FromNode.Items){
-        if($item.Tag -eq $object){
+        if($item.Header -eq $label){
             return $item
         } else {
             if($item.Items.Count -gt 0){
-                $foundItem=Get-TreeViewItemByObject $treeView $item $object
+                $foundItem=$this.GetTreeViewItemByLabel($item, $label)
                 if ($foundItem){
                     return $foundItem
                 }
@@ -41,4 +40,3 @@ function Get-TreeViewItemByObject{
         }
     }
 }
-
