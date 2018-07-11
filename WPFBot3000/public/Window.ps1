@@ -56,7 +56,6 @@ function Window {
         ShowGridLines = $ShowGridLines
     }
     $w.Content = $grid
-    1..$C.Count | ForEach-Object { $grid.RowDefinitions.Add( (new-object System.Windows.Controls.RowDefinition -Property @{Height = 'Auto'}))}
     $controlColumn = 0
     if (-not $HideLabels) {
         $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{Width = 'Auto'}))
@@ -65,8 +64,17 @@ function Window {
     $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{}))
     $Row = 0
     foreach ($control in $c) {
-        if (-not (Get-Member -InputObject $control -Name HideLabel )) {
-            if (-not $HideLabels) {
+        $hideControlLabel=$HideLabels
+        if((Get-Member -InputObject $control -name HideLabel) -or ($Control.Visibility -eq 'Collapsed')){
+            $hideControlLabel=$true
+        }
+        if(($hideControlLabel -eq $false) -or $control.Visibility -ne 'Collapsed'){
+            $grid.RowDefinitions.Add( (new-object System.Windows.Controls.RowDefinition -Property @{Height = 'Auto'}))
+        } else {
+            $row=[Math]::Max(0,$row-1)
+        }
+
+        if (-not $hideControlLabel) {
                 $labelText = $Control.Name
                 if ($labelMap.ContainsKey($control.Name)) {
                     $labelText = $labelMap[$control.Name]
@@ -75,7 +83,6 @@ function Window {
                 [System.Windows.Controls.Grid]::SetRow($l, $row)
                 [System.Windows.Controls.Grid]::SetColumn($l, 0)
                 $grid.Children.Add($l) | out-null
-            }
         }
         [System.Windows.Controls.Grid]::SetRow($control, $row)
         [System.Windows.Controls.Grid]::SetColumn($control, $controlColumn)
