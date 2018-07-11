@@ -1,3 +1,28 @@
+<#
+.SYNOPSIS
+Short description
+
+.DESCRIPTION
+Long description
+
+.PARAMETER treeview
+Parameter description
+
+.PARAMETER parent
+Parameter description
+
+.PARAMETER items
+Parameter description
+
+.PARAMETER nameProperty
+Parameter description
+
+.EXAMPLE
+An example
+
+.NOTES
+General notes
+#>
 function Add-TreeviewItem {
     [CmdletBinding()]
     Param($treeview,
