@@ -17,6 +17,12 @@ The name of the grid control.  This name will be a property in the output of the
 .PARAMETER ColumnCount
 The number of columns in the grid.  The number of rows is determined by the number of controls in $Contents.
 
+.PARAMETER RowCount
+The number of rows in the grid.  Required if -Manual is specified
+
+.PARAMETER Manual
+Specifies that you want to place controls in rows/columns manually (Using Grid.Row/Grid.Column properties)
+
 .EXAMPLE
 Dialog {
       Grid -columnCount 3   {
@@ -30,42 +36,53 @@ General notes
 function Grid {
     [CmdletBinding()]
     Param([Scriptblock]$Contents,
-            [hashtable]$Property = @{},
-               [string]$name,
-                  [int]$ColumnCount = 1)
+        [hashtable]$Property = @{},
+        [string]$name,
+        [int]$ColumnCount = 1,
+        [int]$RowCount = 0,
+        [switch]$Manual)
     $baseProperties = @{VerticalAlignment = 'Stretch'
-                        HorizontalAlignment = 'Stretch'
-                        ShowGridLines=$Script:ShowGridLines}
+        HorizontalAlignment = 'Stretch'
+        ShowGridLines = $Script:ShowGridLines
+    }
     if ($name) {
         $baseProperties.Name = $name
     }
-    $grid=New-WPFControl -type System.Windows.Controls.Grid -Properties $baseProperties,$property
-    
+    $grid = New-WPFControl -type System.Windows.Controls.Grid -Properties $baseProperties, $property
+
     $grid.RowDefinitions.Clear()
     $grid.ColumnDefinitions.Clear()
 
-    1..$ColumnCount |  ForEach-Object { $grid.ColumnDefinitions.Add((new-object ColumnDefinition -property @{}))}
 
+    1..$ColumnCount |  ForEach-Object { $grid.ColumnDefinitions.Add((new-object ColumnDefinition -property @{}))}
+    if($manual){
+        if($rowCount -eq 0){
+            Write-Warning "You must supply a rowcount if using manual grid placement"
+        }
+        1..$rowcount | ForEach-Object { $grid.RowDefinitions.Add( (new-object RowDefinition -Property @{}))}
+    }
 
     [System.Windows.UIElement[]]$c = & $Contents
     $objectCount = 0
     $c | foreach-object {
         $row = [Math]::Truncate($objectCount / $columnCount)
         $col = $objectCount % $columnCount
-        if ($col -eq 0) {
+        if ($col -eq 0 -and -not $manual) {
             $grid.RowDefinitions.Add( (new-object RowDefinition -Property @{}))
         }
         #fix width or height of column or row with a gridsplitter in it
         if ($_ -is [System.Windows.Controls.GridSplitter]) {
-            if($_.Width -eq 5){
+            if ($_.Width -eq 5) {
                 $grid.ColumnDefinitions[$col].Width = 5
             } else {
-                $grid.RowDefinitions[$row].Height=5
+                $grid.RowDefinitions[$row].Height = 5
             }
         }
         $Grid.Children.Add($_) | out-null
-        [Grid]::SetColumn( $_, $col)
-        [Grid]::SetRow($_, $row)
+        if(-not $manual){
+            [Grid]::SetColumn( $_, $col)
+            [Grid]::SetRow($_, $row)
+        }
         $objectCount += 1
     }
     $Grid | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
