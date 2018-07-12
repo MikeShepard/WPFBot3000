@@ -1,5 +1,5 @@
 Dialog{
-    TreeView Tree 
+    TreeView Tree
     Button Load -Action {
         $tree=$this.Window.GetControlByName('Tree')
         $tree.AddTreeViewItem($null,@( 'A','B','C' ))
