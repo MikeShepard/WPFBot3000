@@ -25,10 +25,10 @@ General notes
 #>
 function Add-TreeviewItem {
     [CmdletBinding()]
-    Param($parent, 
+    Param($parent,
         $items,
         $nameProperty=$null)
-   
+
     #find parent in Treeview (label or object)
     if ($parent) {
         if ($parent -is [String]) {
