@@ -1,5 +1,5 @@
 Using Namespace System.Windows.Controls
-$WPFTypes=Add-Type -AssemblyName PresentationFramework -PassThru 
+Add-Type -AssemblyName PresentationFramework -PassThru 
 Add-Type -AssemblyName System.Windows.Forms
 
 Set-StrictMode -Version Latest
@@ -8,7 +8,10 @@ Set-StrictMode -Version Latest
 $Public  = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction SilentlyContinue )
 $Private = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction SilentlyContinue )
 
-$TypeCache=@{}
+$AttachedPropertyTypes=@{
+    DockPanel='System.Windows.Controls.DockPanel' -as [Type]
+    Grid='System.Windows.Controls.Grid' -as [Type]
+}
 $ShowGridLines=$false
 
 #Dot source the files

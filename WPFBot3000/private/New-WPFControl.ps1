@@ -39,7 +39,7 @@ function New-WPFControl {
     $o=new-object -TypeName $type -Property $out
     foreach($item in $compoundProperties.GetEnumerator()){
         $typename,$property=$item.Key.Split('.')
-        $type=get-WPFType $typename
+        $type=$AttachedPropertyTypes[$typeName]
         $type::"Set$property"($o,$item.Value)
     }
     $o
