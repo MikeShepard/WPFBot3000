@@ -3,6 +3,7 @@ function Register-WPFDSLContentControl {
     Param($Name, $TypeName, [switch]$HideLabel)
 
     $newWPFControl=Get-Command New-WPFControl
+    $getControlMethod=Get-Command GetControlByName | Select-Object -expandProperty ScriptBlock
     New-Item -Path "function:global:$Name" -force -Value {
         [CmdletBinding()]
         Param($Name, [ScriptBlock]$Contents , $property = @{})
@@ -21,7 +22,7 @@ function Register-WPFDSLContentControl {
             $o.Child = StackPanel {$c}
         }
         $o | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
-        $o | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
+        $o | add-member -MemberType ScriptMethod -Name GetControlByName -Value $getControlMethod
         $o | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
             $this.Child | ForEach-Object {if ($_| get-member GetControlValue) {
                     $d.Add($_.Name, $_.GetControlValue())
