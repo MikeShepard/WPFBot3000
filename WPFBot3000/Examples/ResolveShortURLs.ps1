@@ -4,9 +4,7 @@
 $w= Window {
    TextBox -name ShortUrl -property @{Width=300}
    TextBox Resolved -property @{Visibility='Collapsed'}
-   Button ResolveBtn -Action{$txt=$this.Window.GetControlByName('ShortUrl')
-                          $Resolved =$this.Window.GetControlByName('Resolved')
-                          $ResolvedURL=(Invoke-WebRequest -UseBasicParsing -Uri $($txt.Text)).baseresponse.ResponseUri.AbsoluteURI
+   Button ResolveBtn -Action{$ResolvedURL=(Invoke-WebRequest -UseBasicParsing -Uri $($ShortURL.Text)).baseresponse.ResponseUri.AbsoluteURI
                           $resolved.Text=$ResolvedURL
                           $this.Window.DialogResult=$true
                           #or, without the hidden control, just override the window output and tell it to close.

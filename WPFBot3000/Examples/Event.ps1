@@ -6,8 +6,7 @@ $w=Window {
 } -Events @{Name='Barney'
             EventName='Checked'
             Action={
-                    $txt=$this.Window.GetControlByName('Fred')
-                    $txt.Text=$txt.Text.ToUpper()
+                    $Fred.Text=$txt.Text.ToUpper()
                   }
            }
 

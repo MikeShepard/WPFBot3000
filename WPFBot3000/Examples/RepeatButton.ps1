@@ -1,5 +1,5 @@
 (Window {
     TextBox Name
-    RepeatButton "Say Hello" -Action {$t=$this.Window.GetControlByName('Name');
-                                                  Write-Host "Hello, $($t.Text) : $(Get-date)"}
+    RepeatButton "Say Hello" -Action {
+                       Write-Host "Hello, $(Name.Text) : $(Get-date)"}
 }).ShowDialog()
