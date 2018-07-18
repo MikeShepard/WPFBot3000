@@ -43,7 +43,8 @@ function Window {
         [hashtable[]]$Events,
         [string]$title,
         [switch]$HideLabels, [hashtable]$property,
-        [Switch]$ShowGridLines)
+        [Switch]$ShowGridLines,
+        [Switch]$ShowForValue)
     $script:ShowGridLines = $ShowGridLines.IsPresent
     $baseProperties = @{
         SizeToContent = 'WidthAndHeight'
@@ -64,25 +65,25 @@ function Window {
     $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{}))
     $Row = 0
     foreach ($control in $c) {
-        $hideControlLabel=$HideLabels
-        if((Get-Member -InputObject $control -name HideLabel) -or ($Control.Visibility -eq 'Collapsed')){
-            $hideControlLabel=$true
+        $hideControlLabel = $HideLabels
+        if ((Get-Member -InputObject $control -name HideLabel) -or ($Control.Visibility -eq 'Collapsed')) {
+            $hideControlLabel = $true
         }
-        if(($hideControlLabel -eq $false) -or $control.Visibility -ne 'Collapsed'){
+        if (($hideControlLabel -eq $false) -or $control.Visibility -ne 'Collapsed') {
             $grid.RowDefinitions.Add( (new-object System.Windows.Controls.RowDefinition -Property @{Height = 'Auto'}))
         } else {
-            $row=[Math]::Max(0,$row-1)
+            $row = [Math]::Max(0, $row - 1)
         }
 
         if (-not $hideControlLabel) {
-                $labelText = $Control.Name
-                if ($labelMap.ContainsKey($control.Name)) {
-                    $labelText = $labelMap[$control.Name]
-                }
-                $l = Label $labelText
-                [System.Windows.Controls.Grid]::SetRow($l, $row)
-                [System.Windows.Controls.Grid]::SetColumn($l, 0)
-                $grid.Children.Add($l) | out-null
+            $labelText = $Control.Name
+            if ($labelMap.ContainsKey($control.Name)) {
+                $labelText = $labelMap[$control.Name]
+            }
+            $l = Label $labelText
+            [System.Windows.Controls.Grid]::SetRow($l, $row)
+            [System.Windows.Controls.Grid]::SetColumn($l, 0)
+            $grid.Children.Add($l) | out-null
         }
         [System.Windows.Controls.Grid]::SetRow($control, $row)
         [System.Windows.Controls.Grid]::SetColumn($control, $controlColumn)
@@ -108,7 +109,7 @@ function Window {
         }
     }
     $grid | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
-    $w | add-member -MemberType ScriptMethod -Name ShowForValue -Value {if($this.ShowDialog()){$this.GetWindowOutput()}}
+    $w | add-member -MemberType ScriptMethod -Name ShowForValue -Value {if ($this.ShowDialog()) {$this.GetWindowOutput()}}
     $w | add-member -MemberType ScriptMethod -Name GetWindowOutput -value {
         if ($this | Get-Member -Name OverrideOutput -MemberType NoteProperty) {
             return $this.OverrideOutput
@@ -132,6 +133,10 @@ function Window {
         $w.Title = $title
     }
     $w.Width = $grid.width
-    $w
+    if ($ShowForValue) {
+        $w.ShowForValue()
+    } else {
+        $w
+    }
 
 }
