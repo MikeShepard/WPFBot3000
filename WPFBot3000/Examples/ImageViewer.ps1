@@ -12,10 +12,9 @@ if ($images.count -eq 0){
 
 Function ChangeImage {
     Param($delta)
-    $image=$w.GetControlByName('Viewer')
-    $script:currentImage=($currentImage +$delta) % $images.Count
+     $script:currentImage=($currentImage +$delta) % $images.Count
     write-host ($images[$currentImage])
-    $image.LoadImage($images[$currentImage].FullName)
+    $Viewer.LoadImage($images[$currentImage].FullName)
 }
 
 $w=window {

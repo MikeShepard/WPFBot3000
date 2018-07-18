@@ -1,4 +1,4 @@
-# Another button and GetControlByName example.
+# Another button example.
 
 #Import-Module WPFBot3000 -force
 $w=Window {
