@@ -108,7 +108,7 @@ function Window {
         }
     }
     $grid | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
-    $grid | add-member -MemberType ScriptMethod -Name ShowForValue -Value {if($this.ShowDialog()){$this.GetWindowOutput()}}
+    $w | add-member -MemberType ScriptMethod -Name ShowForValue -Value {if($this.ShowDialog()){$this.GetWindowOutput()}}
     $w | add-member -MemberType ScriptMethod -Name GetWindowOutput -value {
         if ($this | Get-Member -Name OverrideOutput -MemberType NoteProperty) {
             return $this.OverrideOutput

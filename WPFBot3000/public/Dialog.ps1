@@ -50,8 +50,5 @@ function Dialog {
         } -Orientation Horizontal -Property @{}
     } @PSBoundParameters
     $w.Content.RowDefinitions[-1].Height = 'Auto'
-    $dialogResult = $w.Showdialog()
-    if ($dialogResult) {
-        $w.GetWindowOutput()
-    }
+    $w.ShowForValue()
 }
