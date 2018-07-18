@@ -19,10 +19,10 @@ The window title
 
 .EXAMPLE
 Dialog {
-TextBox FirstName
-TextBox LastName
-TextBox EmailAddress
-DatePicker ReminderDate
+    TextBox FirstName
+    TextBox LastName
+    TextBox EmailAddress
+    DatePicker ReminderDate
 }
 
 # Displays a window with 3 textboxes and a date picker and if the user presses ok (instead of cancel) it outputs an object with 4 properties (populated from the controls)
