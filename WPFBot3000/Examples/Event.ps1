@@ -6,7 +6,7 @@ $w=Window {
 } -Events @{Name='Barney'
             EventName='Checked'
             Action={
-                    $Fred.Text=$txt.Text.ToUpper()
+                    $Fred.Text=$fred.Text.ToUpper()
                   }
            }
 

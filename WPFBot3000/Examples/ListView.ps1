@@ -1,4 +1,4 @@
-$files=dir c:\temp -file | select -first 5 
+$files=Get-ChildItem c:\temp -file | Select-Object -first 5
 
 dialog {
     ListView -name Lv -contents $files -displayProperty Name,Length
