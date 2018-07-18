@@ -39,12 +39,10 @@ function Label {
     $BaseProperties=@{
         Content = $text
     }
-
-    #$properties = Merge-HashTable $baseProperties $property
-    $label=New-WPFControl -type System.Windows.Controls.Label -Properties $baseProperties,$property
-    #$label = new-object System.Windows.Controls.Label -Property $properties
     if ($name) {
-        $label.Name = $name
+        $BaseProperties.Name = $name
     }
-    $label  | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
+
+    $label=New-WPFControl -type System.Windows.Controls.Label -Properties $baseProperties,$property
+     $label  | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
 }
