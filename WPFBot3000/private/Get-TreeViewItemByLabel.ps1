@@ -25,7 +25,7 @@ function Get-TreeViewItemByLabel{
     Param($fromNode,
           $label)
     if(-not $fromNode){
-        $FromNode=$this 
+        $FromNode=$this
     }
     foreach($item in $FromNode.Items){
         if($item.Header -eq $label){

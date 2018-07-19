@@ -25,7 +25,7 @@ function Get-TreeViewItemByObject{
     Param($fromNode,
           $object)
     if(-not $fromNode){
-        $FromNode=$this 
+        $FromNode=$this
     }
     foreach($item in $FromNode.Items){
         if($item.Tag -eq $object){
