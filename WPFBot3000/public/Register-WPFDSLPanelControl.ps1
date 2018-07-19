@@ -1,3 +1,30 @@
+<#
+.SYNOPSIS
+Creates a WPFBot3000 cmdlet for a control that can contain any number of items
+
+.DESCRIPTION
+Creates a WPFBot3000 cmdlet for a control that can contain any number of items
+
+.PARAMETER Name
+The name of the cmdlet to be created
+
+.PARAMETER TypeName
+The type name of the control to be "wrapped"
+
+.PARAMETER HideLabel
+Whether the control shows a label or not
+
+.EXAMPLE
+Register-WPFDSLPanelControl -Name Stk -Typename System.Windows.Controls.StackPanel -hidelabel
+dialog {
+    Stk Items {
+                TextBox Name
+                TextBox Address
+    }
+}
+.NOTES
+General notes
+#>
 function Register-WPFDSLPanelControl {
     [CmdletBinding()]
     Param($Name, $TypeName, [switch]$HideLabel)

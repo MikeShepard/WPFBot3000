@@ -32,8 +32,7 @@ function Rectangle {
     Param($Height,
           $Width,
           [String]$Name,
-          [hashtable]$property) 
-
+          [hashtable]$property)
     $BaseProperties=@{
         Height=$Height
         Width=$Width

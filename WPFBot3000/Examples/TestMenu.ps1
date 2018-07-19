@@ -2,5 +2,5 @@
 
 dialog {
 textbox Fred 'Hello' | Add-WPFMenu -items @{UpperCase={
-    $txtBox=$this.tag;$txtBox.Text=$txtBox.Text.ToUpper()}}
+    $Fred.Text=$Fred.Text.ToUpper()}}
  }

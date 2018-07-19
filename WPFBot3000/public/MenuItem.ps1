@@ -43,11 +43,11 @@ function MenuItem {
     $MenuItem=New-WPFControl -type System.Windows.Controls.MenuItem -Properties $baseProperties,$property
     if($contents){
         [System.Windows.UIElement[]]$c = & $Contents
-        $c | foreach-object {$menuItem.Items.Add($_)| out-null} 
+        $c | foreach-object {$menuItem.Items.Add($_)| out-null}
     } else {
        $MenuItem.Add_Click($action)
     }
     $MenuItem | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
-     
+
     $menuItem
 }

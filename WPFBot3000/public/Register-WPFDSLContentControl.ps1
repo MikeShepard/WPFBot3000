@@ -1,3 +1,30 @@
+<#
+.SYNOPSIS
+Creates a WPFBot3000 cmdlet for a control that can contain a single control
+
+.DESCRIPTION
+Creates a WPFBot3000 cmdletfor a control that can contain a single control
+
+.PARAMETER Name
+The name of the cmdlet to be created
+
+.PARAMETER TypeName
+The type name of the control to be "wrapped"
+
+.PARAMETER HideLabel
+Whether the control shows a label or not
+
+.EXAMPLE
+Register-WPFDSLContentControl -Name Brd -Typename System.Windows.Controls.Border -hidelabel
+dialog {
+    Brd Items {
+                TextBox Name
+                TextBox Address
+    }
+}
+.NOTES
+General notes
+#>
 function Register-WPFDSLContentControl {
     [CmdletBinding()]
     Param($Name, $TypeName, [switch]$HideLabel)
@@ -38,13 +65,3 @@ function Register-WPFDSLContentControl {
         $o
     }.GetNewClosure() | out-null
 }
-
-<#
-Register-WPFDSLContentControl -Name Brd -Typename System.Windows.Controls.Border -hidelabel
-dialog {
-    Brd Items {
-                TextBox Name
-                TextBox Address
-    }
-}
-#>

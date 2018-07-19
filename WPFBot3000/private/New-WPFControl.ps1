@@ -42,7 +42,7 @@ function New-WPFControl {
         $type=$AttachedPropertyTypes[$typeName]
         $type::"Set$property"($o,$item.Value)
     }
-    if($out.ContainsKey('Name')){
+    if($out.ContainsKey('Name') -and $out.Name){
         New-Variable -Name $out.Name -Value $o -Scope Global -force
     }
     $o

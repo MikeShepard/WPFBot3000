@@ -1,3 +1,32 @@
+<#
+.SYNOPSIS
+Creates a WPFBot3000 cmdlet for a control that can contain a list of items
+
+.DESCRIPTION
+Creates a WPFBot3000 cmdlet for a control that can contain a list of items
+
+.PARAMETER Name
+The name of the cmdlet to be created
+
+.PARAMETER TypeName
+The type name of the control to be "wrapped"
+
+.PARAMETER initialValuePropertyName
+The name of the property to use to set the initial value of the control
+
+.PARAMETER HideLabel
+Whether the control shows a label or not
+
+.EXAMPLE
+Register-WPFDSLItemsControl -Name Lst -Typename System.Windows.Controls.ListBox -initialValuePropertyName SelectedItem
+$file=dialog {
+    $files=get-childitem c:\temp -file | Select-object -first 10
+    Lst Files -Content $files -InitialValue $files[2]
+}
+.NOTES
+General notes
+#>
+
 function Register-WPFDSLitemsControl{
     [CmdletBinding()]
     Param($Name, $TypeName,$initialValuePropertyName,[switch]$HideLabel)

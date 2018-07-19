@@ -38,5 +38,4 @@ function Menu {
     $c | foreach-object {    $Menu.Items.Add($_) | out-null }
     $Menu | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $Menu  | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
-    
 }

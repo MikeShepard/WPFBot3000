@@ -90,16 +90,7 @@ function Window {
         $grid.Children.Add($control) | out-null
         $row += 1
     }
-    $Grid | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
-        $this.Children | ForEach-Object {if ($_| get-member GetControlValue) {
-                $d.Add($_.Name, $_.GetControlValue())
-            }}
-        if ($d.Count -eq 1) {
-            $d.Values| Select-Object -first 1
-        } else {
-            [pscustomobject]$d
-        }
-    }
+
     $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {
         Param($name)
         if ($this.Content.Name -eq $name) {
@@ -109,7 +100,15 @@ function Window {
         }
     }
     $grid | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
-    $w | add-member -MemberType ScriptMethod -Name ShowForValue -Value {if ($this.ShowDialog()) {$this.GetWindowOutput()}}
+    $w | add-member -MemberType ScriptMethod -Name ShowForValue -Value     {
+        if ($this.ShowDialog()) {
+            if ($this | Get-Member OverrideOutput) {
+                $This.OverrideOutput
+            } else {
+                $this.GetWindowOutput()
+            }
+        }
+    }
     $w | add-member -MemberType ScriptMethod -Name GetWindowOutput -value {
         if ($this | Get-Member -Name OverrideOutput -MemberType NoteProperty) {
             return $this.OverrideOutput
@@ -119,9 +118,12 @@ function Window {
                 if ($_.Name) {
                     $output.Add($_.Name, $_.GetControlValue())
                 }
-            }}
+            }
+        }
         [PSCustomObject]$output
+
     }
+
     $control = $null
     foreach ($item in $events) {
         $control = $w.GetControlByName($item.Name)
