@@ -90,7 +90,7 @@ function Window {
         $grid.Children.Add($control) | out-null
         $row += 1
     }
- 
+
     $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {
         Param($name)
         if ($this.Content.Name -eq $name) {
