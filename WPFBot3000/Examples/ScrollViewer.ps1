@@ -2,7 +2,7 @@
 dialog {
     ScrollViewer  {
         StackPanel {
-            CheckBox Barney 
+            CheckBox Barney
             ListBox Fred -contents (get-service)
         } -name Controls -Orientation Vertical
     } -name Flintstones -Property @{MaxHeight=600}

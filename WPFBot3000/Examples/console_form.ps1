@@ -15,6 +15,5 @@ $w=Window {
     } -Property @{ShowGridLines=$true;MinHeight=400;MaxHeight=700;VerticalAlignment='Stretch'} -Name win
 } -hidelabels
 
-#;VerticalAlignment='Stretch';HorizontalAlignment='Stretch'
 
 $w.ShowDialog() | out-null
