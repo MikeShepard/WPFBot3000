@@ -6,8 +6,9 @@ Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
 if($env:Name){
     Install-Module Psake, PSDeploy, BuildHelpers,Platyps -force
     Install-Module Pester -Force -SkipPublisherCheck
-    Import-Module Psake, BuildHelpers, Platyps
 }
+Import-Module Psake, BuildHelpers, Platyps
+
 Set-BuildEnvironment -Force
 
 Invoke-psake -buildFile .\psake.ps1 -taskList $Task -nologo

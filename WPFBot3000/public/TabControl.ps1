@@ -27,15 +27,15 @@ General notes
 function TabControl {
     [CmdletBinding()]
     Param([string]$name,
-          [Scriptblock]$Contents,
-          [hashtable]$Property = @{}
-          )
+        [Scriptblock]$Contents,
+        [hashtable]$Property = @{}
+    )
     $baseProperties = @{
-         }
+    }
     if ($name) {
         $baseProperties.Name = $name
     }
-    $tabControl=New-WPFControl -type System.Windows.Controls.TabControl -Properties $baseProperties,$property
+    $tabControl = New-WPFControl -type System.Windows.Controls.TabControl -Properties $baseProperties, $property
 
     [System.Windows.UIElement[]]$c = & $Contents
     $c | foreach-object {    $tabControl.Items.Add($_) | out-null }
@@ -44,11 +44,8 @@ function TabControl {
     $tabControl | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = [Ordered]@{}
         $this.Items | ForEach-Object {if ($_| get-member GetControlValue) {
                 $d.Add($_.Name, $_.GetControlValue())
-            }}
-        if ($d.Count -eq 1) {
-            $d.Values| Select-Object -first 1
+            }
         }
-        else {
-            [pscustomobject]$d
-        }} -PassThru
+        [pscustomobject]$d
+    } -PassThru
 }
