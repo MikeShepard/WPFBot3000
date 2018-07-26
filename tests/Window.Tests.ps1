@@ -1,4 +1,4 @@
-Describe "Window functionality"{
+Describe "Window functionality" -tag Local {
     It "Returns an object for a textbox" {
         $w=Window { TextBox Name -initialValue Fred}
         $w.GetWindowOutput().Name | should be Fred
