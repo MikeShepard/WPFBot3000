@@ -20,6 +20,9 @@ Properties to extend/override the base properties defined in the function
 .PARAMETER DisplayProperty 
 Properties that get turned into columns in the ListView
 
+.PARAMETER MultiSelect
+Sets the selectionMode of the listbox to "Extended"
+
 .EXAMPLE
 $files=get-childitem c:\windows -file | select-object -first 10
 Dialog {

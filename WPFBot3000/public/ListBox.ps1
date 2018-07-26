@@ -17,6 +17,9 @@ The item from $contents that is initally selected
 .PARAMETER property
 Properties to extend/override the base properties defined in the function
 
+.PARAMETER MultiSelect
+Sets the selectionMode of the listbox to "Extended"
+
 .EXAMPLE
 $files=get-childitem c:\windows -file | select-object -first 10
 Dialog {
