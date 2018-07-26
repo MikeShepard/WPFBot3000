@@ -12,7 +12,7 @@
 RootModule = '.\WPFBot3000.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.9.8'
+ModuleVersion = '0.9.13'
 
 # ID used to uniquely identify this module
 GUID = '0d169f46-863c-4664-88ff-f336cdc1f509'
@@ -66,7 +66,7 @@ Copyright = '(c) 2018 Mike Shepard. All rights reserved.'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = '*'
+FunctionsToExport = @('Add-WPFMenu','Border','Button','Calendar','CheckBox','ComboBox','CredentialPicker','DataGrid','DatePicker','Dialog','DirectoryPicker','DockPanel','Expander','FilePicker','Grid','GridSplitter','GroupBox','Image','Invoke-ObjectEditor','Label','ListBox','ListView','Menu','MenuItem','MultiLineTextBox','Password','RadioButton','Rectangle','Register-WPFAttachedPropertyType','Register-WPFDSLContentControl','Register-WPFDSLitemsControl','Register-WPFDSLPanelControl','Register-WPFDSLValueControl','RepeatButton','RichTextBox','ScrollViewer','Separator','Set-WindowOutput','Slider','StackPanel','TabControl','TabItem','TextBlock','TextBox','Treeview','ViewBox','Window','WrapPanel')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = '*'
