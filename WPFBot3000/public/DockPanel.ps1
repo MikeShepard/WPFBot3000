@@ -22,7 +22,7 @@ General notes
 #>
 function DockPanel {
     [CmdletBinding()]
-    Param([Scriptblock]$Contents, $name,$property=@{})
+    Param([Scriptblock]$Contents, $name, $property = @{})
 
 
     $baseProperties = @{
@@ -31,7 +31,7 @@ function DockPanel {
     if ($name) {
         $baseProperties.Name = $name
     }
-    $dock=New-WPFControl -type System.Windows.Controls.DockPanel -Properties $baseProperties,$property
+    $dock = New-WPFControl -type System.Windows.Controls.DockPanel -Properties $baseProperties, $property
 
     [System.Windows.UIElement[]]$c = . $Contents
     $c | foreach-object {    $dock.Children.Add($_) | out-null }
@@ -39,13 +39,10 @@ function DockPanel {
     $dock | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
         $this.Children | ForEach-Object {if ($_| get-member GetControlValue) {
                 $d.Add($_.Name, $_.GetControlValue())
-            }}
-        if ($d.Count -eq 1) {
-            $d.Values| Select-Object -first 1
+            }
         }
-        else {
-            [pscustomobject]$d
-        }}
-        $dock  | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
+        [pscustomobject]$d
+    }
+    $dock  | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
 }
 

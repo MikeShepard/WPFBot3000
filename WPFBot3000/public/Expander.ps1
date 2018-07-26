@@ -27,32 +27,30 @@ General notes
 function Expander {
     [CmdletBinding()]
     Param([Scriptblock]$Contents,
-          [hashtable]$Property = @{},
-          [string]$name)
+        [hashtable]$Property = @{},
+        [string]$name)
     $baseProperties = @{
     }
     if ($name) {
         $baseProperties.Name = $name
     }
-    $Expander=New-WPFControl -type System.Windows.Controls.Expander -Properties $baseProperties,$property
+    $Expander = New-WPFControl -type System.Windows.Controls.Expander -Properties $baseProperties, $property
 
     $c = & $Contents
-    if($c -is [System.Windows.UIElement]){
-        $Expander.Content=$c
-    } else {
-        $Expander.Content =StackPanel {$c}
+    if ($c -is [System.Windows.UIElement]) {
+        $Expander.Content = $c
+    }
+    else {
+        $Expander.Content = StackPanel {$c}
     }
     $Expander | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $Expander | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
     $Expander | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
         $this.Content | ForEach-Object {if ($_| get-member GetControlValue) {
-                $d.Add($this.Name, $_.GetControlValue())
-            }}
-        if ($d.Count -eq 1) {
-            $d.Values| Select-Object -first 1
+                $d.Add($_.Name, $_.GetControlValue())
+            }
         }
-        else {
-            [pscustomobject]$d
-        }}
-        $Expander  | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
+        [pscustomobject]$d
+    }
+    $Expander  | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
 }
