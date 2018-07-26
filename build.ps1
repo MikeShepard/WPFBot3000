@@ -9,5 +9,7 @@ Import-Module Psake, BuildHelpers, Platyps
 
 Set-BuildEnvironment
 
+[System.Threading.Thread]::CurrentThread.GetApartmentState()
+
 Invoke-psake -buildFile .\psake.ps1 -taskList $Task -nologo
 exit ( [int]( -not $psake.build_success ) )
