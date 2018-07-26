@@ -66,7 +66,7 @@ Copyright = '(c) 2018 Mike Shepard. All rights reserved.'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = @('Add-WPFMenu','Border','Button','Calendar','CheckBox','ComboBox','CredentialPicker','DataGrid','DatePicker','Dialog','DirectoryPicker','DockPanel','Expander','FilePicker','Grid','GridSplitter','GroupBox','Image','Invoke-ObjectEditor','Label','ListBox','ListView','Menu','MenuItem','MultiLineTextBox','Password','RadioButton','Rectangle','Register-WPFAttachedPropertyType','Register-WPFDSLContentControl','Register-WPFDSLitemsControl','Register-WPFDSLPanelControl','Register-WPFDSLValueControl','RepeatButton','RichTextBox','ScrollViewer','Separator','Set-WindowOutput','Slider','StackPanel','TabControl','TabItem','TextBlock','TextBox','Treeview','ViewBox','Window','WrapPanel')
+FunctionsToExport = @('Add-WPFMenu','Border','Button','Calendar','CheckBox','ComboBox','CredentialPicker','DataGrid','DatePicker','DirectoryPicker','DockPanel','Expander','FilePicker','Grid','GridSplitter','GroupBox','Image','Invoke-ObjectEditor','Invoke-WPFBotDialog','Label','ListBox','ListView','Menu','MenuItem','MultiLineTextBox','New-WPFBotWindow','Password','RadioButton','Rectangle','Register-WPFAttachedPropertyType','Register-WPFDSLContentControl','Register-WPFDSLitemsControl','Register-WPFDSLPanelControl','Register-WPFDSLValueControl','RepeatButton','RichTextBox','ScrollViewer','Separator','Set-WindowOutput','Slider','StackPanel','TabControl','TabItem','TextBlock','TextBox','Treeview','ViewBox','WrapPanel')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = '*'
@@ -75,7 +75,7 @@ CmdletsToExport = '*'
 VariablesToExport = ''
 
 # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-AliasesToExport = 'Edit-Object'
+AliasesToExport = @('Dialog','Edit-Object','Window')
 
 # DSC resources to export from this module
 # DscResourcesToExport = @()

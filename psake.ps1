@@ -26,10 +26,12 @@ Task Init {
     "Build System Details:"
     Get-Item ENV:BH*
     "`n"
+    Set-ModuleFunctions -FunctionsToExport '*'
+    Set-ModuleAliases -AliasesToExport '*'
+
 }
 
 Task Docs -Depends Init {
-    Set-ModuleFunctions
     Remove-Item $ModulePath\Docs -Recurse -Force
     Import-Module $ENV:BHPSModuleManifest -force -Global -verbose
     New-MarkdownHelp -Module $env:BHProjectName -OutputFolder $ModulePath\Docs
@@ -73,6 +75,7 @@ Task Build -Depends Test {
 
     # Load the module, read the exported functions, update the psd1 FunctionsToExport
     Set-ModuleFunctions
+    Set-ModuleAliases
 
     # Bump the module version if we didn't already
     Try {
