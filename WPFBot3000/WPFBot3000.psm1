@@ -32,5 +32,5 @@ Foreach($import in @($Public + $Private))
 # Export Public functions ($Public.BaseName) for WIP modules
 # Set variables visible to the module and its functions only
 
-Export-ModuleMember -Function $Public.Basename -alias 'Edit-Object'
+Export-ModuleMember -Function $Public.Basename -alias 'Edit-Object','Window','Dialog'
 
