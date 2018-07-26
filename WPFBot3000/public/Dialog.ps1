@@ -14,6 +14,12 @@ A hashtable with items of the form ControlName='Desired label'.  If the control 
 .PARAMETER Events
 An array of hashtables of event handlers for controls in the dialog.  Each should have Name (control name), EventName, and Action.
 
+.PARAMETER Property
+A hashtable of properties to set on the window
+
+.PARAMETER ShowGridLines
+Switch to say whether to show grid lines in all grids (for layout debugging)
+
 .PARAMETER title
 The window title
 
