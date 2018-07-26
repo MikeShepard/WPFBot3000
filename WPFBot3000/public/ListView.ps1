@@ -35,12 +35,16 @@ function ListView {
         [Array]$contents = @(),
         $initialValue,
         [Hashtable]$property = @{},
-        [Array]$DisplayProperty)
+        [Array]$DisplayProperty,
+        [Switch]$MultiSelect)
     $baseProperties = @{
         Name = $name
     }
     $l = New-WPFControl -type System.Windows.Controls.ListView -Properties $baseProperties, $property
     $g = New-WPFControl -type System.Windows.Controls.GridView -properties @{AllowsColumnReorder = $true}
+    if($MultiSelect){
+        $l.SelectionMode='Extended'
+    }
     $l.View = $g
     if ($DisplayProperty) {
         foreach ($prop in $displayProperty) {
@@ -54,16 +58,19 @@ function ListView {
             $displayProperty = $contents[0]| get-member -MemberType Properties | select-object -ExpandProperty Name
         }
         $l.ItemsSource = $contents
-        if ($initialValue -and $_ -eq $initialValue) {
-            $l.SelectedItem = $_
+        if ($initialValue) {
+            $l.SelectedValue = $initialValue
         }
     }
     $l | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
-    $l | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$item = $this.SelectedItem
-        if ($item -is [ListViewitem] -and $item.Tag) {
-            $item.Tag
+    $l | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$items = $this.SelectedItems
+        foreach ($item in $items) {
+            if ($item -is [ListViewItem] -and $item.Tag) {
+                $item.Tag
+            }
+            else {
+                $item
+            }
         }
-        else {
-            $item
-        }} -PassThru
+    } -PassThru
 }
