@@ -1,6 +1,6 @@
-Dialog{
-    DockPanel{
-        Menu -contents {
+dialog{
+
+        Menu Top -contents {
             MenuItem Menu5 -Contents {
                 MenuItem Item1 -action {write-host "item1"}
                 MenuItem Item2 -action {write-host "item2"}
@@ -8,5 +8,5 @@ Dialog{
                 MenuItem Item3 -action {write-host "item3"}
             }
         }
-    }
-} -property @{MinHeight=100;MinWidth=100}
+
+} -property @{MinHeight=100;MinWidth=100} -ShowGridLines

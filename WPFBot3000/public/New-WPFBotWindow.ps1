@@ -68,7 +68,8 @@ function New-WPFBotWindow {
         Margin        = 5
         ShowGridLines = $ShowGridLines
     }
-    $w.Content = $grid
+    $d= DockPanel  
+    $w.Content = $d
     $controlColumn = 0
     if (-not $HideLabels) {
         $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{Width = 'Auto'}))
@@ -77,6 +78,11 @@ function New-WPFBotWindow {
     $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{}))
     $Row = 0
     foreach ($control in $c) {
+        if($control -is [System.Windows.Controls.Menu]){
+            $d.Children.Add($control) | out-null
+            [DockPanel]::SetDock($control,'Top')
+            continue
+        }
         $hideControlLabel = $HideLabels
         if ((Get-Member -InputObject $control -name HideLabel) -or ($Control.Visibility -eq 'Collapsed')) {
             $hideControlLabel = $true
@@ -102,14 +108,11 @@ function New-WPFBotWindow {
         $grid.Children.Add($control) | out-null
         $row += 1
     }
+    $d.Children.Add($grid) | out-null
 
     $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {
         Param($name)
-        if ($this.Content.Name -eq $name) {
-            $this.Content
-        } else {
             $this.Content.GetControlByName($name)
-        }
     }
     $grid | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
     $w | add-member -MemberType ScriptMethod -Name ShowForValue -Value     {
@@ -126,7 +129,8 @@ function New-WPFBotWindow {
             return $this.OverrideOutput
         }
         $output = [Ordered]@{}
-        $this.Content.Children | ForEach-Object { if (($_ | get-member GetControlValue) -and ($_| get-member Name)) {
+        $panel=$this.Content.Children | where {$_ -is [System.Windows.Controls.Grid]}
+        $panel.Children | ForEach-Object { if (($_ | get-member GetControlValue) -and ($_| get-member Name)) {
                 if ($_.Name) {
                     $output.Add($_.Name, $_.GetControlValue())
                 }
