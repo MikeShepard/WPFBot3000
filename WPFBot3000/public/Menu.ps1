@@ -28,6 +28,7 @@ function Menu {
           )
     $baseProperties = @{
            'DockPanel.Dock'='Top'
+           HorizontalAlignment='Left'
          }
     if ($name) {
         $baseProperties.Name = $name

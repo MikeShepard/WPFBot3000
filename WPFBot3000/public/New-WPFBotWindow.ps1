@@ -68,7 +68,8 @@ function New-WPFBotWindow {
         Margin        = 5
         ShowGridLines = $ShowGridLines
     }
-    $w.Content = $grid
+    $d= DockPanel {$grid } -property @{background='Blue'}
+    $w.Content = $d
     $controlColumn = 0
     if (-not $HideLabels) {
         $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{Width = 'Auto'}))
@@ -77,6 +78,11 @@ function New-WPFBotWindow {
     $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{}))
     $Row = 0
     foreach ($control in $c) {
+        if($control -is [System.Windows.Controls.Menu]){
+            $d.Children.Add($control) | out-null
+            [DockPanel]::SetDock($control,'Bottom')
+            continue
+        }
         $hideControlLabel = $HideLabels
         if ((Get-Member -InputObject $control -name HideLabel) -or ($Control.Visibility -eq 'Collapsed')) {
             $hideControlLabel = $true
@@ -105,10 +111,10 @@ function New-WPFBotWindow {
 
     $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {
         Param($name)
-        if ($this.Content.Name -eq $name) {
-            $this.Content
+        if ($this.Content.Children.Name -eq $name) {
+            $this.Content.Children
         } else {
-            $this.Content.GetControlByName($name)
+            $this.Content.Children.GetControlByName($name)
         }
     }
     $grid | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
@@ -126,7 +132,7 @@ function New-WPFBotWindow {
             return $this.OverrideOutput
         }
         $output = [Ordered]@{}
-        $this.Content.Children | ForEach-Object { if (($_ | get-member GetControlValue) -and ($_| get-member Name)) {
+        $this.Content.Children.Children | ForEach-Object { if (($_ | get-member GetControlValue) -and ($_| get-member Name)) {
                 if ($_.Name) {
                     $output.Add($_.Name, $_.GetControlValue())
                 }

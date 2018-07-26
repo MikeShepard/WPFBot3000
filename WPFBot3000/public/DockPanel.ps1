@@ -33,7 +33,7 @@ function DockPanel {
     }
     $dock = New-WPFControl -type System.Windows.Controls.DockPanel -Properties $baseProperties, $property
 
-    [System.Windows.UIElement[]]$c = . $Contents
+    [System.Windows.UIElement[]]$c = & $Contents
     $c | foreach-object {    $dock.Children.Add($_) | out-null }
     $dock | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $dock | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}

@@ -65,6 +65,8 @@ function Grid {
     [System.Windows.UIElement[]]$c = & $Contents
     $objectCount = 0
     $c | foreach-object {
+        
+          
         $row = [Math]::Truncate($objectCount / $columnCount)
         $col = $objectCount % $columnCount
         if ($col -eq 0 -and -not $manual) {
@@ -80,7 +82,7 @@ function Grid {
             }
         }
         $Grid.Children.Add($_) | out-null
-        if (-not $manual -and -not ($_ -is [System.Windows.Controls.Menu])) {
+        if (-not $manual) {
             [Grid]::SetColumn( $_, $col)
             [Grid]::SetRow($_, $row)
         }
