@@ -33,16 +33,16 @@ General notes
 function WrapPanel {
     [CmdletBinding()]
     Param([Scriptblock]$Contents,
-          [hashtable]$Property = @{},
-          [ValidateSet('Horizontal', 'Vertical')]$Orientation = 'Horizontal',
-          [string]$name)
+        [hashtable]$Property = @{},
+        [ValidateSet('Horizontal', 'Vertical')]$Orientation = 'Horizontal',
+        [string]$name)
     $baseProperties = @{
         Orientation = [System.Windows.Controls.Orientation]$Orientation
     }
     if ($name) {
         $baseProperties.Name = $name
     }
-    $stack=New-WPFControl -type System.Windows.Controls.WrapPanel -Properties $baseProperties,$property
+    $stack = New-WPFControl -type System.Windows.Controls.WrapPanel -Properties $baseProperties, $property
 
     [System.Windows.UIElement[]]$c = & $Contents
     $c | foreach-object {    $stack.Children.Add($_) | out-null }
@@ -51,12 +51,9 @@ function WrapPanel {
     $stack | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
         $this.Children | ForEach-Object {if ($_| get-member GetControlValue) {
                 $d.Add($_.Name, $_.GetControlValue())
-            }}
-        if ($d.Count -eq 1) {
-            $d.Values| Select-Object -first 1
+            }
         }
-        else {
-            [pscustomobject]$d
-        }}
-        $stack  | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
+        [pscustomobject]$d
+    }
+    $stack  | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
 }

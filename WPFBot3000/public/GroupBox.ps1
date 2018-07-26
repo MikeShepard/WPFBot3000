@@ -30,34 +30,32 @@ General notes
 function GroupBox {
     [CmdletBinding()]
     Param([Scriptblock]$Contents,
-          [hashtable]$Property = @{},
-          [string]$Title,
-          [string]$name)
+        [hashtable]$Property = @{},
+        [string]$Title,
+        [string]$name)
     $baseProperties = @{
-          Header=$title
+        Header = $title
     }
     if ($name) {
         $baseProperties.Name = $name
     }
-    $groupbox=New-WPFControl -type System.Windows.Controls.GroupBox -Properties $baseProperties,$property
+    $groupbox = New-WPFControl -type System.Windows.Controls.GroupBox -Properties $baseProperties, $property
 
     $c = & $Contents
-    if($c -is [System.Windows.UIElement]){
-        $groupbox.Content=$c
-    } else {
-        $groupbox.Content =StackPanel {$c} -Orientation Vertical
+    if ($c -is [System.Windows.UIElement]) {
+        $groupbox.Content = $c
+    }
+    else {
+        $groupbox.Content = StackPanel {$c} -Orientation Vertical
     }
     $groupbox | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $groupbox | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
     $groupbox | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
         $this.Content | ForEach-Object {if ($_| get-member GetControlValue) {
-                $d.Add($this.Name, $_.GetControlValue())
-            }}
-        if ($d.Count -eq 1) {
-            $d.Values| Select-Object -first 1
+                $d.Add($_.Name, $_.GetControlValue())
+            }
         }
-        else {
-            [pscustomobject]$d
-        }}
-        $groupbox  | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
+        [pscustomobject]$d
+    }
+    $groupbox  | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
 }

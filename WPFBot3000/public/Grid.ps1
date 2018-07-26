@@ -55,8 +55,8 @@ function Grid {
 
 
     1..$ColumnCount |  ForEach-Object { $grid.ColumnDefinitions.Add((new-object ColumnDefinition -property @{}))}
-    if($manual){
-        if($rowCount -eq 0){
+    if ($manual) {
+        if ($rowCount -eq 0) {
             Write-Warning "You must supply a rowcount if using manual grid placement"
         }
         1..$rowcount | ForEach-Object { $grid.RowDefinitions.Add( (new-object RowDefinition -Property @{}))}
@@ -74,12 +74,13 @@ function Grid {
         if ($_ -is [System.Windows.Controls.GridSplitter]) {
             if ($_.Width -eq 5) {
                 $grid.ColumnDefinitions[$col].Width = 5
-            } else {
+            }
+            else {
                 $grid.RowDefinitions[$row].Height = 5
             }
         }
         $Grid.Children.Add($_) | out-null
-        if(-not $manual){
+        if (-not $manual) {
             [Grid]::SetColumn( $_, $col)
             [Grid]::SetRow($_, $row)
         }
@@ -90,12 +91,9 @@ function Grid {
     $Grid | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
         $this.Children | ForEach-Object {if ($_| get-member GetControlValue) {
                 $d.Add($_.Name, $_.GetControlValue())
-            }}
-        if ($d.Count -eq 1) {
-            $d.Values| Select-Object -first 1
-        } else {
-            [pscustomobject]$d
+            }
         }
+        [pscustomobject]$d
     }
     $grid | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
 }

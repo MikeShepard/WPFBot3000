@@ -28,34 +28,33 @@ General notes
 function ViewBox {
     [CmdletBinding()]
     Param([Scriptblock]$Contents,
-          [hashtable]$Property = @{},
-          [string]$name)
+        [hashtable]$Property = @{},
+        [string]$name)
     $baseProperties = @{
-        Stretch='Uniform'
-        MaxWidth=400
+        Stretch  = 'Uniform'
+        MaxWidth = 400
     }
     if ($name) {
         $baseProperties.Name = $name
     }
-    $ViewBox=New-WPFControl -type System.Windows.Controls.ViewBox -Properties $baseProperties,$property
+    $ViewBox = New-WPFControl -type System.Windows.Controls.ViewBox -Properties $baseProperties, $property
 
     $c = & $Contents
-    if($c -is [System.Windows.UIElement]){
-        $ViewBox.Child=$c
-    } else {
-        $ViewBox.Child =StackPanel {$c}
+    if ($c -is [System.Windows.UIElement]) {
+        $ViewBox.Child = $c
+    }
+    else {
+        $ViewBox.Child = StackPanel {$c}
     }
     $ViewBox | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $ViewBox | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
     $ViewBox | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
         $this.Child | ForEach-Object {if ($_| get-member GetControlValue) {
-                $d.Add($this.Name, $_.GetControlValue())
-            }}
-        if ($d.Count -eq 1) {
-            $d.Values| Select-Object -first 1
+                $d.Add($_.Name, $_.GetControlValue())
+            }
+
         }
-        else {
-            [pscustomobject]$d
-        }}
-        $ViewBox  | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
+        [pscustomobject]$d
+    }
+    $ViewBox  | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
 }
