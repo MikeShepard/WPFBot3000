@@ -80,7 +80,7 @@ function Grid {
             }
         }
         $Grid.Children.Add($_) | out-null
-        if (-not $manual) {
+        if (-not $manual -and -not ($_ -is [System.Windows.Controls.Menu])) {
             [Grid]::SetColumn( $_, $col)
             [Grid]::SetRow($_, $row)
         }

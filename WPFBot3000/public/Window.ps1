@@ -22,6 +22,17 @@ The window title
 .PARAMETER HideLabels
 Use this switch if you want no labels at all (no column for them, even)
 
+.PARAMETER Property
+A hashtable of properties to set on the window
+
+.PARAMETER ShowGridLines
+Switch to say whether to show grid lines in all grids (for layout debugging)
+
+.PARAMETER ShowForValue
+Switch to say whether you want the window immediately shown (showdialog()) and if OK pressed
+to output the "calculated output of the window".  Window with -ShowForValue works similarly to 
+Dialog function but doesn't automatically add Ok and Cancel button.
+
 .EXAMPLE
 $w=Window {
     Textbox Name
@@ -42,7 +53,8 @@ function Window {
         [hashtable]$labelMap = @{},
         [hashtable[]]$Events,
         [string]$title,
-        [switch]$HideLabels, [hashtable]$property,
+        [switch]$HideLabels, 
+        [hashtable]$property,
         [Switch]$ShowGridLines,
         [Switch]$ShowForValue)
     $script:ShowGridLines = $ShowGridLines.IsPresent

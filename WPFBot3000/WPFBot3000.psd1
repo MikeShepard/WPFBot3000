@@ -12,7 +12,7 @@
 RootModule = '.\WPFBot3000.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.9.13'
+ModuleVersion = '0.9.15'
 
 # ID used to uniquely identify this module
 GUID = '0d169f46-863c-4664-88ff-f336cdc1f509'

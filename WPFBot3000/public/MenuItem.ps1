@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-A Menuitem control 
+A Menuitem control
 
 .DESCRIPTION
-A Menuitem control 
+A Menuitem control
 
 .PARAMETER label
 The label of the MenuItem
@@ -14,13 +14,23 @@ Properties to extend/override the base properties defined in the function
 .PARAMETER name
 The name of the control
 
+.PARAMETER Contents
+Other menuitem controls that are nested under this
+
+.PARAMETER Action
+The action to be performed when clicking this menu item
+
 .EXAMPLE
+#note that the menu here is not lined up well...see menu.ps1 in the examples folder (includes a dockpanel)
 Dialog {
-    MenuControl Menus {
-        MenuItem Before { TextBox Description -prop @{MinWidth=100;MinHeight=100} }
-        MenuItem After { TextBox Description2 -prop @{MinWidth=100;MinHeight=100}}
+    Menu Menus {
+        MenuItem TopLevel -contents{
+            MenuItem Increment -action { $value.Text=1+$Value.Text}
+            MenuItem Decrement -action { $value.Text=-1+$Value.Text}
+        }
     }
-}
+    Textbox Value -initialValue 100
+} 
 
 .NOTES
 General notes
@@ -28,10 +38,10 @@ General notes
 function MenuItem {
     [CmdletBinding()]
     Param([string]$label,
+          [ScriptBlock]$action,
           [hashtable]$Property = @{},
           [string]$name,
-          [Scriptblock]$contents,
-          [ScriptBlock]$action)
+          [Scriptblock]$contents)
     $baseProperties = @{}
     if($label) {
         $baseProperties.Header=$label
