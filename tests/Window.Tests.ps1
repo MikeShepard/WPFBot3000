@@ -35,4 +35,30 @@ Describe "Window functionality" -tag Local {
         $w=Window {WrapPanel  {TextBox Name -InitialValue Fred} -name SP}
         $w.GetWindowOutput().SP.Name | Should Be Fred
     }
+    It "Returns a simple object (with a menu)" {
+        $w=Window {
+            Menu Menus {
+                MenuItem TopLevel -contents{
+                    MenuItem Increment -action { $value.Text=1+$Value.Text}
+                    MenuItem Decrement -action { $value.Text=-1+$Value.Text}
+                }
+            }
+            TextBox Name -InitialValue Fred
+        }
+        $w.GetWindowOutput().Name | Should Be Fred
+    }
+    It "Returns a complex object (with a menu)" {
+        $w=Window {
+            StackPanel{
+            Menu Menus {
+                MenuItem TopLevel -contents{
+                    MenuItem Increment -action { $value.Text=1+$Value.Text}
+                    MenuItem Decrement -action { $value.Text=-1+$Value.Text}
+                }
+            }
+            TextBox Name -InitialValue Fred
+        } -name SP
+        }
+        $w.GetWindowOutput().SP.Name | Should Be Fred
+    }
 }

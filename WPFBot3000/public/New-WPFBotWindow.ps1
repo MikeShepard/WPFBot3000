@@ -129,7 +129,8 @@ function New-WPFBotWindow {
             return $this.OverrideOutput
         }
         $output = [Ordered]@{}
-        $this.Content.Children.Children | ForEach-Object { if (($_ | get-member GetControlValue) -and ($_| get-member Name)) {
+        $panel=$this.Content.Children | where {$_ -is [System.Windows.Controls.Grid]}
+        $panel.Children | ForEach-Object { if (($_ | get-member GetControlValue) -and ($_| get-member Name)) {
                 if ($_.Name) {
                     $output.Add($_.Name, $_.GetControlValue())
                 }
