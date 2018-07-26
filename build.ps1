@@ -9,6 +9,7 @@ if($env:APPVEYOR_BUILD_FOLDER){
 }
 Import-Module Psake, BuildHelpers, Platyps
 
+
 Set-BuildEnvironment -Force
 
 Invoke-psake -buildFile .\psake.ps1 -taskList $Task -nologo
