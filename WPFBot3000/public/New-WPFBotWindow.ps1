@@ -68,7 +68,7 @@ function New-WPFBotWindow {
         Margin        = 5
         ShowGridLines = $ShowGridLines
     }
-    $d= DockPanel {$grid } -property @{background='Blue'}
+    $d= DockPanel  
     $w.Content = $d
     $controlColumn = 0
     if (-not $HideLabels) {
@@ -80,7 +80,7 @@ function New-WPFBotWindow {
     foreach ($control in $c) {
         if($control -is [System.Windows.Controls.Menu]){
             $d.Children.Add($control) | out-null
-            [DockPanel]::SetDock($control,'Bottom')
+            [DockPanel]::SetDock($control,'Top')
             continue
         }
         $hideControlLabel = $HideLabels
@@ -108,14 +108,11 @@ function New-WPFBotWindow {
         $grid.Children.Add($control) | out-null
         $row += 1
     }
+    $d.Children.Add($grid) | out-null
 
     $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {
         Param($name)
-        if ($this.Content.Children.Name -eq $name) {
-            $this.Content.Children
-        } else {
-            $this.Content.Children.GetControlByName($name)
-        }
+            $this.Content.GetControlByName($name)
     }
     $grid | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
     $w | add-member -MemberType ScriptMethod -Name ShowForValue -Value     {
