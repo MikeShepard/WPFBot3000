@@ -55,7 +55,12 @@ function GroupBox {
                 $d.Add($_.Name, $_.GetControlValue())
             }
         }
-        [pscustomobject]$d
+        if ($d.Count -eq 1) {
+            $d.Values| Select-Object -first 1
+        }
+        else {
+            [pscustomobject]$d
+        }
     }
     $groupbox  | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
 }

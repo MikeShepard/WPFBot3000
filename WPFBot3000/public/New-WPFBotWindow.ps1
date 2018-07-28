@@ -63,46 +63,11 @@ function New-WPFBotWindow {
         Margin        = 10
     }
     $w = New-WPFControl -type system.windows.window -properties $BaseProperties, $property
-    [System.Windows.UIElement[]]$c = & $Contents
-    $grid = new-object System.Windows.Controls.Grid -Property @{
-        Margin        = 5
-        ShowGridLines = $ShowGridLines
-    }
+    
+    $grid=DataEntryGrid -contents $contents -HideLabels:$HideLabels
+
+     
     $w.Content = $grid
-    $controlColumn = 0
-    if (-not $HideLabels) {
-        $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{Width = 'Auto'}))
-        $controlColumn = 1
-    }
-    $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{}))
-    $Row = 0
-    foreach ($control in $c) {
-        $hideControlLabel = $HideLabels
-        if ((Get-Member -InputObject $control -name HideLabel) -or ($Control.Visibility -eq 'Collapsed')) {
-            $hideControlLabel = $true
-        }
-        if (($hideControlLabel -eq $false) -or $control.Visibility -ne 'Collapsed') {
-            $grid.RowDefinitions.Add( (new-object System.Windows.Controls.RowDefinition -Property @{Height = 'Auto'}))
-        } else {
-            $row = [Math]::Max(0, $row - 1)
-        }
-
-        if (-not $hideControlLabel) {
-            $labelText = $Control.Name
-            if ($labelMap.ContainsKey($control.Name)) {
-                $labelText = $labelMap[$control.Name]
-            }
-            $l = Label $labelText
-            [System.Windows.Controls.Grid]::SetRow($l, $row)
-            [System.Windows.Controls.Grid]::SetColumn($l, 0)
-            $grid.Children.Add($l) | out-null
-        }
-        [System.Windows.Controls.Grid]::SetRow($control, $row)
-        [System.Windows.Controls.Grid]::SetColumn($control, $controlColumn)
-        $grid.Children.Add($control) | out-null
-        $row += 1
-    }
-
     $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {
         Param($name)
         if ($this.Content.Name -eq $name) {
@@ -111,7 +76,6 @@ function New-WPFBotWindow {
             $this.Content.GetControlByName($name)
         }
     }
-    $grid | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
     $w | add-member -MemberType ScriptMethod -Name ShowForValue -Value     {
         if ($this.ShowDialog()) {
             if ($this | Get-Member OverrideOutput) {
