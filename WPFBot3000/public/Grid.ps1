@@ -54,12 +54,12 @@ function Grid {
     $grid.ColumnDefinitions.Clear()
 
 
-    1..$ColumnCount |  ForEach-Object { $grid.ColumnDefinitions.Add((new-object ColumnDefinition -property @{}))}
+    1..$ColumnCount |  ForEach-Object { $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{}))}
     if ($manual) {
         if ($rowCount -eq 0) {
             Write-Warning "You must supply a rowcount if using manual grid placement"
         }
-        1..$rowcount | ForEach-Object { $grid.RowDefinitions.Add( (new-object RowDefinition -Property @{}))}
+        1..$rowcount | ForEach-Object { $grid.RowDefinitions.Add( (new-object System.Windows.Controls.RowDefinition -Property @{}))}
     }
 
     [System.Windows.UIElement[]]$c = & $Contents
@@ -68,7 +68,7 @@ function Grid {
         $row = [Math]::Truncate($objectCount / $columnCount)
         $col = $objectCount % $columnCount
         if ($col -eq 0 -and -not $manual) {
-            $grid.RowDefinitions.Add( (new-object RowDefinition -Property @{}))
+            $grid.RowDefinitions.Add( (new-object System.Windows.Controls.RowDefinition -Property @{}))
         }
         #fix width or height of column or row with a gridsplitter in it
         if ($_ -is [System.Windows.Controls.GridSplitter]) {
