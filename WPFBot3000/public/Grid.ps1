@@ -65,6 +65,8 @@ function Grid {
     [System.Windows.UIElement[]]$c = & $Contents
     $objectCount = 0
     $c | foreach-object {
+        
+          
         $row = [Math]::Truncate($objectCount / $columnCount)
         $col = $objectCount % $columnCount
         if ($col -eq 0 -and -not $manual) {
