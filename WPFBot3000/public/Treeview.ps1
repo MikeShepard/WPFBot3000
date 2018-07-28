@@ -34,7 +34,7 @@ function Treeview {
     $tree | add-member -Name GetTreeViewItemByObject -membertype ScriptMethod -value ${function:Get-TreeViewItemByObject}
     $tree | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $tree | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$item=$this.SelectedItem
-        if($item -is [listboxitem] -and $item.Tag){
+        if($item -is [System.Windows.Controls.TreeViewItem] -and $item.Tag){
             $item.Tag
         } else {
             $item

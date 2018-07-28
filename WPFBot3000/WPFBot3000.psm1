@@ -1,5 +1,5 @@
 Using Namespace System.Windows.Controls
-Add-Type -AssemblyName PresentationFramework -PassThru 
+#Add-Type -AssemblyName PresentationFramework -PassThru 
 Add-Type -AssemblyName System.Windows.Forms
 
 Set-StrictMode -Version Latest
