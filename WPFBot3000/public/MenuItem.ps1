@@ -30,7 +30,7 @@ Dialog {
         }
     }
     Textbox Value -initialValue 100
-} 
+} -showgridlines
 
 .NOTES
 General notes

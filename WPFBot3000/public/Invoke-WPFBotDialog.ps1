@@ -55,7 +55,7 @@ function Invoke-WPFBotDialog {
             Button Cancel { $this.Window.DialogResult = $false} -property @{}
         } -Orientation Horizontal -Property @{}
     } @PSBoundParameters
-    $w.Content.RowDefinitions[-1].Height = 'Auto'
+    $w.Content.Children[-1].RowDefinitions[-1].Height = 'Auto'
     $w.ShowForValue()
 }
 

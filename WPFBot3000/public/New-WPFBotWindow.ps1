@@ -62,19 +62,12 @@ function New-WPFBotWindow {
         SizeToContent = 'WidthAndHeight'
         Margin        = 10
     }
-    $w = New-WPFControl -type system.windows.window -properties $BaseProperties, $property
-    
+    $w = New-WPFControl -type system.windows.window -properties $BaseProperties, $property 
     $grid=DataEntryGrid -contents $contents -HideLabels:$HideLabels
-
-     
     $w.Content = $grid
     $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {
         Param($name)
-        if ($this.Content.Name -eq $name) {
-            $this.Content
-        } else {
             $this.Content.GetControlByName($name)
-        }
     }
     $w | add-member -MemberType ScriptMethod -Name ShowForValue -Value     {
         if ($this.ShowDialog()) {
@@ -90,7 +83,8 @@ function New-WPFBotWindow {
             return $this.OverrideOutput
         }
         $output = [Ordered]@{}
-        $this.Content.Children | ForEach-Object { if (($_ | get-member GetControlValue) -and ($_| get-member Name)) {
+        $panel=$this.Content.Children | where {$_ -is [System.Windows.Controls.Grid]}
+        $panel.Children | ForEach-Object { if (($_ | get-member GetControlValue) -and ($_| get-member Name)) {
                 if ($_.Name) {
                     $output.Add($_.Name, $_.GetControlValue())
                 }
