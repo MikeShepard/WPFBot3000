@@ -82,9 +82,9 @@ function Grid {
             }
         }
         $Grid.Children.Add($_) | out-null
-        if (-not $manual) {
-            [Grid]::SetColumn( $_, $col)
-            [Grid]::SetRow($_, $row)
+        if (-not $manual -and -not ($_ -is [System.Windows.Controls.Menu])) {
+            [System.Windows.Controls.Grid]::SetColumn( $_, $col)
+            [System.Windows.Controls.Grid]::SetRow($_, $row)
         }
         $objectCount += 1
     }
