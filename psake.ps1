@@ -32,7 +32,9 @@ Task Init {
 }
 
 Task Docs -Depends Init {
-    Remove-Item $ModulePath\Docs -Recurse -Force
+    if(test-path $ModulePath\Docs){
+      Remove-Item $ModulePath\Docs -Recurse -Force -ErrorAction SilentlyContinue
+    }
     Import-Module $ENV:BHPSModuleManifest -force -Global -verbose
     New-MarkdownHelp -Module $env:BHProjectName -OutputFolder $ModulePath\Docs
 }
