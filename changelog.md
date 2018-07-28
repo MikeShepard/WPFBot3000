@@ -5,10 +5,50 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.16]
+
+- Refactored DataEntryGrid out of Window
+- Reviewed all examples
+- Removed Using statement to eliminate PowerShell 5 requirement
+
+## [0.9.15]
+
+- Added Dockpanel inside Window (for docking of Menu)
+
+## [0.9.14]
+
+- Change window and dialog to aliases of Verb-Noun functions to assist with autoloading
+- Clean up build process
+
+## [0.9.13]
+
+- Added tests for comment-based-help for all parameters
+- Added multiselect switch for listbox and listview
+- Changed panel output to be consistent (always build complex object)
+- Allow setting of ListView display columns when no content provided
+
+## [0.9.12]
+
+- Added ShowForValue() method and switch to Window
+- Create variables for all named controls
+
+## [0.9.11]
+
+- Changed model for Attached Property (use Register-WPFAttachedPropertyType)
+
+## [0.9.10]
+
+- Added BYOC cmdlets (Register-WPFDSL*)
+
+## [0.9.9]
+
+- Added several new controls
+- Added support for hidden controls in data entry grid
+
 ## [0.9.8]
 
- - Added RadioButton control
- - Updated build process to update markdown docs
+- Added RadioButton control
+- Updated build process to update markdown docs
 
 ## [0.9.7]
 
