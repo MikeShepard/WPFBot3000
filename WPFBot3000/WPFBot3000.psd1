@@ -95,7 +95,7 @@ PrivateData = @{
         # Tags = @()
 
         # A URL to the license for this module.
-         LicenseUri = 'https://raw.githubusercontent.com/MikeShepard/Bot3000/master/WPFBot3000/LICENSE'
+         LicenseUri = 'https://github.com/MikeShepard/WPFBot3000/blob/master/WPFBot3000/LICENSE'
 
         # A URL to the main website for this project.
          ProjectUri = 'https://github.com/MikeShepard/WPFBot3000'
