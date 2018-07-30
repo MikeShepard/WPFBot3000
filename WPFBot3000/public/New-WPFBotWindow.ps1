@@ -64,7 +64,7 @@ function New-WPFBotWindow {
     }
     $w = New-WPFControl -type system.windows.window -properties $BaseProperties, $property 
     $grid=DataEntryGrid -contents $contents -HideLabels:$HideLabels
-    $w.Content = $grid
+    $w.Content = DockPanel { $grid }
     $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {
         Param($name)
             $this.Content.GetControlByName($name)
