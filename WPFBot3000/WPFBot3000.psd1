@@ -69,10 +69,10 @@ Copyright = '(c) 2018 Mike Shepard. All rights reserved.'
 FunctionsToExport = @('Add-WPFMenu','Border','Button','Calendar','CheckBox','ComboBox','CredentialPicker','DataEntryGrid','DataGrid','DatePicker','DirectoryPicker','DockPanel','Expander','FilePicker','Grid','GridSplitter','GroupBox','Image','Invoke-ObjectEditor','Invoke-WPFBotDialog','Label','ListBox','ListView','Menu','MenuItem','MultiLineTextBox','New-WPFBotWindow','Password','RadioButton','Rectangle','Register-WPFAttachedPropertyType','Register-WPFDSLContentControl','Register-WPFDSLitemsControl','Register-WPFDSLPanelControl','Register-WPFDSLValueControl','RepeatButton','RichTextBox','ScrollViewer','Separator','Set-WindowOutput','Slider','StackPanel','TabControl','TabItem','TextBlock','TextBox','Treeview','ViewBox','WrapPanel')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-CmdletsToExport = '*'
+CmdletsToExport = @()
 
 # Variables to export from this module
-VariablesToExport = ''
+VariablesToExport = @()
 
 # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
 AliasesToExport = @('Dialog','Edit-Object','Window')
