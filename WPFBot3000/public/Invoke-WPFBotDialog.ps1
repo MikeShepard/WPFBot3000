@@ -59,4 +59,4 @@ function Invoke-WPFBotDialog {
     $w.ShowForValue()
 }
 
-New-Alias -Name Dialog -Value Invoke-WPFBotDialog
+New-Alias -Name Dialog -Value Invoke-WPFBotDialog -Force
