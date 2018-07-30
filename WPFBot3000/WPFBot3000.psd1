@@ -12,7 +12,7 @@
 RootModule = '.\WPFBot3000.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.9.16'
+ModuleVersion = '0.9.17'
 
 # ID used to uniquely identify this module
 GUID = '0d169f46-863c-4664-88ff-f336cdc1f509'
@@ -95,7 +95,7 @@ PrivateData = @{
         # Tags = @()
 
         # A URL to the license for this module.
-         LicenseUri = 'https://raw.githubusercontent.com/MikeShepard/Bot3000/master/WPFBot3000/LICENSE'
+         LicenseUri = 'https://github.com/MikeShepard/WPFBot3000/blob/master/WPFBot3000/LICENSE'
 
         # A URL to the main website for this project.
          ProjectUri = 'https://github.com/MikeShepard/WPFBot3000'
