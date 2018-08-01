@@ -1,6 +1,6 @@
 ---
 external help file: WPFBot3000-help.xml
-Module Name: WPFBot3000
+Module Name: wpfbot3000
 online version:
 schema: 2.0.0
 ---
@@ -14,7 +14,7 @@ A grid panel, which displays its contents in rows and columns
 
 ```
 Grid [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [[-name] <String>] [[-ColumnCount] <Int32>]
- [<CommonParameters>]
+ [[-RowCount] <Int32>] [-Manual] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -92,6 +92,37 @@ Aliases:
 Required: False
 Position: 4
 Default value: 1
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -RowCount
+The number of rows in the grid. 
+Required if -Manual is specified
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 5
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Manual
+Specifies that you want to place controls in rows/columns manually (Using Grid.Row/Grid.Column properties)
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

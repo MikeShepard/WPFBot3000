@@ -1,6 +1,6 @@
 ---
 external help file: WPFBot3000-help.xml
-Module Name: WPFBot3000
+Module Name: wpfbot3000
 online version:
 schema: 2.0.0
 ---
@@ -14,7 +14,7 @@ A listbox control
 
 ```
 ListBox [[-name] <String>] [[-contents] <Array>] [[-initialValue] <Object>] [[-property] <Hashtable>]
- [<CommonParameters>]
+ [-MultiSelect] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -89,6 +89,21 @@ Aliases:
 Required: False
 Position: 4
 Default value: @{}
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -MultiSelect
+Sets the selectionMode of the listbox to "Extended"
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

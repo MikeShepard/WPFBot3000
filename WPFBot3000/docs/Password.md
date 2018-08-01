@@ -1,6 +1,6 @@
 ---
 external help file: WPFBot3000-help.xml
-Module Name: WPFBot3000
+Module Name: wpfbot3000
 online version:
 schema: 2.0.0
 ---
