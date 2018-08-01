@@ -1,6 +1,6 @@
 ---
 external help file: WPFBot3000-help.xml
-Module Name: WPFBot3000
+Module Name: wpfbot3000
 online version:
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ A treeview control
 ## SYNTAX
 
 ```
-Treeview [[-name] <String>] [[-contents] <ScriptBlock>] [[-property] <Hashtable>] [<CommonParameters>]
+Treeview [[-name] <String>] [[-property] <Hashtable>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -43,21 +43,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -contents
-The contents of the control (hashtable...may be refactored)
-
-```yaml
-Type: ScriptBlock
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 2
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -property
 Properties to extend/override the base properties defined in the function
 
@@ -67,7 +52,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 3
+Position: 2
 Default value: @{}
 Accept pipeline input: False
 Accept wildcard characters: False

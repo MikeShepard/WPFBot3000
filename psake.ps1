@@ -98,6 +98,7 @@ Task Deploy -Depends Build {
         $ENV:BHBranchName -eq "master" -and
         $ENV:BHCommitMessage -match '!deploy'
     ) {
+        'Deploying to PS Gallery'
         $Params = @{
             Path    = "$ProjectRoot"
             Force   = $true
