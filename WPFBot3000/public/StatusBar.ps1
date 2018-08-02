@@ -11,7 +11,6 @@ A scriptblock that outputs controls you want in this StatusBar
 .PARAMETER Property
 Properties to extend/override the base properties defined in the function
 
-
 .PARAMETER name
 The name of the StatusBar control
 
@@ -24,7 +23,6 @@ function StatusBar {
     [CmdletBinding()]
     Param([Scriptblock]$Contents,
         [hashtable]$Property = @{},
-        [ValidateSet('Horizontal', 'Vertical')]$Orientation = 'Horizontal',
         [string]$name)
     $baseProperties = @{
        'Dockpanel.Dock'='Bottom'
