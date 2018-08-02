@@ -99,11 +99,12 @@ Task Deploy -Depends Build {
         $ENV:BHCommitMessage -match '!deploy'
     ) {
         'Deploying to PS Gallery'
-        $Params = @{
-            Path    = "$ProjectRoot"
-            Force   = $true
-            Recurse = $false # We keep psdeploy artifacts, avoid deploying those : )
-        }
-        Invoke-PSDeploy @Verbose @Params
+        # $Params = @{
+        #     Path    = "$ProjectRoot"
+        #     Force   = $true
+        #     Recurse = $false # We keep psdeploy artifacts, avoid deploying those : )
+        # }
+        #Invoke-PSDeploy @Verbose @Params
+        Publish-Module -Path $ProjectRoot -NuGetApiKey $env:NuGetApiKey
     }
 }
