@@ -85,12 +85,9 @@ foreach ($control in $c) {
         [System.Windows.Controls.Grid]::SetColumn($l, 0)
         $grid.Children.Add($l) | out-null
     }
-    if($control -isnot [System.Windows.Controls.Menu] -and 
-       $control -isnot [System.Windows.Controls.Primitives.StatusBar]){
-        [System.Windows.Controls.Grid]::SetColumn($control, $controlColumn)
-        $row += 1
-    }
+    [System.Windows.Controls.Grid]::SetColumn($control, $controlColumn)
     [System.Windows.Controls.Grid]::SetRow($control, $row)
+    $row += 1
     $grid.Children.Add($control) | out-null
 
 
