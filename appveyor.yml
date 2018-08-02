@@ -1,9 +1,5 @@
 # See http://www.appveyor.com/docs/appveyor-yml for many more options
 
-environment:
-  NugetApiKey:
-    secure: szmNSe4qTa2rBL08UONJhrpURZ9bWN5mbwwGsXGM7X6hwR8aFx6UJeTHjWPjNXiE
-
 # Allow WMF5 (i.e. PowerShellGallery functionality)
 os: WMF 5
 
