@@ -1,14 +1,7 @@
 # Example showing how to add an event to an object.
 
 $w=Window {
-    TextBox Fred
-    CheckBox Barney
-} -Events @{Name='Barney'
-            EventName='Checked'
-            Action={
-                    $Fred.Text=$fred.Text.ToUpper()
-                  }
-           }
+    TextBox Fred -property @{MinWidth=50}
+    CheckBox Barney | HandlesEvent Checked {$Fred.Text=$fred.Text.ToUpper()}
+} -ShowForValue
 
-
-$w.ShowDialog()
