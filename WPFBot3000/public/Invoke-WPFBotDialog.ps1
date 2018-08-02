@@ -53,7 +53,7 @@ function Invoke-WPFBotDialog {
         $c
         StackPanel {Button OK {  $this.Window.DialogResult = $true } -property @{}
             Button Cancel { $this.Window.DialogResult = $false} -property @{}
-        } -Orientation Horizontal -Property @{}
+        } -Orientation Horizontal -Property @{'Dockpanel.Dock'='Bottom'}
     } @PSBoundParameters
     $w.Content.Children[-1].RowDefinitions[-1].Height = 'Auto'
     $w.ShowForValue()

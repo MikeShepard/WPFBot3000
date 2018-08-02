@@ -1,4 +1,5 @@
-$w=Window {
+$w=BareWindow {
+    DockPanel{
     Menu Menus {
         MenuItem TopLevel -contents{
             MenuItem Increment -action { $value.Text=1+$Value.Text}
@@ -6,4 +7,5 @@ $w=Window {
         }
     }
     Textbox Value -initialValue 100
-} -showgridlines
+}
+} -ShowForValue
