@@ -1,7 +1,7 @@
 ﻿# An example of a more elaborate layout
 # it doesn't really do anything at this point, and the "stretching" isn't quite what I want either
 
-$w=Window {
+BareWindow {
    Grid -columnCount 3  {
       $script:l=ListBox Items -property @{MinWidth=200;VerticalAlignment='Stretch'} -contents (get-service)
       $l
@@ -13,7 +13,6 @@ $w=Window {
 
       } -Property @{ShowGridLines=$true;MinHeight=400} -name Right
     } -Property @{ShowGridLines=$true;MinHeight=400;MaxHeight=700;VerticalAlignment='Stretch'} -Name win
-} -hidelabels
+}  -ShowForValue
 
 
-$w.ShowDialog() | out-null

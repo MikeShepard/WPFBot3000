@@ -85,10 +85,15 @@ foreach ($control in $c) {
         [System.Windows.Controls.Grid]::SetColumn($l, 0)
         $grid.Children.Add($l) | out-null
     }
+    if($control -isnot [System.Windows.Controls.Menu] -and 
+       $control -isnot [System.Windows.Controls.Primitives.StatusBar]){
+        [System.Windows.Controls.Grid]::SetColumn($control, $controlColumn)
+        $row += 1
+    }
     [System.Windows.Controls.Grid]::SetRow($control, $row)
-    [System.Windows.Controls.Grid]::SetColumn($control, $controlColumn)
     $grid.Children.Add($control) | out-null
-    $row += 1
+
+
 }
 $grid | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
 $Grid | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
