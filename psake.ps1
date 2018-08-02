@@ -98,7 +98,7 @@ Task Deploy -Depends Build {
         $ENV:BHBranchName -eq "master" -and
         $ENV:BHCommitMessage -match '!deploy'
     ) {
-        'Deploying to PS Gallery'
+        'Deploying to PS Gallery-via Publish-Module'
         # $Params = @{
         #     Path    = "$ProjectRoot"
         #     Force   = $true
