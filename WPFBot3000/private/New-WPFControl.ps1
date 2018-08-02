@@ -20,7 +20,7 @@ General notes
 function New-WPFControl {
     [CmdletBinding()]
     Param($Type, [Hashtable[]]$Properties)
-
+    $Resources=$null
     $out = $Properties[0].Clone()
     foreach ($Extension in ($properties | select-object -skip 1)) {
         foreach ($item in $Extension.GetEnumerator()) {
@@ -33,6 +33,9 @@ function New-WPFControl {
         if ($Key.Contains('.')) {
             $compoundProperties.Add($Key,$out[$key])
             $KeysToRemove.Add($Key) | out-null
+        } elseif($Key -eq 'Resources'){ 
+            $Resources=$out.Resources
+            $KeysToRemove.Add($Key) | out-null
         }
     }
     $keysToRemove | ForEach-Object {$out.Remove($_)}
@@ -44,6 +47,16 @@ function New-WPFControl {
     }
     if($out.ContainsKey('Name') -and $out.Name){
         New-Variable -Name $out.Name -Value $o -Scope Global -force
+    }
+    if($Resources){
+        $resources | foreach-object {
+            if($_ | get-member -name TypeToStyle){
+                $typeToStyle=$_.TypeToStyle
+            } else {
+                $typeToStyle=$type
+            }
+            $o.Resources.Add(($typeToStyle -as [Type]),$_)
+        }
     }
     $o
 }
