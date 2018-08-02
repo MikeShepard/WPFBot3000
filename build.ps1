@@ -6,10 +6,11 @@ Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
 if($env:APPVEYOR_BUILD_FOLDER){
     Install-Module Psake, PSDeploy, BuildHelpers,Platyps -force
     Install-Module Pester -Force -SkipPublisherCheck
+    "key=$($env:NugetApiKey)"
 }
 Import-Module Psake, BuildHelpers, Platyps
 
-$env:NugetApiKey
+
 
 Set-BuildEnvironment -Force
 
