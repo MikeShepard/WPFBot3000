@@ -105,6 +105,6 @@ Task Deploy -Depends Build {
         #     Recurse = $false # We keep psdeploy artifacts, avoid deploying those : )
         # }
         #Invoke-PSDeploy @Verbose @Params
-        Publish-Module -Path $ProjectRoot -NuGetApiKey $env:NuGetApiKey
+        Publish-Module -Path $ProjectRoot -NuGetApiKey $env:NugetApiKey
     }
 }
