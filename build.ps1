@@ -9,6 +9,7 @@ if($env:APPVEYOR_BUILD_FOLDER){
 }
 Import-Module Psake, BuildHelpers, Platyps
 
+$env:NugetApiKey
 
 Set-BuildEnvironment -Force
 
