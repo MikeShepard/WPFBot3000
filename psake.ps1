@@ -99,7 +99,7 @@ Task Deploy -Depends Build {
         $ENV:BHBuildSystem -ne 'Unknown' -and
         $ENV:BHBranchName -eq "master" -and
         $ENV:BHCommitMessage -match '!deploy' -and 
-        $env:NugetApiKey -ne ''
+        $env:NugetApiKey.Length -gt 10
     ) {
         #'Deploying to PS Gallery-via Publish-Module'
         $Params = @{
