@@ -107,6 +107,6 @@ Task Deploy -Depends Build {
         #     Recurse = $false # We keep psdeploy artifacts, avoid deploying those : )
         # }
         #Invoke-PSDeploy @Verbose @Params
-        Publish-Module -name $env:BHProjectName -NuGetApiKey $env:NugetApiKey
+        Publish-Module -name $env:BHProjectName  -NuGetApiKey $env:NugetApiKey
     }
 }
