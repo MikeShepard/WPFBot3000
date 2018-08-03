@@ -63,4 +63,9 @@ Describe "Window functionality" -tag Local {
         }
         $w.GetWindowOutput().Name | Should Be Fred
     }
+    it "Returns correct objects when 2 controls directly in window" {
+        $w=window {Textbox a -initialvalue Barney
+                   TextBox b}
+        $w.GetWindowOutput().a | should be Barney
+    }
 }
