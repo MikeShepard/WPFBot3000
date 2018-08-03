@@ -1,5 +1,5 @@
 # Example of an Image control
 
 dialog {
-    Image -ImageURI C:\users\mike\Pictures\GrammarSounds.jpg -property @{MaxWidth=400}
+    Image -ImageURI (Resolve-path ~\Pictures\SNAG-0000.png) -property @{MaxWidth=400}
 }

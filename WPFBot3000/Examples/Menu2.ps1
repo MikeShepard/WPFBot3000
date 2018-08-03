@@ -1,4 +1,4 @@
-$w=BareWindow {
+Window {
     DockPanel{
     Menu Menus {
         MenuItem TopLevel -contents{

@@ -1,7 +1,7 @@
 ﻿# An example of a more elaborate layout
 # it doesn't really do anything at this point, and the "stretching" isn't quite what I want either
 
-BareWindow {
+Window {
    Grid -columnCount 3  {
       $script:l=ListBox Items -property @{MinWidth=200;VerticalAlignment='Stretch'} -contents (get-service)
       $l

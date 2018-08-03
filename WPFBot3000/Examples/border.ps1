@@ -2,8 +2,10 @@
 # the border control injects a stackpanel if you put more than one control inside it.
 
 dialog {
-    Border  {
-        TextBox Fred -property @{MinWidth=50}
-        TextBox Barney
-    } -property @{BorderBrush='Red';BorderThickness=5} -name Flintstones
+    Border {
+        DataEntryGrid Boxes {
+            TextBox Fred -property @{MinWidth = 50}
+            TextBox Barney
+        } 
+    } -property @{BorderBrush = 'Red'; BorderThickness = 5} -name Flintstones
 }

@@ -2,9 +2,9 @@
 #There is no output from Dialog in this case because Labels don't have output.
 # For output, change Label to Textbox.
 
-Dialog {
+Window {
       Grid -columnCount 3   {
         1..12 | ForEach-Object { label -name "Blah$_" -Text "Blah$_"}
       }
-   }
+   } -ShowForValue
 

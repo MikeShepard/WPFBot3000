@@ -63,8 +63,7 @@ function New-WPFBotWindow {
         Margin        = 10
     }
     $w = New-WPFControl -type system.windows.window -properties $BaseProperties, $property 
-    $grid=DataEntryGrid -contents $contents -HideLabels:$HideLabels
-    $w.Content = DockPanel { $grid }
+    $w.Content= & $contents
     $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {
         Param($name)
             $this.Content.GetControlByName($name)
@@ -74,7 +73,12 @@ function New-WPFBotWindow {
             if ($this | Get-Member OverrideOutput) {
                 $This.OverrideOutput
             } else {
-                $this.GetWindowOutput()
+                $output=$this.GetWindowOutput()
+                if($output | get-member BuiltinDataEntryGrid){
+                    $output.BuiltinDataEntryGrid
+                } else {
+                    $output
+                }
             }
         }
     }
@@ -82,16 +86,7 @@ function New-WPFBotWindow {
         if ($this | Get-Member -Name OverrideOutput -MemberType NoteProperty) {
             return $this.OverrideOutput
         }
-        $output = [Ordered]@{}
-        $panel=$this.Content.Children | where {$_ -is [System.Windows.Controls.Grid]}
-        $panel.Children | ForEach-Object { if (($_ | get-member GetControlValue) -and ($_| get-member Name)) {
-                if ($_.Name) {
-                    $output.Add($_.Name, $_.GetControlValue())
-                }
-            }
-        }
-        [PSCustomObject]$output
-
+        $this.Content.GetControlValue()
     }
 
     $control = $null
@@ -104,7 +99,6 @@ function New-WPFBotWindow {
     if ($title) {
         $w.Title = $title
     }
-    $w.Width = $grid.width
     if ($ShowForValue) {
         $w.ShowForValue()
     } else {
