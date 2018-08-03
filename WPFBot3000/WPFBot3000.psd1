@@ -12,7 +12,7 @@
 RootModule = '.\WPFBot3000.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.9.19'
+ModuleVersion = '0.9.21'
 
 # ID used to uniquely identify this module
 GUID = '0d169f46-863c-4664-88ff-f336cdc1f509'
@@ -66,7 +66,7 @@ Copyright = '(c) 2018 Mike Shepard. All rights reserved.'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = @('*')
+FunctionsToExport = @('Add-WPFMenu','Border','Button','Calendar','CheckBox','ComboBox','CredentialPicker','DataEntryGrid','DataGrid','DatePicker','DirectoryPicker','DockPanel','Expander','FilePicker','Grid','GridSplitter','GroupBox','HandlesEvent','Image','Invoke-ObjectEditor','Invoke-WPFBotDialog','Label','ListBox','ListView','Menu','MenuItem','MultiLineTextBox','New-WPFBotWindow','Password','RadioButton','Rectangle','Register-WPFAttachedPropertyType','Register-WPFDSLContentControl','Register-WPFDSLitemsControl','Register-WPFDSLPanelControl','Register-WPFDSLValueControl','RepeatButton','RichTextBox','ScrollViewer','Separator','Set-WindowOutput','Slider','StackPanel','StatusBar','TabControl','TabItem','TextBlock','TextBox','Treeview','ViewBox','WrapPanel')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()
@@ -75,7 +75,7 @@ CmdletsToExport = @()
 VariablesToExport = @()
 
 # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-AliasesToExport = @('*')
+AliasesToExport = @('Dialog','Edit-Object','Window')
 
 # DSC resources to export from this module
 # DscResourcesToExport = @()

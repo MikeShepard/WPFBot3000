@@ -50,12 +50,14 @@ function Invoke-WPFBotDialog {
     $c = & $contents
     $PSBoundParameters.Remove('Contents')| out-null
     $w = Window {
-        $c
-        StackPanel {Button OK {  $this.Window.DialogResult = $true } -property @{}
-            Button Cancel { $this.Window.DialogResult = $false} -property @{}
-        } -Orientation Horizontal -Property @{'Dockpanel.Dock'='Bottom'}
+        DataEntryGrid -contents {
+            $c
+            StackPanel {Button OK {  $this.Window.DialogResult = $true } -property @{}
+                Button Cancel { $this.Window.DialogResult = $false} -property @{}
+            } -Orientation Horizontal -Property @{'Dockpanel.Dock' = 'Bottom'} 
+        } -name BuiltinDataEntryGrid
     } @PSBoundParameters
-    $w.Content.Children[-1].RowDefinitions[-1].Height = 'Auto'
+    $w.Content.RowDefinitions[-1].Height = 'Auto'
     $w.ShowForValue()
 }
 

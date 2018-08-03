@@ -1,4 +1,4 @@
-BareWindow{
+Window{
     DockPanel {
     Menu Top -contents {
         MenuItem Menu5 -Contents {
