@@ -13,6 +13,7 @@ $Private = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction Silen
 $AttachedPropertyTypes=@{
     DockPanel='System.Windows.Controls.DockPanel' -as [Type]
     Grid='System.Windows.Controls.Grid' -as [Type]
+    Canvas='System.Windows.Controls.Canvas' -as [Type]
 }
 $ShowGridLines=$false
 
