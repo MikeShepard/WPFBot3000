@@ -47,13 +47,8 @@ Task Test -Depends Docs {
     $SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-    $TestTags=@{}
-    #only do CI-tagged tests on appveyor
-    If ($ENV:BHBuildSystem -eq 'AppVeyor') {
-        $TestTags=@{ExcludeTag='Local'}
-    }
-    # Gather test results. Store them in a variable and file
-    $TestResults = Invoke-Pester -Path $ProjectRoot\Tests -PassThru -OutputFormat NUnitXml -OutputFile "$ProjectRoot\$TestFile" @TestTags
+    $TestResults = invoke-expression "PowerShell.exe -STA -command Invoke-Pester -Path $ProjectRoot\Tests -PassThru -OutputFormat NUnitXml -OutputFile $ProjectRoot\$TestFile"
+    start-sleep -sec 10
     [Net.ServicePointManager]::SecurityProtocol = $SecurityProtocol
 
     # In Appveyor?  Upload our tests! #Abstract this into a function?
