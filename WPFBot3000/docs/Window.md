@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# New-WPFBotWindow
+# Window
 
 ## SYNOPSIS
 Outputs a window with the indicated wpf controls.
@@ -13,9 +13,8 @@ Outputs a window with the indicated wpf controls.
 ## SYNTAX
 
 ```
-New-WPFBotWindow [[-Contents] <ScriptBlock>] [[-labelMap] <Hashtable>] [[-Events] <Hashtable[]>]
- [[-title] <String>] [-HideLabels] [[-property] <Hashtable>] [-ShowGridLines] [-ShowForValue]
- [<CommonParameters>]
+Window [[-Contents] <ScriptBlock>] [[-labelMap] <Hashtable>] [[-Events] <Hashtable[]>] [[-title] <String>]
+ [-HideLabels] [[-property] <Hashtable>] [-ShowGridLines] [-ShowForValue] [<CommonParameters>]
 ```
 
 ## DESCRIPTION

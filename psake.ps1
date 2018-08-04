@@ -22,7 +22,6 @@ Task Default -Depends Deploy
 
 Task Init {
     $lines
-    $env:NugetApiKey
     Set-Location $ProjectRoot
     "Build System Details:"
     Get-Item ENV:BH*
@@ -93,7 +92,6 @@ Task Build -Depends Test {
 }
 
 Task Deploy -Depends Build {
-    $env:NugetApiKey
     $lines
     if (
         $ENV:BHBuildSystem -ne 'Unknown' -and
@@ -108,6 +106,5 @@ Task Deploy -Depends Build {
             Recurse = $false # We keep psdeploy artifacts, avoid deploying those : )
         }
         Invoke-PSDeploy @Verbose @Params
-        #Publish-Module -Path $ProjectRoot  -NuGetApiKey $env:NugetApiKey
     }
 }
