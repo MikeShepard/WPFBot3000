@@ -67,7 +67,7 @@ function New-WPFBotWindow {
     if ($windowContent.Count -gt 1){
         $windowContent=StackPanel {$windowContent} -Orientation Vertical
     }
-    $w.Content= $windowContent
+    $w.Content= $windowContent[0]
     $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {
         Param($name)
             $this.Content.GetControlByName($name)
