@@ -47,8 +47,7 @@ Task Test -Depends Docs {
     $SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-    $TestResults = invoke-expression "PowerShell.exe -STA -command Invoke-Pester -Path $ProjectRoot\Tests -PassThru -OutputFormat NUnitXml -OutputFile $ProjectRoot\$TestFile"
-    start-sleep -sec 10
+    $TestResults = start-process PowerShell.exe -ArgumentList '-STA',"-command Invoke-Pester -Path $ProjectRoot\Tests -PassThru -OutputFormat NUnitXml -OutputFile $ProjectRoot\$TestFile" -NoNewWindow -wait 
     [Net.ServicePointManager]::SecurityProtocol = $SecurityProtocol
 
     # In Appveyor?  Upload our tests! #Abstract this into a function?
@@ -61,7 +60,7 @@ Task Test -Depends Docs {
     Remove-Item "$ProjectRoot\$TestFile" -Force -ErrorAction SilentlyContinue
     # Failed tests?
     # Need to tell psake or it will proceed to the deployment. Danger!
-    if ($TestResults.FailedCount -gt 0) {
+    if ($TestResults -like '*FailedCount       : 0*') {
         Write-Error "Failed '$($TestResults.FailedCount)' tests, build failed"
     }
     "`n"
