@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.24]
+
+- Added Canvas panel
+- Updated CI so it runs the actual Window pester tests on AppVeyor
+
+## [0.9.23]
+
+- Removed unnecessary aliases for window and dialog, renaming Invoke-WPFBotDialog and New-WPFBotWindow back
+
+## [0.9.22]
+
+- Fixed problem with Window outputting Object[] Array when it contained multiple objects
+
+## [0.9.21]
+
+- Allowed window to contain multiple objects (but broken, fixed in 0.9.22)
+
+## [0.9.20]
+
+- Switched back to PSDeploy deployment
+
+## [0.9.19]
+
+- Added HandlesEvent function to allow for easier event handlers
+
 ## [0.9.18]
 
 - Added missing GetControlByName method to Dockpanel
