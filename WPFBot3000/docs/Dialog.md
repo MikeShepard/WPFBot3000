@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Invoke-WPFBotDialog
+# Dialog
 
 ## SYNOPSIS
 Creates a window with the requested controls, OK, and Cancel and outputs an object representing the values in the window.
@@ -13,8 +13,8 @@ Creates a window with the requested controls, OK, and Cancel and outputs an obje
 ## SYNTAX
 
 ```
-Invoke-WPFBotDialog [[-Contents] <ScriptBlock>] [[-labelMap] <Hashtable>] [[-Events] <Hashtable[]>]
- [[-title] <String>] [[-property] <Hashtable>] [-ShowGridLines] [<CommonParameters>]
+Dialog [[-Contents] <ScriptBlock>] [[-labelMap] <Hashtable>] [[-Events] <Hashtable[]>] [[-title] <String>]
+ [[-property] <Hashtable>] [-ShowGridLines] [<CommonParameters>]
 ```
 
 ## DESCRIPTION

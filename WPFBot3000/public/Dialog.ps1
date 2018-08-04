@@ -38,7 +38,7 @@ Dialog {
 .NOTES
 General notes
 #>
-function Invoke-WPFBotDialog {
+function Dialog {
     [CmdletBinding()]
     param([scriptblock]$Contents,
         [hashtable]$labelMap = @{},
@@ -61,4 +61,4 @@ function Invoke-WPFBotDialog {
     $w.ShowForValue()
 }
 
-New-Alias -Name Dialog -Value Invoke-WPFBotDialog -Force
+#New-Alias -Name Dialog -Value Invoke-WPFBotDialog -Force

@@ -47,7 +47,7 @@ $w.ShowDialog()
 .NOTES
 General notes
 #>
-function New-WPFBotWindow {
+function Window {
     [CmdletBinding()]
     param([scriptblock]$Contents,
         [hashtable]$labelMap = @{},
@@ -110,5 +110,3 @@ function New-WPFBotWindow {
     }
 
 }
-
-New-Alias -Name Window -Value New-WPFBotWindow -force
