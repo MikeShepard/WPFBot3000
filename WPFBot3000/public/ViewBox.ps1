@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-A ViewBox control
+A ViewBox control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.ViewBox class
 
 .DESCRIPTION
 Outputs a ViewBox control, along with control(s) contained in it.  If more than one control is in $Contents, a stackpanel is inserted (because ViewBoxes only have one child)
@@ -9,52 +9,55 @@ Outputs a ViewBox control, along with control(s) contained in it.  If more than 
 The control(s) contained in the ViewBox
 
 .PARAMETER Property
-Additional properties to be set on the ViewBox.
+Additional properties to be set on the ViewBox
 
-.PARAMETER name
-The name of the ViewBox control.  The name will be used as a property name in the output of the Dialog function.
+.PARAMETER Name
+The name of the ViewBox control.  The name will be used as a property name in the output of the Dialog function
 
 .EXAMPLE
-dialog {
-    ViewBox  {
-        Image -imageuri c:\users\mike\pictures\powershell_startmenu.png
+Dialog {
 
-    } -name Flintstones
-}
+  ViewBox  {
 
-.NOTES
-General notes
+    Image -ImageUri C:\Windows\System32\SecurityAndMaintenance.png
+
+  } -Name Flintstones
+
+} -Property @{ Title = 'ViewBox'; MaxHeight = 377; MaxWidth = 377; }
+
+.LINK
+https://msdn.microsoft.com/en-us/library/system.windows.controls.viewbox
 #>
 function ViewBox {
-    [CmdletBinding()]
-    Param([Scriptblock]$Contents,
-        [hashtable]$Property = @{},
-        [string]$name)
-    $baseProperties = @{
-        Stretch  = 'Uniform'
-        MaxWidth = 400
-    }
-    if ($name) {
-        $baseProperties.Name = $name
-    }
-    $ViewBox = New-WPFControl -type System.Windows.Controls.ViewBox -Properties $baseProperties, $property
+  [CmdletBinding()]
+  Param([Scriptblock]$Contents,
+    [hashtable]$Property = @{},
+    [string]$Name)
+  $baseProperties = @{
+    Stretch  = 'Uniform'
+    MaxWidth = 400
+  }
+  if ($name) {
+    $baseProperties.Name = $name
+  }
+  $ViewBox = New-WPFControl -type System.Windows.Controls.ViewBox -Properties $baseProperties, $property
 
-    $c = & $Contents
-    if ($c -is [System.Windows.UIElement]) {
-        $ViewBox.Child = $c
-    }
-    else {
-        $ViewBox.Child = StackPanel {$c}
-    }
-    $ViewBox | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
-    $ViewBox | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
-    $ViewBox | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
-        $this.Child | ForEach-Object {if ($_| get-member GetControlValue) {
-                $d.Add($_.Name, $_.GetControlValue())
-            }
+  $c = & $Contents
+  if ($c -is [System.Windows.UIElement]) {
+    $ViewBox.Child = $c
+  }
+  else {
+    $ViewBox.Child = StackPanel {$c}
+  }
+  $ViewBox | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
+  $ViewBox | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
+  $ViewBox | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
+    $this.Child | ForEach-Object {if ($_| get-member GetControlValue) {
+        $d.Add($_.Name, $_.GetControlValue())
+      }
 
-        }
-        [pscustomobject]$d
     }
-    $ViewBox  | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
+    [pscustomobject]$d
+  }
+  $ViewBox  | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
 }

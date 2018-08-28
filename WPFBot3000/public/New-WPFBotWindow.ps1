@@ -10,13 +10,13 @@ Note, the window doesn't build its own ok/cancel buttons so you are responsible 
 .PARAMETER Contents
 A scriptblock that outputs the controls you want in the window
 
-.PARAMETER labelMap
+.PARAMETER LabelMap
 A hashtable with items of the form ControlName='Desired label'.  If the control is labeled it will use this text instead of the control name.
 
 .PARAMETER Events
 An array of hashtables of event handlers for controls in the dialog.  Each should have Name (control name), EventName, and Action.
 
-.PARAMETER title
+.PARAMETER Title
 The window title
 
 .PARAMETER HideLabels
@@ -34,82 +34,85 @@ to output the "calculated output of the window".  Window with -ShowForValue work
 Dialog function but doesn't automatically add Ok and Cancel button.
 
 .EXAMPLE
-$w=Window {
-    Textbox Name
-    Button Personalize -name mike -action {
-                                 $txt=$this.Window.GetControlByName('Name')
-                                 $lbl=$this.Window.GetControlByName('Greeting')
-                                 $lbl.Content="Hello, $($txt.Text)"}
-    Label 'Hello, World' -name 'Greeting'
-}
-$w.ShowDialog()
+$w = Window {
 
-.NOTES
-General notes
+  Textbox Name
+
+  Button Personalize -Action {
+    #HandlesEvent Click {
+      $txt = $this.Window.GetControlByName('Name')
+      $lbl = $this.Window.GetControlByName('Greeting')
+      $lbl.Content = "Hello, $($txt.Text)"
+    }
+
+  Label 'Hello, World' -Name 'Greeting'
+} -Property @{ Title = 'New-WPFBotWindow'; MinHeight = 233; MinWidth = 377; }
+
+$w.ShowDialog();
 #>
 function New-WPFBotWindow {
-    [CmdletBinding()]
-    param([scriptblock]$Contents,
-        [hashtable]$labelMap = @{},
-        [hashtable[]]$Events,
-        [string]$title,
-        [switch]$HideLabels, 
-        [hashtable]$property,
-        [Switch]$ShowGridLines,
-        [Switch]$ShowForValue)
-    $script:ShowGridLines = $ShowGridLines.IsPresent
-    $baseProperties = @{
-        SizeToContent = 'WidthAndHeight'
-        Margin        = 10
-    }
-    $w = New-WPFControl -type system.windows.window -properties $BaseProperties, $property 
-    $grid=DataEntryGrid -contents $contents -HideLabels:$HideLabels
-    $w.Content = DockPanel { $grid }
-    $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {
-        Param($name)
-            $this.Content.GetControlByName($name)
-    }
-    $w | add-member -MemberType ScriptMethod -Name ShowForValue -Value     {
-        if ($this.ShowDialog()) {
-            if ($this | Get-Member OverrideOutput) {
-                $This.OverrideOutput
-            } else {
-                $this.GetWindowOutput()
-            }
-        }
-    }
-    $w | add-member -MemberType ScriptMethod -Name GetWindowOutput -value {
-        if ($this | Get-Member -Name OverrideOutput -MemberType NoteProperty) {
-            return $this.OverrideOutput
-        }
-        $output = [Ordered]@{}
-        $panel=$this.Content.Children | where {$_ -is [System.Windows.Controls.Grid]}
-        $panel.Children | ForEach-Object { if (($_ | get-member GetControlValue) -and ($_| get-member Name)) {
-                if ($_.Name) {
-                    $output.Add($_.Name, $_.GetControlValue())
-                }
-            }
-        }
-        [PSCustomObject]$output
+  [CmdletBinding()]
+  param([scriptblock]$Contents,
+      [hashtable]$LabelMap = @{},
+      [hashtable[]]$Events,
+      [string]$Title,
+      [switch]$HideLabels, 
+      [hashtable]$Property,
+      [Switch]$ShowGridLines,
+      [Switch]$ShowForValue)
+  $script:ShowGridLines = $ShowGridLines.IsPresent
+  $baseProperties = @{
+      SizeToContent = 'WidthAndHeight'
+      Margin        = 10
+  }
+  $w = New-WPFControl -type system.windows.window -properties $BaseProperties, $property 
+  $grid=DataEntryGrid -contents $contents -HideLabels:$HideLabels
+  $w.Content = DockPanel { $grid }
+  $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {
+      Param($name)
+          $this.Content.GetControlByName($name)
+  }
+  $w | add-member -MemberType ScriptMethod -Name ShowForValue -Value     {
+      if ($this.ShowDialog()) {
+          if ($this | Get-Member OverrideOutput) {
+              $This.OverrideOutput
+          } else {
+              $this.GetWindowOutput()
+          }
+      }
+  }
+  $w | add-member -MemberType ScriptMethod -Name GetWindowOutput -value {
+      if ($this | Get-Member -Name OverrideOutput -MemberType NoteProperty) {
+          return $this.OverrideOutput
+      }
+      $output = [Ordered]@{}
+      $panel=$this.Content.Children | where {$_ -is [System.Windows.Controls.Grid]}
+      $panel.Children | ForEach-Object { if (($_ | get-member GetControlValue) -and ($_| get-member Name)) {
+              if ($_.Name) {
+                  $output.Add($_.Name, $_.GetControlValue())
+              }
+          }
+      }
+      [PSCustomObject]$output
 
-    }
+  }
 
-    $control = $null
-    foreach ($item in $events) {
-        $control = $w.GetControlByName($item.Name)
-        if ($control) {
-            $control."Add_$($item.EventName)"($item.Action)
-        }
-    }
-    if ($title) {
-        $w.Title = $title
-    }
-    $w.Width = $grid.width
-    if ($ShowForValue) {
-        $w.ShowForValue()
-    } else {
-        $w
-    }
+  $control = $null
+  foreach ($item in $events) {
+      $control = $w.GetControlByName($item.Name)
+      if ($control) {
+          $control."Add_$($item.EventName)"($item.Action)
+      }
+  }
+  if ($title) {
+      $w.Title = $title
+  }
+  $w.Width = $grid.width
+  if ($ShowForValue) {
+      $w.ShowForValue()
+  } else {
+      $w
+  }
 
 }
 

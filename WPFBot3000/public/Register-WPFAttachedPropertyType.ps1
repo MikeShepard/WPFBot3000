@@ -14,16 +14,17 @@ The name of the type which provides the attached property (like System.Window.Co
 The property prefix of the attached property (like Grid)
 
 .EXAMPLE
-Register-WPFAttachedPropertyType -TypeName System.Windows.Controls.DockPanel -PropertyPrefix DockPanel
-
-.NOTES
-General notes
+Dialog {
+  
+  #TODO
+  
+} -Property @{ Title = 'Register-WPFAttachedPropertyType'; MinHeight = 233; MinWidth = 377; }
 #>
-function Register-WPFAttachedPropertyType{
-    [CmdletBinding()]
-    param(
-        [string]$TypeName,
-        [string]$PropertyPrefix
-    )
-    $AttachedPropertyTypes[$PropertyPrefix]=$TypeName -as [Type]
+function Register-WPFAttachedPropertyType {
+  [CmdletBinding()]
+  param(
+    [string]$TypeName,
+    [string]$PropertyPrefix
+  )
+  $AttachedPropertyTypes[$PropertyPrefix] = $TypeName -as [Type]
 }
