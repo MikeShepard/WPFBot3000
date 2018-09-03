@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-Outputs a checkbox control
+A CheckBox control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.CheckBox class
 
 .DESCRIPTION
 Outputs a checkbox control.  Set the initial "checked" state with the -InitialValue parameter, and set any control properties using the -Property parameter.
@@ -11,7 +11,7 @@ The name of the control.  This will be the name of a property in the output of t
 .PARAMETER InitialValue
 True means checked, False means not checked
 
-.PARAMETER property
+.PARAMETER Property
 Properties to extend/override the base properties defined in the function
 
 .EXAMPLE
@@ -22,24 +22,25 @@ Dialog {
        CheckBox Miny
     }
     TextBox Moe
-}
+} -Property @{ Title = 'CheckBox' }
 ```
 In the window there will be three checkboxes, labeled Eeny, Meeny, and Miny.
+
 .NOTES
 General notes
 #>
 function CheckBox {
     [CmdletBinding()]
     Param([string]$Name,
-          [Boolean]$InitialValue = $false,
-          [hashtable]$property = @{})
+        [Boolean]$InitialValue = $false,
+        [hashtable]$Property = @{})
     $baseProperties = @{
-        Name      = $name
+        Name      = $Name
         Content   = $Name
         IsChecked = $InitialValue
     }
 
-    $chk=New-WPFControl -type System.Windows.Controls.CheckBox -Properties $baseProperties,$property
+    $chk = New-WPFControl -type System.Windows.Controls.CheckBox -Properties $baseProperties, $Property
 
     $chk | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $chk | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.IsChecked}

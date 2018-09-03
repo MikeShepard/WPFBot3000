@@ -1,45 +1,47 @@
 <#
 .SYNOPSIS
-A groupbox control
+A GroupBox control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.GroupBox class
 
 .DESCRIPTION
-Outputs a groupbox control, along with control(s) contained in it.  If more than one control is in $Contents, a stackpanel is inserted (because groupboxes only have one child)
+Outputs a GroupBox control, along with control(s) contained in it.  If more than one control is in $Contents, a stackpanel is inserted (because groupboxes only have one child)
 
 .PARAMETER Contents
-The control(s) contained in the groupbox
+The control(s) contained in the GroupBox
 
 .PARAMETER Property
-Additional properties to be set on the groupbox.
+Additional properties to be set on the GroupBox.
 
 .PARAMETER Title
-The title of the groupbox control.
+The title of the GroupBox control.
 
-.PARAMETER name
-The name of the groupbox control.  The name will be used as a property name in the output of the Dialog function.
+.PARAMETER Name
+The name of the GroupBox control.  The name will be used as a property name in the output of the Dialog function.
 
 .EXAMPLE
-dialog {    $groupbox  {
-        TextBox Fred -property @{MinWidth=50}
-        TextBox Barney
-    } -property     $groupboxBrush='Red  $groupboxThickness=5} -name Flintstones
+Dialog {    
+        Groupbox  {
+        TextBox Fred -property @{MinWidth = 50}
+        TextBox Barney -property @{MinWidth = 50}
+    } -property     @{BorderBrush = 'Red' ;BorderThickness = 5} -Name Flintstones
 }
 
-.NOTES
-General notes
+.LINK
+https://msdn.microsoft.com/en-us/library/system.windows.controls.groupbox
+
 #>
 function GroupBox {
     [CmdletBinding()]
     Param([Scriptblock]$Contents,
         [hashtable]$Property = @{},
         [string]$Title,
-        [string]$name)
+        [string]$Name)
     $baseProperties = @{
         Header = $title
     }
-    if ($name) {
-        $baseProperties.Name = $name
+    if ($Name) {
+        $baseProperties.Name = $Name
     }
-    $groupbox = New-WPFControl -type System.Windows.Controls.GroupBox -Properties $baseProperties, $property
+    $groupbox = New-WPFControl -type System.Windows.Controls.GroupBox -Properties $baseProperties, $Property
 
     $c = & $Contents
     if ($c -is [System.Windows.UIElement]) {

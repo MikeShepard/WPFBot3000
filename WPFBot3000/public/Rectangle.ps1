@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-A Rectangle control
+A Rectangle control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Shapes.Rectangle class
 
 .DESCRIPTION
 A Rectangle control
@@ -14,7 +14,7 @@ The Width of the rectangle
 .PARAMETER Name
 The Name of the rectangle control
 
-.PARAMETER property
+.PARAMETER Property
 Properties to extend/override the base properties defined in the function
 
 .EXAMPLE
@@ -24,15 +24,15 @@ Dialog {
     Rectangle -Height 100 -Width 100 -property @{Stroke=[System.Windows.Media.Brushes]::Black}
 }
 
-.NOTES
-General notes
+.LINK
+https://msdn.microsoft.com/en-us/library/system.windows.shapes.rectangle
 #>
 function Rectangle {
     [CmdletBinding()]
     Param($Height,
           $Width,
           [String]$Name,
-          [hashtable]$property)
+          [hashtable]$Property)
     $BaseProperties=@{
         Height=$Height
         Width=$Width

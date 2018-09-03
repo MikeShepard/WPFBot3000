@@ -1,24 +1,24 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.tabitem
 schema: 2.0.0
 ---
 
 # TabItem
 
 ## SYNOPSIS
-A tabitem control (A tab in a TabControl)
+A TabItem control (a tab in a TabControl) that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.TabItem class
 
 ## SYNTAX
 
 ```
-TabItem [[-label] <String>] [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [[-name] <String>]
+TabItem [[-label] <String>] [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [[-Name] <String>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-A tabitem control (A tab in a TabControl)
+A TabItem control (a tab in a TabControl)
 
 ## EXAMPLES
 
@@ -80,7 +80,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -name
+### -Name
 The name of the control
 
 ```yaml
@@ -104,6 +104,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.tabitem](https://msdn.microsoft.com/en-us/library/system.windows.controls.tabitem)
+

@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-A tabitem control (A tab in a TabControl)
+A TabItem control (a tab in a TabControl) that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.TabItem class
 
 .DESCRIPTION
-A tabitem control (A tab in a TabControl)
+A TabItem control (a tab in a TabControl)
 
 .PARAMETER label
 The label of the tab
@@ -14,7 +14,7 @@ A scriptblock that outputs controls you want in the tab
 .PARAMETER Property
 Properties to extend/override the base properties defined in the function
 
-.PARAMETER name
+.PARAMETER Name
 The name of the control
 
 .EXAMPLE
@@ -25,24 +25,24 @@ Dialog {
     }
 }
 
-.NOTES
-General notes
+.LINK
+https://msdn.microsoft.com/en-us/library/system.windows.controls.tabitem
 #>
 function TabItem {
     [CmdletBinding()]
     Param([string]$label,
-          [Scriptblock]$Contents,
-          [hashtable]$Property = @{},
-          [string]$name)
+        [Scriptblock]$Contents,
+        [hashtable]$Property = @{},
+        [string]$Name)
     $baseProperties = @{}
-    if($label) {
-        $baseProperties.Header=$label
-        $baseProperties.Name=$label
+    if ($label) {
+        $baseProperties.Header = $label
+        $baseProperties.Name = $label
     }
-    if ($name) {
-        $baseProperties.Name = $name
+    if ($Name) {
+        $baseProperties.Name = $Name
     }
-    $tabItem=New-WPFControl -type System.Windows.Controls.TabItem -Properties $baseProperties,$property
+    $tabItem = New-WPFControl -type System.Windows.Controls.TabItem -Properties $baseProperties, $property
     [System.Windows.UIElement[]]$c = & $Contents
     $tabItem.Content = StackPanel -Contents { $c }
     $tabItem | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}

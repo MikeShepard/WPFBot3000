@@ -11,7 +11,7 @@ The name of the cmdlet to be created
 .PARAMETER TypeName
 The type name of the control to be "wrapped"
 
-.PARAMETER initialValuePropertyName
+.PARAMETER InitialValuePropertyName
 The name of the property to use to set the initial value of the control
 
 .PARAMETER HideLabel
@@ -32,15 +32,18 @@ General notes
 #>
 function Register-WPFDSLValueControl{
     [CmdletBinding()]
-    Param($Name, $TypeName,$initialValuePropertyName,[switch]$HideLabel)
+    Param([String]$Name, 
+          [String]$TypeName,
+          [String]$InitialValuePropertyName,
+          [switch]$HideLabel)
 
     $newWPFControl=Get-Command New-WPFControl
     New-Item -Path "function:global:$Name" -force -Value {
         [CmdletBinding()]
         Param($Name, $InitialValue , $property = @{})
         $baseProperties = @{}
-        if($name) {
-            $baseProperties.Name=$name
+        if($Name) {
+            $baseProperties.Name=$Name
         }
 
         $o = & $newWPFControl -Type $typename -properties $baseProperties,$property
@@ -56,15 +59,3 @@ function Register-WPFDSLValueControl{
                 } -PassThru
     }.GetNewClosure() | out-null
 }
-
-<#
-Register-WPFDSLValueControl -Name Txt -Typename System.Windows.Controls.TextBox -initialValuePropertyName Text
-Register-WPFDSLValueControl -Name PlainTextPassword -Typename System.Windows.Controls.PasswordBox -initialValuePropertyName Password
-Register-WPFDSLValueControl -Name MyCheckBox -TypeName System.Windows.Controls.CheckBox -initialValuePropertyName IsChecked -HideLabel
-dialog {
-    Txt MyText -InitialValue Blah
-    PlainTextPassword MyPass -InitialValue Password
-    MyCheckBox Chk -InitialValue $true -property @{Content='Chk'}
-    CheckBox Chk2 -InitialValue $true
-}
-#>

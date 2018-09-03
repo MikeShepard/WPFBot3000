@@ -1,19 +1,19 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.button
 schema: 2.0.0
 ---
 
 # Button
 
 ## SYNOPSIS
-A button control
+A Button control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.Button class
 
 ## SYNTAX
 
 ```
-Button [[-Caption] <String>] [[-Action] <ScriptBlock>] [[-property] <Hashtable>] [[-name] <String>]
+Button [[-Caption] <String>] [[-Action] <ScriptBlock>] [[-Property] <Hashtable>] [[-Name] <String>]
  [<CommonParameters>]
 ```
 
@@ -24,13 +24,12 @@ Outputs a WPF Button control with a caption and an action.
 
 ### EXAMPLE 1
 ```
-(Window {
+Window {
 ```
 
 TextBox Name
-    Button "Say Hello" -Action {$t=$this.Window.GetControlByName('Name');
-                                                  Write-Host "Hello, $($t.Text)"}
-}).ShowDialog()
+    Button "Say Hello" -Action {Write-Host "Hello, $($Name.Text)"}
+} -Property @{ Title = 'Button'; MinHeight = 233; MinWidth = 377; } -ShowForValue
 
 ## PARAMETERS
 
@@ -64,7 +63,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -property
+### -Property
 Properties to extend/override the base properties defined in the function
 
 ```yaml
@@ -79,7 +78,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -name
+### -Name
 The Name of the control.
 
 ```yaml
@@ -103,6 +102,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.button](https://msdn.microsoft.com/en-us/library/system.windows.controls.button)
+

@@ -1,14 +1,14 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.radiobutton
 schema: 2.0.0
 ---
 
 # RadioButton
 
 ## SYNOPSIS
-Outputs a radiobutton control
+A RadioButton control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.RadioButton class
 
 ## SYNTAX
 
@@ -18,7 +18,7 @@ RadioButton [[-Name] <String>] [[-InitialValue] <Boolean>] [[-GroupName] <String
 ```
 
 ## DESCRIPTION
-Outputs a radiobutton control. 
+Outputs a RadioButton control. 
 Set the initial "checked" state with the -InitialValue parameter, and set any control properties using the -Property parameter.
 
 ## EXAMPLES
@@ -36,7 +36,7 @@ StackPanel -Name Options -orientation Horizontal {
     TextBox Moe
 }
 \`\`\`
-In the window there will be three checkboxes, labeled Eeny, Meeny, and Miny.
+In the window there will be three radio buttons, labeled Eeny, Meeny, and Miny.
 
 ## PARAMETERS
 
@@ -110,6 +110,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.radiobutton](https://msdn.microsoft.com/en-us/library/system.windows.controls.radiobutton)
+

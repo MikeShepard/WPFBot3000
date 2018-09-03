@@ -39,7 +39,7 @@ Task Docs -Depends Init {
     New-MarkdownHelp -Module $env:BHProjectName -OutputFolder $ModulePath\Docs
 }
 
-Task Test -Depends Docs {
+Task Test  {
     $lines
     "`n`tSTATUS: Testing with PowerShell $PSVersion"
 

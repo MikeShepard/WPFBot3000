@@ -1,18 +1,18 @@
 <#
 .SYNOPSIS
-A tabcontrol (container for tabs)
+A TabControl (container for tabs) that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.TabControl class
 
 .DESCRIPTION
-A tabcontrol (container for tabs)
+A TabControl (container for tabs)
 
 .PARAMETER Contents
-A scriptblock that outputs tabitem controls to embed in the tabcontrol
+A scriptblock that outputs tabitem controls to embed in the TabControl
 
 .PARAMETER Property
 Properties to extend/override the base properties defined in the function
 
-.PARAMETER name
-The name of the tabcontrol
+.PARAMETER Name
+The name of the TabControl
 
 .EXAMPLE
 Dialog {
@@ -21,21 +21,21 @@ Dialog {
         TabItem After { TextBox Description2 -prop @{MinWidth=100;MinHeight=100}}
     }
 }
-.NOTES
-General notes
+.LINK
+https://msdn.microsoft.com/en-us/library/system.windows.controls.tabcontrol
 #>
 function TabControl {
     [CmdletBinding()]
-    Param([string]$name,
+    Param([string]$Name,
         [Scriptblock]$Contents,
         [hashtable]$Property = @{}
     )
     $baseProperties = @{
     }
-    if ($name) {
-        $baseProperties.Name = $name
+    if ($Name) {
+        $baseProperties.Name = $Name
     }
-    $tabControl = New-WPFControl -type System.Windows.Controls.TabControl -Properties $baseProperties, $property
+    $tabControl = New-WPFControl -type System.Windows.Controls.TabControl -Properties $baseProperties, $pProperty
 
     [System.Windows.UIElement[]]$c = & $Contents
     $c | foreach-object {    $tabControl.Items.Add($_) | out-null }

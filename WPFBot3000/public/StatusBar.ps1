@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-A StatusBar control
+A StatusBar control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.Primitives.StatusBar class
 
 .DESCRIPTION
 A StatusBar control that contains other controls
@@ -11,24 +11,35 @@ A scriptblock that outputs controls you want in this StatusBar
 .PARAMETER Property
 Properties to extend/override the base properties defined in the function
 
-.PARAMETER name
+.PARAMETER Name
 The name of the StatusBar control
 
 .EXAMPLE
+Dialog {
+    DockPanel {
+        StatusBar -Name Status {
+            Label Status
+        } -Property @{ 'DockPanel.Dock' = 'Bottom' }
+        Label Right Property @{ 'DockPanel.Dock' = 'Right' }
+        Label Top -Property @{ 'DockPanel.Dock' = 'Top' }
+        Label Left -Property @{ 'DockPanel.Dock' = 'Left' }
+        Label Center -Property @{ HorizontalAlignment = 'Center'; VerticalAlignment = 'Center'; }
+    } -Name DockPanel -Property @{ Height = 233 }
+} -Property @{ Title = 'StatusBar' }
 
-.NOTES
-General notes
+.LINK
+https://msdn.microsoft.com/en-us/library/system.windows.controls.primitives.statusbar
 #>
 function StatusBar {
     [CmdletBinding()]
     Param([Scriptblock]$Contents,
         [hashtable]$Property = @{},
-        [string]$name)
+        [string]$Name)
     $baseProperties = @{
-       'Dockpanel.Dock'='Bottom'
+        'Dockpanel.Dock' = 'Bottom'
     }
-    if ($name) {
-        $baseProperties.Name = $name
+    if ($Name) {
+        $baseProperties.Name = $Name
     }
     $bar = New-WPFControl -type System.Windows.Controls.Primitives.StatusBar -Properties $baseProperties, $property
 
@@ -46,3 +57,5 @@ function StatusBar {
     }
     $bar  | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
 }
+
+

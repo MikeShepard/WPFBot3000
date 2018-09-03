@@ -1,42 +1,43 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.groupbox
 schema: 2.0.0
 ---
 
 # GroupBox
 
 ## SYNOPSIS
-A groupbox control
+A GroupBox control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.GroupBox class
 
 ## SYNTAX
 
 ```
-GroupBox [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [[-Title] <String>] [[-name] <String>]
+GroupBox [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [[-Title] <String>] [[-Name] <String>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Outputs a groupbox control, along with control(s) contained in it. 
+Outputs a GroupBox control, along with control(s) contained in it. 
 If more than one control is in $Contents, a stackpanel is inserted (because groupboxes only have one child)
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-dialog {    $groupbox  {
+Dialog {
 ```
 
-TextBox Fred -property @{MinWidth=50}
-        TextBox Barney
-    } -property     $groupboxBrush='Red  $groupboxThickness=5} -name Flintstones
+Groupbox  {
+        TextBox Fred -property @{MinWidth = 50}
+        TextBox Barney -property @{MinWidth = 50}
+    } -property     @{BorderBrush = 'Red' ;BorderThickness = 5} -Name Flintstones
 }
 
 ## PARAMETERS
 
 ### -Contents
-The control(s) contained in the groupbox
+The control(s) contained in the GroupBox
 
 ```yaml
 Type: ScriptBlock
@@ -51,7 +52,7 @@ Accept wildcard characters: False
 ```
 
 ### -Property
-Additional properties to be set on the groupbox.
+Additional properties to be set on the GroupBox.
 
 ```yaml
 Type: Hashtable
@@ -66,7 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-The title of the groupbox control.
+The title of the GroupBox control.
 
 ```yaml
 Type: String
@@ -80,8 +81,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -name
-The name of the groupbox control. 
+### -Name
+The name of the GroupBox control. 
 The name will be used as a property name in the output of the Dialog function.
 
 ```yaml
@@ -105,6 +106,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.groupbox](https://msdn.microsoft.com/en-us/library/system.windows.controls.groupbox)
+

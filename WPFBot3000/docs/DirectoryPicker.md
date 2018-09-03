@@ -1,14 +1,14 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.forms.folderbrowserdialog
 schema: 2.0.0
 ---
 
 # DirectoryPicker
 
 ## SYNOPSIS
-A directory picker control
+A DirectoryPicker control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Forms.FolderBrowserDialog class
 
 ## SYNTAX
 
@@ -17,7 +17,7 @@ DirectoryPicker [[-Name] <String>] [[-InitialValue] <String>] [<CommonParameters
 ```
 
 ## DESCRIPTION
-A directory picker control
+A DirectoryPicker picker control
 
 ## EXAMPLES
 
@@ -26,7 +26,7 @@ A directory picker control
 dialog {
 ```
 
-DirectoryPicker Folder -InitialValue C:\temp
+DirectoryPicker Folder -InitialValue C:\Windows
 }
 
 ## PARAMETERS
@@ -70,6 +70,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.forms.folderbrowserdialog](https://msdn.microsoft.com/en-us/library/system.windows.forms.folderbrowserdialog)
+

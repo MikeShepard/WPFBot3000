@@ -1,30 +1,30 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.textblock
 schema: 2.0.0
 ---
 
 # TextBlock
 
 ## SYNOPSIS
-A textblock control
+A TextBlock control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.TextBlock class
 
 ## SYNTAX
 
 ```
-TextBlock [[-Text] <String>] [[-name] <String>] [[-property] <Hashtable>] [<CommonParameters>]
+TextBlock [[-Text] <String>] [[-Name] <String>] [[-Property] <Hashtable>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-A textblock control (i.e.
-a static block of text, not to be confused with a textbox)
+A TextBlock control (i.e.
+a static block of text, not to be confused with a TextBox)
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-$text=get-content c:\windows\system32\drivers\etc\hosts | select -first 20
+$text = get-content c:\windows\system32\drivers\etc\hosts | select -first 20
 ```
 
 Dialog {
@@ -34,7 +34,7 @@ Dialog {
 ## PARAMETERS
 
 ### -Text
-The text to be loaded into the textblock
+The text to be loaded into the TextBlock
 
 ```yaml
 Type: String
@@ -48,7 +48,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -name
+### -Name
 the name of the control
 
 ```yaml
@@ -63,7 +63,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -property
+### -Property
 Properties to extend/override the base properties defined in the function
 
 ```yaml
@@ -87,6 +87,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.textblock](https://msdn.microsoft.com/en-us/library/system.windows.controls.textblock)
+

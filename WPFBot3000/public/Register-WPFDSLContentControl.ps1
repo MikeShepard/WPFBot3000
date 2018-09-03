@@ -3,7 +3,7 @@
 Creates a WPFBot3000 cmdlet for a control that can contain a single control
 
 .DESCRIPTION
-Creates a WPFBot3000 cmdletfor a control that can contain a single control
+Creates a WPFBot3000 cmdlet for a control that can contain a single control
 
 .PARAMETER Name
 The name of the cmdlet to be created
@@ -22,22 +22,23 @@ dialog {
                 TextBox Address
     }
 }
-.NOTES
-General notes
+
 #>
 function Register-WPFDSLContentControl {
     [CmdletBinding()]
-    Param($Name, $TypeName, [switch]$HideLabel)
+    Param([String]$Name, 
+        [String]$TypeName, 
+        [Switch]$HideLabel)
 
-    $newWPFControl=Get-Command New-WPFControl
-    $getControlMethod=Get-Command GetControlByName | Select-Object -expandProperty ScriptBlock
+    $newWPFControl = Get-Command New-WPFControl
+    $getControlMethod = Get-Command GetControlByName | Select-Object -expandProperty ScriptBlock
     New-Item -Path "function:global:$Name" -force -Value {
         [CmdletBinding()]
         Param($Name, [ScriptBlock]$Contents , $property = @{})
         $baseProperties = @{
         }
-        if ($name) {
-            $baseProperties.Name = $name
+        if ($Name) {
+            $baseProperties.Name = $Name
         }
         $o = & $newWPFControl -type $TypeName -Properties $baseProperties, $property
 
@@ -45,7 +46,8 @@ function Register-WPFDSLContentControl {
         $c = & $Contents
         if ($c -is [System.Windows.UIElement]) {
             $o.Child = $c
-        } else {
+        }
+        else {
             $o.Child = StackPanel {$c}
         }
         $o | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
@@ -56,7 +58,8 @@ function Register-WPFDSLContentControl {
                 }}
             if ($d.Count -eq 1) {
                 $d.Values| Select-Object -first 1
-            } else {
+            }
+            else {
                 [pscustomobject]$d
             }}
         if ($HideLabel) {

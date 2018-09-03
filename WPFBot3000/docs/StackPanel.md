@@ -1,24 +1,24 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.stackpanel
 schema: 2.0.0
 ---
 
 # StackPanel
 
 ## SYNOPSIS
-A stackpanel control
+A StackPanel control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.StackPanel class
 
 ## SYNTAX
 
 ```
-StackPanel [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [[-Orientation] <Object>] [[-name] <String>]
+StackPanel [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [[-Orientation] <Object>] [[-Name] <String>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-A stackpanel control that contains other controls
+A StackPanel control that contains other controls
 
 ## EXAMPLES
 
@@ -38,7 +38,7 @@ StackPanel -Name Options -orientation Horizontal {
 ## PARAMETERS
 
 ### -Contents
-A scriptblock that outputs controls you want in this stackpanel
+A scriptblock that outputs controls you want in this StackPanel
 
 ```yaml
 Type: ScriptBlock
@@ -82,7 +82,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -name
+### -Name
 The name of the stackpanel control
 
 ```yaml
@@ -106,6 +106,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.stackpanel](https://msdn.microsoft.com/en-us/library/system.windows.controls.stackpanel)
+

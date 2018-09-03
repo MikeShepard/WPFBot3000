@@ -1,24 +1,24 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://docs.microsoft.com/en-us/dotnet/api/system.windows.window
 schema: 2.0.0
 ---
 
 # WrapPanel
 
 ## SYNOPSIS
-A WrapPanel control
+A WrapPanel control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.WrapPanel class
 
 ## SYNTAX
 
 ```
-WrapPanel [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [[-Orientation] <Object>] [[-name] <String>]
+WrapPanel [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [[-Orientation] <Object>] [[-Name] <String>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-A WrapPanel control that contains other controls
+Outputs a WPF WrapPanel control, along with control(s) contained in it
 
 ## EXAMPLES
 
@@ -82,7 +82,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -name
+### -Name
 The name of the WrapPanel control
 
 ```yaml

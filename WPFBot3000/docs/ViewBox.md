@@ -1,19 +1,19 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.viewbox
 schema: 2.0.0
 ---
 
 # ViewBox
 
 ## SYNOPSIS
-A ViewBox control
+A ViewBox control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.ViewBox class
 
 ## SYNTAX
 
 ```
-ViewBox [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [[-name] <String>] [<CommonParameters>]
+ViewBox [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -24,7 +24,7 @@ If more than one control is in $Contents, a stackpanel is inserted (because View
 
 ### EXAMPLE 1
 ```
-dialog {
+Dialog {
 ```
 
 ViewBox  {
@@ -65,7 +65,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -name
+### -Name
 The name of the ViewBox control. 
 The name will be used as a property name in the output of the Dialog function.
 
@@ -90,6 +90,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.viewbox](https://msdn.microsoft.com/en-us/library/system.windows.controls.viewbox)
+

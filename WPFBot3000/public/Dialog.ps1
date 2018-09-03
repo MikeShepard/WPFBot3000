@@ -8,7 +8,7 @@ Creates a window with the requested controls, OK, and Cancel and outputs an obje
 .PARAMETER Contents
 Scriptblock containing statements that output controls that you want in the dialog.
 
-.PARAMETER labelMap
+.PARAMETER LabelMap
 A hashtable with items of the form ControlName='Desired label'.  If the control is labeled it will use this text instead of the control name.
 
 .PARAMETER Events
@@ -20,7 +20,7 @@ A hashtable of properties to set on the window
 .PARAMETER ShowGridLines
 Switch to say whether to show grid lines in all grids (for layout debugging)
 
-.PARAMETER title
+.PARAMETER Title
 The window title
 
 .EXAMPLE
@@ -29,7 +29,7 @@ Dialog {
     TextBox LastName
     TextBox EmailAddress
     DatePicker ReminderDate
-}
+} -Title Dialog
 
 # Displays a window with 3 textboxes and a date picker and if the user presses ok (instead of cancel) it outputs an object with 4 properties (populated from the controls)
 
@@ -43,12 +43,12 @@ function Dialog {
     param([scriptblock]$Contents,
         [hashtable]$labelMap = @{},
         [hashtable[]]$Events,
-        [string]$title,
-        [hashtable]$property,
+        [string]$Title,
+        [hashtable]$Property,
         [switch]$ShowGridLines)
     $script:ShowGridLines = $ShowGridLines.IsPresent
     $c = & $contents
-    $PSBoundParameters.Remove('Contents')| out-null
+    $PSBoundParameters.Remove('Contents')| Out-Null
     $w = Window {
         DataEntryGrid -contents {
             $c

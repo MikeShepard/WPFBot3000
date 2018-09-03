@@ -1,19 +1,19 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.shapes.rectangle
 schema: 2.0.0
 ---
 
 # Rectangle
 
 ## SYNOPSIS
-A Rectangle control
+A Rectangle control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Shapes.Rectangle class
 
 ## SYNTAX
 
 ```
-Rectangle [[-Height] <Object>] [[-Width] <Object>] [[-Name] <String>] [[-property] <Hashtable>]
+Rectangle [[-Height] <Object>] [[-Width] <Object>] [[-Name] <String>] [[-Property] <Hashtable>]
  [<CommonParameters>]
 ```
 
@@ -78,7 +78,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -property
+### -Property
 Properties to extend/override the base properties defined in the function
 
 ```yaml
@@ -102,6 +102,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.shapes.rectangle](https://msdn.microsoft.com/en-us/library/system.windows.shapes.rectangle)
+

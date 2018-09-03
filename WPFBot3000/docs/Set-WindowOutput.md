@@ -13,12 +13,12 @@ Overrides the automatic output value of the window (and optionally closes it)
 ## SYNTAX
 
 ```
-Set-WindowOutput [[-Window] <Object>] [[-outputValue] <Object>] [-close] [<CommonParameters>]
+Set-WindowOutput [[-Window] <Object>] [[-OutputValue] <Object>] [-Close] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Provides a value to use as the output of the window instead of looking at control properties.
-Use the -Close switch to cause the window to close.
+Use the -Close switch to cause the window to close
 
 ## EXAMPLES
 
@@ -44,7 +44,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -outputValue
+### -OutputValue
 The value to use as the output of the window
 
 ```yaml
@@ -59,8 +59,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -close
--Close means to close the window.
+### -Close
+Closes the window
 
 ```yaml
 Type: SwitchParameter
@@ -83,6 +83,5 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS

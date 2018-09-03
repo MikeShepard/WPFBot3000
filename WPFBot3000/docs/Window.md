@@ -1,7 +1,7 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://docs.microsoft.com/en-us/dotnet/api/system.windows.window
 schema: 2.0.0
 ---
 
@@ -13,8 +13,8 @@ Outputs a window with the indicated wpf controls.
 ## SYNTAX
 
 ```
-Window [[-Contents] <ScriptBlock>] [[-labelMap] <Hashtable>] [[-Events] <Hashtable[]>] [[-title] <String>]
- [-HideLabels] [[-property] <Hashtable>] [-ShowGridLines] [-ShowForValue] [<CommonParameters>]
+Window [[-Contents] <ScriptBlock>] [[-LabelMap] <Hashtable>] [[-Events] <Hashtable[]>] [[-Title] <String>]
+ [-HideLabels] [[-Property] <Hashtable>] [-ShowGridLines] [-ShowForValue] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -26,7 +26,7 @@ Note, the window doesn't build its own ok/cancel buttons so you are responsible 
 
 ### EXAMPLE 1
 ```
-$w=Window {
+Window {
 ```
 
 Textbox Name
@@ -35,8 +35,7 @@ Textbox Name
                                  $lbl=$this.Window.GetControlByName('Greeting')
                                  $lbl.Content="Hello, $($txt.Text)"}
     Label 'Hello, World' -name 'Greeting'
-}
-$w.ShowDialog()
+} -ShowForValue
 
 ## PARAMETERS
 
@@ -55,7 +54,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -labelMap
+### -LabelMap
 A hashtable with items of the form ControlName='Desired label'. 
 If the control is labeled it will use this text instead of the control name.
 
@@ -87,7 +86,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -title
+### -Title
 The window title
 
 ```yaml
@@ -117,7 +116,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -property
+### -Property
 A hashtable of properties to set on the window
 
 ```yaml
@@ -174,6 +173,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://docs.microsoft.com/en-us/dotnet/api/system.windows.window](https://docs.microsoft.com/en-us/dotnet/api/system.windows.window)
+

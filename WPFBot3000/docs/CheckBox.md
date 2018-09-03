@@ -1,19 +1,19 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.canvas
 schema: 2.0.0
 ---
 
 # CheckBox
 
 ## SYNOPSIS
-Outputs a checkbox control
+A CheckBox control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.CheckBox class
 
 ## SYNTAX
 
 ```
-CheckBox [[-Name] <String>] [[-InitialValue] <Boolean>] [[-property] <Hashtable>] [<CommonParameters>]
+CheckBox [[-Name] <String>] [[-InitialValue] <Boolean>] [[-Property] <Hashtable>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -33,7 +33,7 @@ StackPanel -Name Options -orientation Horizontal {
        CheckBox Miny
     }
     TextBox Moe
-}
+} -Property @{ Title = 'CheckBox' }
 \`\`\`
 In the window there will be three checkboxes, labeled Eeny, Meeny, and Miny.
 
@@ -70,7 +70,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -property
+### -Property
 Properties to extend/override the base properties defined in the function
 
 ```yaml

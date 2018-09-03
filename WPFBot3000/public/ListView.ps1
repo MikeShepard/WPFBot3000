@@ -1,20 +1,20 @@
 <#
 .SYNOPSIS
-A ListView control
+A ListView control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.ListView class
 
 .DESCRIPTION
 A ListView control
 
-.PARAMETER name
+.PARAMETER Name
 The name of the control
 
-.PARAMETER contents
+.PARAMETER Contents
 The contents of the ListView
 
-.PARAMETER initialValue
+.PARAMETER InitialValue
 The item from $contents that is initally selected
 
-.PARAMETER property
+.PARAMETER Property
 Properties to extend/override the base properties defined in the function
 
 .PARAMETER DisplayProperty 
@@ -29,24 +29,24 @@ Dialog {
     ListView Files -contents $files
 }
 
-.NOTES
-General notes
+.LINK
+https://msdn.microsoft.com/en-us/library/system.windows.controls.listview
 #>
 function ListView {
     [CmdletBinding()]
-    Param([string]$name,
-        [Array]$contents = @(),
-        $initialValue,
-        [Hashtable]$property = @{},
+    Param([string]$Name,
+        [Array]$Contents = @(),
+        $InitialValue,
+        [Hashtable]$Property = @{},
         [Array]$DisplayProperty,
         [Switch]$MultiSelect)
     $baseProperties = @{
-        Name = $name
+        Name = $Name
     }
-    $l = New-WPFControl -type System.Windows.Controls.ListView -Properties $baseProperties, $property
+    $l = New-WPFControl -type System.Windows.Controls.ListView -Properties $baseProperties, $Property
     $g = New-WPFControl -type System.Windows.Controls.GridView -properties @{AllowsColumnReorder = $true}
-    if($MultiSelect){
-        $l.SelectionMode='Extended'
+    if ($MultiSelect) {
+        $l.SelectionMode = 'Extended'
     }
     $l.View = $g
     if ($DisplayProperty) {

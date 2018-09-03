@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-Adds a context menu to a given control.Short description
+Adds a context menu to a given ontrol.
 
 .DESCRIPTION
 Uses the hashtable (form -> MenuItemName={action}) to create a context menu for the given control.  For convenience, the menu item's tag is set to the control.
@@ -15,22 +15,22 @@ Hashtable.  The keys in the hashtable will be the labels of the context menu ite
 .EXAMPLE
 An example
 
-.NOTES
-General notes
+.LINK
+https://msdn.microsoft.com/en-us/library/system.windows.controls.contextmenu
 #>
-function Add-WPFMenu{
+function Add-WPFMenu {
     [CmdletBinding()]
-    Param([Parameter(ValueFromPipeline=$true)]$Control,
-          [Hashtable]$Items)
-process{
-    $contextMenu=New-Object System.Windows.Controls.ContextMenu
-    foreach($item in $items.GetEnumerator()){
-                $menuItem=new-object System.Windows.Controls.MenuItem -property @{Header=$item.Key}
-                $menuItem.Tag=$control
-                $menuItem.Add_Click($item.Value)
-                $contextMenu.Items.Add($menuItem) | out-null
+    Param([Parameter(ValueFromPipeline = $true)]$Control,
+        [Hashtable]$Items)
+    process {
+        $contextMenu = New-Object System.Windows.Controls.ContextMenu
+        foreach ($item in $items.GetEnumerator()) {
+            $menuItem = new-object System.Windows.Controls.MenuItem -property @{Header = $item.Key}
+            $menuItem.Tag = $control
+            $menuItem.Add_Click($item.Value)
+            $contextMenu.Items.Add($menuItem) | out-null
+        }
+        $control.ContextMenu = $contextMenu
+        $control
     }
-    $control.ContextMenu=$contextMenu
-    $control
-}
 }

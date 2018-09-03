@@ -1,7 +1,7 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.shapes.rectangle
 schema: 2.0.0
 ---
 
@@ -13,11 +13,11 @@ Creates a WPFBot3000 cmdlet for a control that can contain a single control
 ## SYNTAX
 
 ```
-Register-WPFDSLContentControl [[-Name] <Object>] [[-TypeName] <Object>] [-HideLabel] [<CommonParameters>]
+Register-WPFDSLContentControl [[-Name] <String>] [[-TypeName] <String>] [-HideLabel] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Creates a WPFBot3000 cmdletfor a control that can contain a single control
+Creates a WPFBot3000 cmdlet for a control that can contain a single control
 
 ## EXAMPLES
 
@@ -39,7 +39,7 @@ dialog {
 The name of the cmdlet to be created
 
 ```yaml
-Type: Object
+Type: String
 Parameter Sets: (All)
 Aliases:
 
@@ -54,7 +54,7 @@ Accept wildcard characters: False
 The type name of the control to be "wrapped"
 
 ```yaml
-Type: Object
+Type: String
 Parameter Sets: (All)
 Aliases:
 
@@ -89,6 +89,5 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS

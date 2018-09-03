@@ -1,55 +1,55 @@
 <#
 .SYNOPSIS
-A listbox control
+A ListBox control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.ListBox class
 
 .DESCRIPTION
-A listbox control
+A ListBox control
 
-.PARAMETER name
+.PARAMETER Name
 The name of the control
 
-.PARAMETER contents
-The contents of the listbox
+.PARAMETER Contents
+The contents of the ListBox
 
-.PARAMETER initialValue
+.PARAMETER InitialValue
 The item from $contents that is initally selected
 
-.PARAMETER property
+.PARAMETER Property
 Properties to extend/override the base properties defined in the function
 
 .PARAMETER MultiSelect
-Sets the selectionMode of the listbox to "Extended"
+Sets the selectionMode of the ListBox to "Extended"
 
 .EXAMPLE
 $files=get-childitem c:\windows -file | select-object -first 10
 Dialog {
     Listbox Files -contents $files
-}
+} -Title ListBox
 
-.NOTES
-General notes
+.LINK
+https://msdn.microsoft.com/en-us/library/system.windows.controls.listbox
 #>
 function ListBox {
     [CmdletBinding()]
-    Param([string]$name,
-        [Array]$contents = @(),
-        $initialValue,
-        [Hashtable]$property = @{},
+    Param([string]$Name,
+        [Array]$Contents = @(),
+        $InitialValue,
+        [Hashtable]$Property = @{},
         [switch]$MultiSelect)
     $baseProperties = @{
-        Name = $name
+        Name = $Name
     }
-    $l = New-WPFControl -type System.Windows.Controls.ListBox -Properties $baseProperties, $property
-    if($MultiSelect){
-        $l.SelectionMode='Extended'
+    $l = New-WPFControl -type System.Windows.Controls.ListBox -Properties $baseProperties, $Property
+    if ($MultiSelect) {
+        $l.SelectionMode = 'Extended'
     }
     if ($Contents) {
-        $contents | ForEach-Object {
+        $Contents | ForEach-Object {
             $lvi = new-object System.Windows.Controls.ListBoxItem
             $lvi.Tag = $_
             $lvi.Content = $_.ToString()
             $l.Items.Add($lvi) | out-null
-            if ($initialValue -and $_ -eq $initialValue) {
+            if ($InitialValue -and $_ -eq $InitialValue) {
                 $l.SelectedItem = $lvi
             }
         }

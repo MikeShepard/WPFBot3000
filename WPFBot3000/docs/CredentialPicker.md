@@ -8,7 +8,7 @@ schema: 2.0.0
 # CredentialPicker
 
 ## SYNOPSIS
-A control that allows input of credentials
+A control that allows input of credentials and encapsulates the Windows Presentation Foundation (WPF) System.Management.Automation.PsCredential.GetNetworkCredential class
 
 ## SYNTAX
 
@@ -72,6 +72,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[General notes	https://docs.microsoft.com/en-us/dotnet/api/system.management.automation.pscredential]()
+

@@ -1,24 +1,24 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.menuitem
 schema: 2.0.0
 ---
 
 # MenuItem
 
 ## SYNOPSIS
-A Menuitem control
+A MenuItem control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.MenuItem class
 
 ## SYNTAX
 
 ```
-MenuItem [[-label] <String>] [[-action] <ScriptBlock>] [[-Property] <Hashtable>] [[-name] <String>]
- [[-contents] <ScriptBlock>] [<CommonParameters>]
+MenuItem [[-Label] <String>] [[-Action] <ScriptBlock>] [[-Property] <Hashtable>] [[-Name] <String>]
+ [[-Contents] <ScriptBlock>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-A Menuitem control
+A MenuItem control
 
 ## EXAMPLES
 
@@ -39,7 +39,7 @@ Dialog {
 
 ## PARAMETERS
 
-### -label
+### -Label
 The label of the MenuItem
 
 ```yaml
@@ -54,7 +54,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -action
+### -Action
 The action to be performed when clicking this menu item
 
 ```yaml
@@ -84,7 +84,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -name
+### -Name
 The name of the control
 
 ```yaml
@@ -99,8 +99,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -contents
-Other menuitem controls that are nested under this
+### -Contents
+Other MenuItem controls that are nested under this
 
 ```yaml
 Type: ScriptBlock
@@ -123,6 +123,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.menuitem](https://msdn.microsoft.com/en-us/library/system.windows.controls.menuitem)
+

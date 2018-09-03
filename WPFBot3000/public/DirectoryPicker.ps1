@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-A directory picker control
+A DirectoryPicker control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Forms.FolderBrowserDialog class
 
 .DESCRIPTION
-A directory picker control
+A DirectoryPicker picker control
 
 .PARAMETER Name
 The name of the control
@@ -13,29 +13,29 @@ The folder to set it to initially
 
 .EXAMPLE
 dialog {
-    DirectoryPicker Folder -InitialValue C:\temp
+    DirectoryPicker Folder -InitialValue C:\Windows
 }
 
-.NOTES
-General notes
+.LINK
+https://msdn.microsoft.com/en-us/library/system.windows.forms.folderbrowserdialog
 #>
 Function DirectoryPicker {
     [CmdletBinding()]
     Param([string]$Name,
-          [String]$InitialValue)
+        [String]$InitialValue)
 
     $stack = new-object System.Windows.Controls.StackPanel -Property @{
-        Name        = $name
+        Name        = $Name
         Orientation = [System.Windows.Controls.Orientation]::Horizontal
     }
-    $t = TextBox -Name "Temp_$name" -InitialValue $InitialValue -property @{IsReadOnly = $true}
+    $t = TextBox -Name "Temp_$Name" -InitialValue $InitialValue -property @{IsReadOnly = $true}
     $stack.Children.Add($t) | out-null
     $btn = new-object System.Windows.Controls.Button -Property @{
         Content = 'Browse'
         Tag     = $t
     }
     $btn.Add_Click( {
-            PAram($sender, $e)
+            Param($sender, $e)
             $ofd = new-object System.Windows.Forms.FolderBrowserDialog
             $txt = [System.Windows.Controls.TextBox]$sender.Tag
             if ($txt.Text) {

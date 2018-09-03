@@ -1,35 +1,43 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.dockpanel
 schema: 2.0.0
 ---
 
 # DockPanel
 
 ## SYNOPSIS
-Short description
+A DockPanel control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.DockPanel class
 
 ## SYNTAX
 
 ```
-DockPanel [[-Contents] <ScriptBlock>] [[-name] <Object>] [[-property] <Object>] [<CommonParameters>]
+DockPanel [[-Contents] <ScriptBlock>] [[-Name] <Object>] [[-Property] <Object>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Long description
+A DockPanel control
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-An example
+Dialog {
 ```
+
+DockPanel {Label Bottom -Property @{ 'DockPanel.Dock' = 'Bottom'; background = 'Yellow' }
+            Label Right -Property @{ 'DockPanel.Dock' = 'Right'; background = 'Red' }
+            Label Top -Property @{ 'DockPanel.Dock' = 'Top'; background = 'Green' }
+            Label Left -Property @{ 'DockPanel.Dock' = 'Left'; background = 'Blue' }
+            Label Center -property @{ HorizontalAlignment='Center'; VerticalAlignment='Center'; }
+  } -Name SampleDockPanel -Property @{ Height = 233; }
+ } -Property @{ Title = 'DockPanel'; MinHeight = 377; MinWidth = 377; }
 
 ## PARAMETERS
 
 ### -Contents
-Parameter description
+The control(s) contained in the DockPanel
 
 ```yaml
 Type: ScriptBlock
@@ -43,8 +51,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -name
-Parameter description
+### -Name
+The name of the DockPanel control
 
 ```yaml
 Type: Object
@@ -58,8 +66,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -property
-Parameter description
+### -Property
+Additional properties to be set on the DockPanel
 
 ```yaml
 Type: Object
@@ -82,6 +90,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.dockpanel](https://msdn.microsoft.com/en-us/library/system.windows.controls.dockpanel)
+
