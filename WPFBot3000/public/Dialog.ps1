@@ -33,10 +33,6 @@ Dialog {
 
 # Displays a window with 3 textboxes and a date picker and if the user presses ok (instead of cancel) it outputs an object with 4 properties (populated from the controls)
 
-
-
-.NOTES
-General notes
 #>
 function Dialog {
     [CmdletBinding()]

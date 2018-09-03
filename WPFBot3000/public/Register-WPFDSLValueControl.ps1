@@ -27,8 +27,7 @@ dialog {
     MyCheckBox Chk -InitialValue $true -property @{Content='Chk'}
     CheckBox Chk2 -InitialValue $true
 }
-.NOTES
-General notes
+
 #>
 function Register-WPFDSLValueControl{
     [CmdletBinding()]

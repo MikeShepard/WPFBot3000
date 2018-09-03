@@ -21,8 +21,7 @@ $w=Window {
     CheckBox Barney | HandlesEvent Checked {$Fred.Text=$fred.Text.ToUpper()}
 } -ShowForValue
 
-.NOTES
-General notes
+
 #>
 function HandlesEvent {
     [CmdletBinding()]

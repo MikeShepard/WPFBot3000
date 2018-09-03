@@ -22,8 +22,7 @@ dialog {
                 TextBox Address
     }
 }
-.NOTES
-General notes
+
 #>
 function Register-WPFDSLPanelControl {
     [CmdletBinding()]

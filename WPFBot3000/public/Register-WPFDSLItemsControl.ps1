@@ -23,8 +23,7 @@ $file=dialog {
     $files=get-childitem c:\temp -file | Select-object -first 10
     Lst Files -Content $files -InitialValue $files[2]
 }
-.NOTES
-General notes
+
 #>
 
 function Register-WPFDSLitemsControl {

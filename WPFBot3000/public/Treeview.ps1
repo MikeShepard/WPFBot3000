@@ -24,7 +24,7 @@ Dialog{
 }
 
 .LINK
-General notes	https://msdn.microsoft.com/en-us/library/system.windows.controls.treeview
+https://msdn.microsoft.com/en-us/library/system.windows.controls.treeview
 #>
 function Treeview {
     [CmdletBinding()]

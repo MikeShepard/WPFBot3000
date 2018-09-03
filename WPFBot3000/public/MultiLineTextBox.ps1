@@ -19,8 +19,8 @@ Dialog {
     MultilineTextBox Editor
 }  -Property @{ Title = 'MultiLineTextBox' }
 
-.NOTES
-General notes
+.LINK
+https://msdn.microsoft.com/en-us/library/system.windows.controls.textbox
 #>
 function MultiLineTextBox {
     [CmdletBinding()]
