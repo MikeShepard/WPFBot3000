@@ -16,8 +16,6 @@ The property prefix of the attached property (like Grid)
 .EXAMPLE
 Register-WPFAttachedPropertyType -TypeName System.Windows.Controls.DockPanel -PropertyPrefix DockPanel
 
-.NOTES
-General notes
 #>
 function Register-WPFAttachedPropertyType {
     [CmdletBinding()]

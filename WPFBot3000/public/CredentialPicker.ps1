@@ -19,7 +19,7 @@ Dialog {
 #dialog with a place to request credentials (initially blank)
 
 .LINK
-General notes	https://docs.microsoft.com/en-us/dotnet/api/system.management.automation.pscredential
+https://docs.microsoft.com/en-us/dotnet/api/system.management.automation.pscredential
 #>
 Function CredentialPicker {
     [CmdletBinding()]

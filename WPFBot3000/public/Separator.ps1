@@ -23,7 +23,7 @@ Dialog{
 } 
 
 .LINK
-General notes	https://msdn.microsoft.com/en-us/library/system.windows.controls.separator
+https://msdn.microsoft.com/en-us/library/system.windows.controls.separator
 #>
 function Separator {
     [CmdletBinding()]

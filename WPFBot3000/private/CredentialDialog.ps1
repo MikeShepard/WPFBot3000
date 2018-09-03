@@ -11,8 +11,6 @@ A credential object.  If populated, the Username property will be used to popula
 .EXAMPLE
 An example
 
-.NOTES
-General notes
 #>
 function CredentialDialog {
     [CmdletBinding()]

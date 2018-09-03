@@ -12,7 +12,7 @@ The name of the control to find
 $control=$this.Window.GetControlByName('FirstName')
 
 .NOTES
-General notes
+This function should not be needed as variables for controls are created automatically
 #>
 function GetControlByName{
     param([string]$name)

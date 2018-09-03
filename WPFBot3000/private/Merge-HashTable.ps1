@@ -12,10 +12,8 @@ The original hashtable
 Hashtable with entries to extend or overwrite the base hashtable
 
 .EXAMPLE
-An example
+# No example, helper function used by New-WPFControl
 
-.NOTES
-General notes
 #>
 function Merge-HashTable {
     [CmdletBinding()]

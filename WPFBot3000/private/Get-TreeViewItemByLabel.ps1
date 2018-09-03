@@ -15,10 +15,8 @@ Parameter description
 Parameter description
 
 .EXAMPLE
-An example
+# No example required, the body of this function is used as a scriptmethod on TreeViews
 
-.NOTES
-General notes
 #>
 function Get-TreeViewItemByLabel{
     [CmdletBinding()]

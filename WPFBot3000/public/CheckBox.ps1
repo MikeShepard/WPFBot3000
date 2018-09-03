@@ -26,8 +26,8 @@ Dialog {
 ```
 In the window there will be three checkboxes, labeled Eeny, Meeny, and Miny.
 
-.NOTES
-General notes
+.LINK
+https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.checkbox
 #>
 function CheckBox {
     [CmdletBinding()]

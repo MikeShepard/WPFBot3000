@@ -28,7 +28,7 @@ Dialog {
 }
 
 .NOTES
-General notes
+https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.wrappanel
 #>
 function WrapPanel {
     [CmdletBinding()]

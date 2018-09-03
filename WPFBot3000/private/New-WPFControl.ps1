@@ -14,8 +14,6 @@ An array of hashtables with properties to be assigned to the newly created objec
 .EXAMPLE
 An example
 
-.NOTES
-General notes
 #>
 function New-WPFControl {
     [CmdletBinding()]
