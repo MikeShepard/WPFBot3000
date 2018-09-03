@@ -8,7 +8,7 @@ schema: 2.0.0
 # Treeview
 
 ## SYNOPSIS
-A treeview control
+A TreeView control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.TreeView class
 
 ## SYNTAX
 
@@ -17,14 +17,21 @@ Treeview [[-name] <String>] [[-property] <Hashtable>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-A treeview control
+A TreeView control
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-TBD
+Dialog{
 ```
+
+TreeView Tree
+    Button Load -Action {
+        $tree.AddTreeViewItem($null,@( 'A','B','C' ))
+        $tree.AddTreeViewItem('A',@('A1','A2'))
+    }
+}
 
 ## PARAMETERS
 
@@ -67,6 +74,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[General notes	https://msdn.microsoft.com/en-us/library/system.windows.controls.treeview]()
+

@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-A datepicker control
+A DatePicker control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.DatePicker class
 
 .DESCRIPTION
-A datepicker control
+A DatePicker control
 
 .PARAMETER Name
 The name of the control
@@ -18,21 +18,21 @@ Properties to extend/override the base properties defined in the function
 Dialog {
     TextBox EmailAddress
     DatePicker BirthDate
-}
+} -Property @{ Title = 'DatePicker' }
 
-.NOTES
-General notes
+.LINK
+https://msdn.microsoft.com/en-us/library/system.windows.controls.datepicker
 #>
 function DatePicker {
     [CmdletBinding()]
     Param([string]$Name,
-          [DateTime]$InitialValue = (get-date),
-          [HashTable]$property = @{})
+        [DateTime]$InitialValue = (get-date),
+        [HashTable]$Property = @{})
     $baseProperties = @{
-        Name = $name
+        Name = $Name
         Text = $InitialValue
     }
-    $dpck=New-WPFControl -type System.Windows.Controls.DatePicker -Properties $baseProperties,$property
+    $dpck = New-WPFControl -type System.Windows.Controls.DatePicker -Properties $baseProperties, $Property
 
     $dpck | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $dpck | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Text} -PassThru

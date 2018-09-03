@@ -19,11 +19,11 @@ Register-WPFAttachedPropertyType -TypeName System.Windows.Controls.DockPanel -Pr
 .NOTES
 General notes
 #>
-function Register-WPFAttachedPropertyType{
+function Register-WPFAttachedPropertyType {
     [CmdletBinding()]
     param(
         [string]$TypeName,
         [string]$PropertyPrefix
     )
-    $AttachedPropertyTypes[$PropertyPrefix]=$TypeName -as [Type]
+    $AttachedPropertyTypes[$PropertyPrefix] = $TypeName -as [Type]
 }

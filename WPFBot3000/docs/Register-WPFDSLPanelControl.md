@@ -1,7 +1,7 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.shapes.rectangle
 schema: 2.0.0
 ---
 
@@ -13,7 +13,7 @@ Creates a WPFBot3000 cmdlet for a control that can contain any number of items
 ## SYNTAX
 
 ```
-Register-WPFDSLPanelControl [[-Name] <Object>] [[-TypeName] <Object>] [-HideLabel] [<CommonParameters>]
+Register-WPFDSLPanelControl [[-Name] <String>] [[-TypeName] <String>] [-HideLabel] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -39,7 +39,7 @@ dialog {
 The name of the cmdlet to be created
 
 ```yaml
-Type: Object
+Type: String
 Parameter Sets: (All)
 Aliases:
 
@@ -54,7 +54,7 @@ Accept wildcard characters: False
 The type name of the control to be "wrapped"
 
 ```yaml
-Type: Object
+Type: String
 Parameter Sets: (All)
 Aliases:
 

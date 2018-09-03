@@ -1,39 +1,39 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.combobox
 schema: 2.0.0
 ---
 
 # ComboBox
 
 ## SYNOPSIS
-A combobox control
+A ComboBox control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.ComboBox class
 
 ## SYNTAX
 
 ```
-ComboBox [[-name] <String>] [[-contents] <Array>] [[-initialValue] <Object>] [[-property] <Hashtable>]
+ComboBox [[-Name] <String>] [[-Contents] <Array>] [[-InitialValue] <Object>] [[-Property] <Hashtable>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Outputs a combobox control with a given set of contents and optionally a selected value.
+Outputs a ComboBox control with a given set of contents and optionally a selected value.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-dialog {
+Dialog {
 ```
 
 Combobox Guess -contents 'a','b','c' -initialvalue 'b'
-}
-# A Dialog box with combobox having 3 choices, the second is selected.
+} -Property @{ Title = 'ComboBox' }
+# A Dialog box with ComboBox having 3 choices, the second is selected.
 
 ## PARAMETERS
 
-### -name
+### -Name
 The name of the control. 
 This will be the name of a property of the output of the Dialog function.
 
@@ -49,8 +49,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -contents
-A list of items to fill the combobox.
+### -Contents
+A list of items to fill the ComboBox.
 
 ```yaml
 Type: Array
@@ -64,7 +64,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -initialValue
+### -InitialValue
 The item from $Contents that is initially selected.
 
 ```yaml
@@ -79,7 +79,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -property
+### -Property
 Properties to extend/override the base properties defined in the function
 
 ```yaml
@@ -103,6 +103,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.combobox](https://msdn.microsoft.com/en-us/library/system.windows.controls.combobox)
+

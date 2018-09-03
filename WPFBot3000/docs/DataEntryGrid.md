@@ -1,7 +1,7 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.grid
 schema: 2.0.0
 ---
 
@@ -13,7 +13,7 @@ Two-column data entry grid, labels in first column, controls in second column
 ## SYNTAX
 
 ```
-DataEntryGrid [[-Name] <Object>] [[-Contents] <ScriptBlock>] [[-property] <Hashtable>] [-HideLabels]
+DataEntryGrid [[-Name] <Object>] [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [-HideLabels]
  [<CommonParameters>]
 ```
 
@@ -30,8 +30,8 @@ dialog {
 TabControl -name Top {
         TabItem Fred  {
             DataEntryGrid -name Tab1 {
-                TextBox ABC
-                TextBox DEF
+                TextBox ABC -Property @{ Width = 233 }
+                TextBox DEF -Property @{ Width = 233 }
             }
         }
         TabItem Barney {
@@ -78,7 +78,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -property
+### -Property
 A hashtable of properties to be set on the control
 
 ```yaml
@@ -119,3 +119,6 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## NOTES
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.grid](https://msdn.microsoft.com/en-us/library/system.windows.controls.grid)
+

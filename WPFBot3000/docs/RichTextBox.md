@@ -1,23 +1,23 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.richtextbox
 schema: 2.0.0
 ---
 
 # RichTextBox
 
 ## SYNOPSIS
-A RichTextbox control
+A RichTextBox control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.RichTextBox class
 
 ## SYNTAX
 
 ```
-RichTextBox [[-Name] <String>] [[-property] <Hashtable>] [<CommonParameters>]
+RichTextBox [[-Name] <String>] [[-Property] <Hashtable>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-A RichTextbox control
+A RichTextBox control
 
 ## EXAMPLES
 
@@ -49,7 +49,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -property
+### -Property
 Properties to extend/override the base properties defined in the function
 
 ```yaml
@@ -73,6 +73,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.richtextbox](https://msdn.microsoft.com/en-us/library/system.windows.controls.richtextbox)
+

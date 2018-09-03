@@ -1,36 +1,36 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.expander
 schema: 2.0.0
 ---
 
 # Expander
 
 ## SYNOPSIS
-A Expander control
+An Expander control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.Expander class
 
 ## SYNTAX
 
 ```
-Expander [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [[-name] <String>] [<CommonParameters>]
+Expander [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Outputs a Expander control, along with control(s) contained in it. 
-If more than one control is in $Contents, a stackpanel is inserted (because Expanders only have one child)
+If more than one control is in $Contents, a StackPanel is inserted (because Expanders only have one child)
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-dialog {
+Dialog {
 ```
 
 Expander  {
         TextBlock "This is a textblock\`r\`nThis is the second line"
     }  
-}
+} @{ Title = 'Expander' }
 
 ## PARAMETERS
 
@@ -64,7 +64,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -name
+### -Name
 The name of the Expander control. 
 The name will be used as a property name in the output of the Dialog function.
 
@@ -89,6 +89,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.expander](https://msdn.microsoft.com/en-us/library/system.windows.controls.expander)
+

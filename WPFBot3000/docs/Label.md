@@ -1,23 +1,23 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.label
 schema: 2.0.0
 ---
 
 # Label
 
 ## SYNOPSIS
-A label control
+A Label control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.Label class
 
 ## SYNTAX
 
 ```
-Label [[-Text] <String>] [[-name] <String>] [[-property] <Hashtable>] [<CommonParameters>]
+Label [[-Text] <String>] [[-Name] <String>] [[-Property] <Hashtable>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-A label control
+A Label control
 
 ## EXAMPLES
 
@@ -27,14 +27,11 @@ Import-Module WPFBot3000 -force
 ```
 
 $w=Window {
-    Textbox Name
-    Button Personalize -name mike -action {
-                                 $txt=$this.Window.GetControlByName('Name')
-                                 $lbl=$this.Window.GetControlByName('Greeting')
-                                 $lbl.Content="Hello, $($txt.Text)"}
+    Textbox Name -Property @{ MinWidth=50}
+    Button Personalize -Action {
+                                 $Greeting.Content="Hello, $($Name.Text)"}
     Label 'Hello, World' -name 'Greeting'
-}
-$w.ShowDialog()
+} -ShowForValue
 
 ## PARAMETERS
 
@@ -53,7 +50,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -name
+### -Name
 The name of the control
 
 ```yaml
@@ -68,7 +65,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -property
+### -Property
 Properties to extend/override the base properties defined in the function
 
 ```yaml
@@ -92,6 +89,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.label](https://msdn.microsoft.com/en-us/library/system.windows.controls.label)
+

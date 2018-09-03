@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-A control that allows input of credentials
+A control that allows input of credentials and encapsulates the Windows Presentation Foundation (WPF) System.Management.Automation.PsCredential.GetNetworkCredential class
 
 .DESCRIPTION
 A control that allows input of credentials
@@ -18,13 +18,13 @@ Dialog {
 
 #dialog with a place to request credentials (initially blank)
 
-.NOTES
-General notes
+.LINK
+General notes	https://docs.microsoft.com/en-us/dotnet/api/system.management.automation.pscredential
 #>
 Function CredentialPicker {
     [CmdletBinding()]
     Param([string]$Name,
-          [PSCredential]$InitialValue)
+        [PSCredential]$InitialValue)
 
     $stack = new-object System.Windows.Controls.StackPanel -Property @{
         Name        = $name

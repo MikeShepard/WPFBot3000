@@ -11,7 +11,7 @@ A scriptblock that outputs controls you want in this canvas
 .PARAMETER Property
 Properties to extend/override the base properties defined in the function
 
-.PARAMETER name
+.PARAMETER Name
 The name of the canvas control
 
 .EXAMPLE
@@ -23,19 +23,19 @@ Window {
     } -property @{Width=400;Height=400}
 } -ShowForValue
 
-.NOTES
-General notes
+.Link
+https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.canvas
 #>
 function Canvas {
     [CmdletBinding()]
     Param([Scriptblock]$Contents,
         [hashtable]$Property = @{},
-        [string]$name)
+        [string]$Name)
     $baseProperties = @{}
-    if ($name) {
-        $baseProperties.Name = $name
+    if ($Name) {
+        $baseProperties.Name = $Name
     }
-    $canvas = New-WPFControl -type System.Windows.Controls.Canvas -Properties $baseProperties, $property
+    $canvas = New-WPFControl -type System.Windows.Controls.Canvas -Properties $baseProperties, $Property
 
     [System.Windows.UIElement[]]$c = & $Contents
     $c | foreach-object {    $canvas.Children.Add($_) | out-null }

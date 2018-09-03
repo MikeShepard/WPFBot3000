@@ -10,13 +10,13 @@ Note, the window doesn't build its own ok/cancel buttons so you are responsible 
 .PARAMETER Contents
 A scriptblock that outputs the controls you want in the window
 
-.PARAMETER labelMap
+.PARAMETER LabelMap
 A hashtable with items of the form ControlName='Desired label'.  If the control is labeled it will use this text instead of the control name.
 
 .PARAMETER Events
 An array of hashtables of event handlers for controls in the dialog.  Each should have Name (control name), EventName, and Action.
 
-.PARAMETER title
+.PARAMETER Title
 The window title
 
 .PARAMETER HideLabels
@@ -34,27 +34,27 @@ to output the "calculated output of the window".  Window with -ShowForValue work
 Dialog function but doesn't automatically add Ok and Cancel button.
 
 .EXAMPLE
-$w=Window {
+Window {
     Textbox Name
     Button Personalize -name mike -action {
                                  $txt=$this.Window.GetControlByName('Name')
                                  $lbl=$this.Window.GetControlByName('Greeting')
                                  $lbl.Content="Hello, $($txt.Text)"}
     Label 'Hello, World' -name 'Greeting'
-}
-$w.ShowDialog()
+} -ShowForValue
 
-.NOTES
-General notes
+
+.LINK
+https://docs.microsoft.com/en-us/dotnet/api/system.windows.window
 #>
 function Window {
     [CmdletBinding()]
     param([scriptblock]$Contents,
-        [hashtable]$labelMap = @{},
+        [hashtable]$LabelMap = @{},
         [hashtable[]]$Events,
-        [string]$title,
+        [string]$Title,
         [switch]$HideLabels, 
-        [hashtable]$property,
+        [hashtable]$Property,
         [Switch]$ShowGridLines,
         [Switch]$ShowForValue)
     $script:ShowGridLines = $ShowGridLines.IsPresent
@@ -62,25 +62,27 @@ function Window {
         SizeToContent = 'WidthAndHeight'
         Margin        = 10
     }
-    $w = New-WPFControl -type system.windows.window -properties $BaseProperties, $property 
-    [array]$windowContent=& $contents
-    if ($windowContent.Count -gt 1){
-        $windowContent=StackPanel {$windowContent} -Orientation Vertical
+    $w = New-WPFControl -type system.windows.window -properties $BaseProperties, $Property 
+    [array]$windowContent = & $Contents
+    if ($windowContent.Count -gt 1) {
+        $windowContent = StackPanel {$windowContent} -Orientation Vertical
     }
-    $w.Content= $windowContent[0]
+    $w.Content = $windowContent[0]
     $w| add-Member -MemberType ScriptMethod -Name GetControlByName -Value {
-        Param($name)
-            $this.Content.GetControlByName($name)
+        Param($Name)
+        $this.Content.GetControlByName($Name)
     }
-    $w | add-member -MemberType ScriptMethod -Name ShowForValue -Value     {
+    $w | add-member -MemberType ScriptMethod -Name ShowForValue -Value {
         if ($this.ShowDialog()) {
             if ($this | Get-Member OverrideOutput) {
                 $This.OverrideOutput
-            } else {
-                $output=$this.GetWindowOutput()
-                if($output | get-member BuiltinDataEntryGrid){
+            }
+            else {
+                $output = $this.GetWindowOutput()
+                if ($output | get-member BuiltinDataEntryGrid) {
                     $output.BuiltinDataEntryGrid
-                } else {
+                }
+                else {
                     $output
                 }
             }
@@ -105,7 +107,8 @@ function Window {
     }
     if ($ShowForValue) {
         $w.ShowForValue()
-    } else {
+    }
+    else {
         $w
     }
 

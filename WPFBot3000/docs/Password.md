@@ -1,23 +1,23 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.passwordbox
 schema: 2.0.0
 ---
 
 # Password
 
 ## SYNOPSIS
-A password control
+A Password control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.PasswordBox class
 
 ## SYNTAX
 
 ```
-Password [[-Name] <String>] [[-InitialValue] <SecureString>] [[-property] <Hashtable>] [<CommonParameters>]
+Password [[-Name] <String>] [[-InitialValue] <SecureString>] [[-Property] <Hashtable>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-A password control
+A Password control
 
 ## EXAMPLES
 
@@ -62,7 +62,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -property
+### -Property
 Properties to extend/override the base properties defined in the function
 
 ```yaml
@@ -86,6 +86,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.passwordbox](https://msdn.microsoft.com/en-us/library/system.windows.controls.passwordbox)
+

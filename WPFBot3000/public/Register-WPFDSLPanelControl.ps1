@@ -27,18 +27,20 @@ General notes
 #>
 function Register-WPFDSLPanelControl {
     [CmdletBinding()]
-    Param($Name, $TypeName, [switch]$HideLabel)
+    Param([String]$Name, 
+        [String]$TypeName, 
+        [Switch]$HideLabel)
 
     $newWPFControl = Get-Command New-WPFControl
-    $getControlMethod=Get-Command GetControlByName | Select-Object -expandProperty ScriptBlock
+    $getControlMethod = Get-Command GetControlByName | Select-Object -expandProperty ScriptBlock
 
     New-Item -Path "function:global:$Name" -force -Value {
         [CmdletBinding()]
         Param($Name, [ScriptBlock]$Contents , $property = @{})
         $baseProperties = @{
         }
-        if ($name) {
-            $baseProperties.Name = $name
+        if ($Name) {
+            $baseProperties.Name = $Name
         }
         $panel = & $newWPFControl -type $TypeName -Properties $baseProperties, $property
         [System.Windows.UIElement[]]$c = & $Contents
@@ -51,7 +53,8 @@ function Register-WPFDSLPanelControl {
                 }}
             if ($d.Count -eq 1) {
                 $d.Values| Select-Object -first 1
-            } else {
+            }
+            else {
                 [pscustomobject]$d
             }}
         if ($HideLabel) {
@@ -60,13 +63,3 @@ function Register-WPFDSLPanelControl {
         $panel
     }.GetNewClosure() | out-null
 }
-
-<#
-Register-WPFDSLPanelControl -Name Stk -Typename System.Windows.Controls.StackPanel -hidelabel
-dialog {
-    Stk Items {
-                TextBox Name
-                TextBox Address
-    }
-}
-#>

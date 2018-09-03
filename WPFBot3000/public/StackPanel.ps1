@@ -1,12 +1,12 @@
 <#
 .SYNOPSIS
-A stackpanel control
+A StackPanel control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.StackPanel class
 
 .DESCRIPTION
-A stackpanel control that contains other controls
+A StackPanel control that contains other controls
 
 .PARAMETER Contents
-A scriptblock that outputs controls you want in this stackpanel
+A scriptblock that outputs controls you want in this StackPanel
 
 .PARAMETER Property
 Properties to extend/override the base properties defined in the function
@@ -14,7 +14,7 @@ Properties to extend/override the base properties defined in the function
 .PARAMETER Orientation
 Horizontal or vertical (how it "stacks" the controls)
 
-.PARAMETER name
+.PARAMETER Name
 The name of the stackpanel control
 
 .EXAMPLE
@@ -27,25 +27,25 @@ Dialog {
     TextBox Moe
 }
 
-.NOTES
-General notes
+.LINK
+https://msdn.microsoft.com/en-us/library/system.windows.controls.stackpanel
 #>
 function StackPanel {
     [CmdletBinding()]
     Param([Scriptblock]$Contents,
-        [hashtable]$Property = @{},
+        [Hashtable]$Property = @{},
         [ValidateSet('Horizontal', 'Vertical')]$Orientation = 'Horizontal',
-        [string]$name)
+        [string]$Name)
     $baseProperties = @{
         Orientation = [System.Windows.Controls.Orientation]$Orientation
     }
-    if ($name) {
-        $baseProperties.Name = $name
+    if ($Name) {
+        $baseProperties.Name = $Name
     }
-    $stack = New-WPFControl -type System.Windows.Controls.StackPanel -Properties $baseProperties, $property
+    $stack = New-WPFControl -type System.Windows.Controls.StackPanel -Properties $baseProperties, $Property
 
     [System.Windows.UIElement[]]$c = & $Contents
-    $c | foreach-object {    $stack.Children.Add($_) | out-null }
+    $c | foreach-object { $stack.Children.Add($_) | out-null }
     $stack | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $stack | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
     $stack | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}

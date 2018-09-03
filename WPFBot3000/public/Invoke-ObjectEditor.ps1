@@ -6,7 +6,7 @@ POC Function that lets you edit properties of an object
 Builds UI for selected properties (infers control type from property type).  Very limited functionality
 Only properties with types that the function can infer will have UI generated for them.
 
-.PARAMETER inputobject
+.PARAMETER Inputobject
 The object that has properties you want to edit
 
 .PARAMETER Property
@@ -24,8 +24,6 @@ If false, the function outputs an object with the "Edited" properties.
 $a=[PSCustomObject]@{Prop1='A';Prop2=150}
 $a | Invoke-ObjectEditor -property Prop1, Prop2
 
-.NOTES
-General notes
 #>
 function Invoke-ObjectEditor {
     [CmdletBinding()]
@@ -35,8 +33,8 @@ function Invoke-ObjectEditor {
         [switch]$InPlace)
 
     $Controls = $(
-        foreach ($item in $inputObject | get-member -name $property -MemberType Properties) {
-            $value = $inputobject.$($item.Name)
+        foreach ($item in $InputObject | get-member -name $property -MemberType Properties) {
+            $value = $Inputobject.$($item.Name)
             switch ($value.GetType()) {
                 'Int32' {
                     TextBox -Name $item.Name -InitialValue $value

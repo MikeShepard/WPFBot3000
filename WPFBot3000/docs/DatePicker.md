@@ -1,23 +1,23 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.datepicker
 schema: 2.0.0
 ---
 
 # DatePicker
 
 ## SYNOPSIS
-A datepicker control
+A DatePicker control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.DatePicker class
 
 ## SYNTAX
 
 ```
-DatePicker [[-Name] <String>] [[-InitialValue] <DateTime>] [[-property] <Hashtable>] [<CommonParameters>]
+DatePicker [[-Name] <String>] [[-InitialValue] <DateTime>] [[-Property] <Hashtable>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-A datepicker control
+A DatePicker control
 
 ## EXAMPLES
 
@@ -28,7 +28,7 @@ Dialog {
 
 TextBox EmailAddress
     DatePicker BirthDate
-}
+} -Property @{ Title = 'DatePicker' }
 
 ## PARAMETERS
 
@@ -62,7 +62,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -property
+### -Property
 Properties to extend/override the base properties defined in the function
 
 ```yaml
@@ -86,6 +86,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.datepicker](https://msdn.microsoft.com/en-us/library/system.windows.controls.datepicker)
+

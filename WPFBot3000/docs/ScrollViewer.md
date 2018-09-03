@@ -1,36 +1,36 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.scrollviewer
 schema: 2.0.0
 ---
 
 # ScrollViewer
 
 ## SYNOPSIS
-A ScrollViewer control
+A ScrollViewer control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.ScrollViewer class
 
 ## SYNTAX
 
 ```
-ScrollViewer [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [[-name] <String>] [<CommonParameters>]
+ScrollViewer [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Outputs a ScrollViewer control, along with control(s) contained in it. 
-If more than one control is in $Contents, a stackpanel is inserted (because ScrollViewers only have one child)
+If more than one control is in $Contents, a StackPanel is inserted (because ScrollViewers only have one child)
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-dialog {
+Dialog {
 ```
 
 ScrollViewer  {
         TextBox Fred -property @{MinWidth=50}
         TextBox Barney
-    } -property @{ScrollViewerBrush='Red';ScrollViewerThickness=5} -name Flintstones
+    } -Property @{ScrollViewerBrush='Red';ScrollViewerThickness=5} -name Flintstones
 }
 
 ## PARAMETERS
@@ -65,7 +65,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -name
+### -Name
 The name of the ScrollViewer control. 
 The name will be used as a property name in the output of the Dialog function.
 
@@ -90,6 +90,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.scrollviewer](https://msdn.microsoft.com/en-us/library/system.windows.controls.scrollviewer)
+

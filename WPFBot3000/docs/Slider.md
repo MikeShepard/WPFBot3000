@@ -1,20 +1,20 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.slider
 schema: 2.0.0
 ---
 
 # Slider
 
 ## SYNOPSIS
-A Slider control
+A Slider control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.Slider class
 
 ## SYNTAX
 
 ```
 Slider [[-Name] <String>] [[-InitialValue] <Int32>] [[-MinimumValue] <Int32>] [[-MaximumValue] <Int32>]
- [[-property] <Hashtable>] [<CommonParameters>]
+ [[-Property] <Hashtable>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -27,7 +27,9 @@ A Slider control
 Dialog {
 ```
 
-Slider Rating -Min 0 -Max 10 -Initial 5
+Slider Rating -Min 0 -Max 10 -Initial 5 | 
+       HandlesEvent ValueChanged {$SliderValue.Content=$Rating.Value}
+    Label -Name SliderValue
  }
 
 ## PARAMETERS
@@ -48,7 +50,7 @@ Accept wildcard characters: False
 ```
 
 ### -InitialValue
-The Value to set the slider to
+The value to set the slider to
 
 ```yaml
 Type: Int32
@@ -92,7 +94,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -property
+### -Property
 Properties to extend/override the base properties defined in the function
 
 ```yaml
@@ -116,6 +118,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.slider](https://msdn.microsoft.com/en-us/library/system.windows.controls.slider)
+

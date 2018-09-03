@@ -1,7 +1,7 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.canvas
 schema: 2.0.0
 ---
 
@@ -13,7 +13,7 @@ A canvas control
 ## SYNTAX
 
 ```
-Canvas [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [[-name] <String>] [<CommonParameters>]
+Canvas [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -65,7 +65,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -name
+### -Name
 The name of the canvas control
 
 ```yaml
@@ -89,6 +89,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.canvas](https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.canvas)
+

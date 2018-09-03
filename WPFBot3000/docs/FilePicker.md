@@ -1,14 +1,14 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.forms.openfiledialog
 schema: 2.0.0
 ---
 
 # FilePicker
 
 ## SYNOPSIS
-A file picker control
+A File Picker control
 
 ## SYNTAX
 
@@ -70,6 +70,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.forms.openfiledialog](https://msdn.microsoft.com/en-us/library/system.windows.forms.openfiledialog)
+

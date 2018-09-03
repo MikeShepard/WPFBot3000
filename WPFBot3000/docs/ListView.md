@@ -1,19 +1,19 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.listview
 schema: 2.0.0
 ---
 
 # ListView
 
 ## SYNOPSIS
-A ListView control
+A ListView control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.ListView class
 
 ## SYNTAX
 
 ```
-ListView [[-name] <String>] [[-contents] <Array>] [[-initialValue] <Object>] [[-property] <Hashtable>]
+ListView [[-Name] <String>] [[-Contents] <Array>] [[-InitialValue] <Object>] [[-Property] <Hashtable>]
  [[-DisplayProperty] <Array>] [-MultiSelect] [<CommonParameters>]
 ```
 
@@ -33,7 +33,7 @@ Dialog {
 
 ## PARAMETERS
 
-### -name
+### -Name
 The name of the control
 
 ```yaml
@@ -48,7 +48,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -contents
+### -Contents
 The contents of the ListView
 
 ```yaml
@@ -63,7 +63,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -initialValue
+### -InitialValue
 The item from $contents that is initally selected
 
 ```yaml
@@ -78,7 +78,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -property
+### -Property
 Properties to extend/override the base properties defined in the function
 
 ```yaml
@@ -132,6 +132,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.listview](https://msdn.microsoft.com/en-us/library/system.windows.controls.listview)
+

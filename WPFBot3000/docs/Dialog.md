@@ -1,7 +1,7 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.datepicker
 schema: 2.0.0
 ---
 
@@ -13,8 +13,8 @@ Creates a window with the requested controls, OK, and Cancel and outputs an obje
 ## SYNTAX
 
 ```
-Dialog [[-Contents] <ScriptBlock>] [[-labelMap] <Hashtable>] [[-Events] <Hashtable[]>] [[-title] <String>]
- [[-property] <Hashtable>] [-ShowGridLines] [<CommonParameters>]
+Dialog [[-Contents] <ScriptBlock>] [[-labelMap] <Hashtable>] [[-Events] <Hashtable[]>] [[-Title] <String>]
+ [[-Property] <Hashtable>] [-ShowGridLines] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,7 +31,7 @@ TextBox FirstName
     TextBox LastName
     TextBox EmailAddress
     DatePicker ReminderDate
-}
+} -Title Dialog
 
 # Displays a window with 3 textboxes and a date picker and if the user presses ok (instead of cancel) it outputs an object with 4 properties (populated from the controls)
 
@@ -84,7 +84,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -title
+### -Title
 The window title
 
 ```yaml
@@ -99,7 +99,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -property
+### -Property
 A hashtable of properties to set on the window
 
 ```yaml

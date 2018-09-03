@@ -1,14 +1,14 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.gridsplitter
 schema: 2.0.0
 ---
 
 # GridSplitter
 
 ## SYNOPSIS
-A gridsplitter control
+A GridSplitter control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.GridSplitter class
 
 ## SYNTAX
 
@@ -23,13 +23,22 @@ Allows the user to resize rows/columns of a grid.
 
 ### EXAMPLE 1
 ```
-An example
+Dialog {
 ```
+
+Grid -ColumnCount 3 {
+
+    GridSplitter -Orientation Vertical -Property @{ 'Grid.Row' = 1 }
+    GridSplitter -Orientation Vertical -Property @{ 'Grid.Row' = 2 }
+     1..12 | ForEach-Object { label -name "Blah$_" -Text "Blah$_"}
+   } -Property @{ ShowGridlines = $true }
+     
+} -Property @{ Title = 'GridSplitter'
 
 ## PARAMETERS
 
 ### -Orientation
-Horizontal/vertical
+Horizontal/Vertical
 
 ```yaml
 Type: Object
@@ -67,6 +76,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.gridsplitter](https://msdn.microsoft.com/en-us/library/system.windows.controls.gridsplitter)
+

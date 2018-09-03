@@ -1,24 +1,24 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.listbox
 schema: 2.0.0
 ---
 
 # ListBox
 
 ## SYNOPSIS
-A listbox control
+A ListBox control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.ListBox class
 
 ## SYNTAX
 
 ```
-ListBox [[-name] <String>] [[-contents] <Array>] [[-initialValue] <Object>] [[-property] <Hashtable>]
+ListBox [[-Name] <String>] [[-Contents] <Array>] [[-InitialValue] <Object>] [[-Property] <Hashtable>]
  [-MultiSelect] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-A listbox control
+A ListBox control
 
 ## EXAMPLES
 
@@ -29,11 +29,11 @@ $files=get-childitem c:\windows -file | select-object -first 10
 
 Dialog {
     Listbox Files -contents $files
-}
+} -Title ListBox
 
 ## PARAMETERS
 
-### -name
+### -Name
 The name of the control
 
 ```yaml
@@ -48,8 +48,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -contents
-The contents of the listbox
+### -Contents
+The contents of the ListBox
 
 ```yaml
 Type: Array
@@ -63,7 +63,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -initialValue
+### -InitialValue
 The item from $contents that is initally selected
 
 ```yaml
@@ -78,7 +78,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -property
+### -Property
 Properties to extend/override the base properties defined in the function
 
 ```yaml
@@ -94,7 +94,7 @@ Accept wildcard characters: False
 ```
 
 ### -MultiSelect
-Sets the selectionMode of the listbox to "Extended"
+Sets the selectionMode of the ListBox to "Extended"
 
 ```yaml
 Type: SwitchParameter
@@ -117,6 +117,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.listbox](https://msdn.microsoft.com/en-us/library/system.windows.controls.listbox)
+

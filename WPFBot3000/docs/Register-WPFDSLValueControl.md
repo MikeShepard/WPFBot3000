@@ -1,7 +1,7 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.shapes.rectangle
 schema: 2.0.0
 ---
 
@@ -13,7 +13,7 @@ Creates a WPFBot3000 cmdlet for a control that has a value
 ## SYNTAX
 
 ```
-Register-WPFDSLValueControl [[-Name] <Object>] [[-TypeName] <Object>] [[-initialValuePropertyName] <Object>]
+Register-WPFDSLValueControl [[-Name] <String>] [[-TypeName] <String>] [[-InitialValuePropertyName] <String>]
  [-HideLabel] [<CommonParameters>]
 ```
 
@@ -42,7 +42,7 @@ dialog {
 The name of the cmdlet to be created
 
 ```yaml
-Type: Object
+Type: String
 Parameter Sets: (All)
 Aliases:
 
@@ -57,7 +57,7 @@ Accept wildcard characters: False
 The type name of the control to be "wrapped"
 
 ```yaml
-Type: Object
+Type: String
 Parameter Sets: (All)
 Aliases:
 
@@ -68,11 +68,11 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -initialValuePropertyName
+### -InitialValuePropertyName
 The name of the property to use to set the initial value of the control
 
 ```yaml
-Type: Object
+Type: String
 Parameter Sets: (All)
 Aliases:
 

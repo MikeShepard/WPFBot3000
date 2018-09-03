@@ -1,34 +1,48 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.menu
 schema: 2.0.0
 ---
 
 # Menu
 
 ## SYNOPSIS
-A Menu
+A Menu control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.Menu class
 
 ## SYNTAX
 
 ```
-Menu [[-name] <String>] [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [<CommonParameters>]
+Menu [[-Name] <String>] [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-A Menu
+A Menu control
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-
+Dialog {
 ```
+
+Menu Menus {
+      MenuItem TopLevel -Contents {
+      MenuItem Increment |
+        HandlesEvent Click {
+            $value.Text = 1 + $Value.Text
+        }
+       MenuItem Decrement |
+        HandlesEvent Click {
+            $value.Text = 1 - $Value.Text
+        }
+    }
+    TextBox Value -InitialValue 100
+}
 
 ## PARAMETERS
 
-### -name
+### -Name
 The name of the Menu
 
 ```yaml
@@ -82,6 +96,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.menu](https://msdn.microsoft.com/en-us/library/system.windows.controls.menu)
+

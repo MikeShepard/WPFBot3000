@@ -1,19 +1,19 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.border
 schema: 2.0.0
 ---
 
 # Border
 
 ## SYNOPSIS
-A border control
+A Border control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.Border class
 
 ## SYNTAX
 
 ```
-Border [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [[-name] <String>] [<CommonParameters>]
+Border [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [[-Name] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -24,13 +24,13 @@ If more than one control is in $Contents, a stackpanel is inserted (because bord
 
 ### EXAMPLE 1
 ```
-dialog {
+Dialog {
 ```
 
 Border  {
-        TextBox Fred -property @{MinWidth=50}
+        TextBox Fred -Property @{ MinWidth = 50 }
         TextBox Barney
-    } -property @{BorderBrush='Red';BorderThickness=5} -name Flintstones
+    } -property @{ BorderBrush = 'Red'; BorderThickness = 5 } -name Flintstones
 }
 
 ## PARAMETERS
@@ -65,7 +65,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -name
+### -Name
 The name of the border control. 
 The name will be used as a property name in the output of the Dialog function.
 
@@ -90,6 +90,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.border](https://msdn.microsoft.com/en-us/library/system.windows.controls.border)
+

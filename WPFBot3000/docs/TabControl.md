@@ -1,23 +1,23 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.tabcontrol
 schema: 2.0.0
 ---
 
 # TabControl
 
 ## SYNOPSIS
-A tabcontrol (container for tabs)
+A TabControl (container for tabs) that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.TabControl class
 
 ## SYNTAX
 
 ```
-TabControl [[-name] <String>] [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [<CommonParameters>]
+TabControl [[-Name] <String>] [[-Contents] <ScriptBlock>] [[-Property] <Hashtable>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-A tabcontrol (container for tabs)
+A TabControl (container for tabs)
 
 ## EXAMPLES
 
@@ -34,8 +34,8 @@ TabControl Tabs {
 
 ## PARAMETERS
 
-### -name
-The name of the tabcontrol
+### -Name
+The name of the TabControl
 
 ```yaml
 Type: String
@@ -50,7 +50,7 @@ Accept wildcard characters: False
 ```
 
 ### -Contents
-A scriptblock that outputs tabitem controls to embed in the tabcontrol
+A scriptblock that outputs tabitem controls to embed in the TabControl
 
 ```yaml
 Type: ScriptBlock
@@ -88,6 +88,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.tabcontrol](https://msdn.microsoft.com/en-us/library/system.windows.controls.tabcontrol)
+

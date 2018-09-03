@@ -8,12 +8,12 @@ schema: 2.0.0
 # Separator
 
 ## SYNOPSIS
-A Separator control
+A Separator control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.Separator class
 
 ## SYNTAX
 
 ```
-Separator [[-property] <Hashtable>] [<CommonParameters>]
+Separator [[-Property] <Hashtable>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,10 +29,10 @@ Dialog{
 DockPanel{
         Menu -contents {
             MenuItem Menu5 -Contents {
-            MenuItem Item1 -action {write-host "item1"}
-            MenuItem Item2 -action {write-host "item2"}
+            MenuItem Item1 -action {Write-Host "item1"}
+            MenuItem Item2 -action {Write-Host "item2"}
             Separator 
-            MenuItem Item3 -action {write-host "item3"}
+            MenuItem Item3 -action {Write-Host "item3"}
             }
         }
     }
@@ -40,7 +40,7 @@ DockPanel{
 
 ## PARAMETERS
 
-### -property
+### -Property
 Properties to extend/override the base properties defined in the function
 
 ```yaml
@@ -64,6 +64,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[General notes	https://msdn.microsoft.com/en-us/library/system.windows.controls.separator]()
+

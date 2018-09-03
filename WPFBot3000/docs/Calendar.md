@@ -1,7 +1,7 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.calendar
 schema: 2.0.0
 ---
 
@@ -13,11 +13,11 @@ A calendar control
 ## SYNTAX
 
 ```
-Calendar [[-Name] <String>] [[-InitialValue] <DateTime>] [[-property] <Hashtable>] [<CommonParameters>]
+Calendar [[-Name] <String>] [[-InitialValue] <DateTime>] [[-Property] <Hashtable>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-A calendar control
+A Calendar control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.Calendar class
 
 ## EXAMPLES
 
@@ -28,7 +28,7 @@ Dialog {
 
 TextBox EmailAddress
     Calendar BirthDate
-}
+} -Property @{ Title = 'Calendar' }
 
 ## PARAMETERS
 
@@ -62,7 +62,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -property
+### -Property
 Properties to extend/override the base properties defined in the function
 
 ```yaml
@@ -86,6 +86,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.calendar](https://msdn.microsoft.com/en-us/library/system.windows.controls.calendar)
+

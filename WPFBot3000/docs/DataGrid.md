@@ -1,19 +1,19 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.datagrid
 schema: 2.0.0
 ---
 
 # DataGrid
 
 ## SYNOPSIS
-A DataGrid control
+A DataGrid control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.DataGrid class
 
 ## SYNTAX
 
 ```
-DataGrid [[-name] <String>] [[-contents] <Array>] [[-initialValue] <Object>] [[-property] <Hashtable>]
+DataGrid [[-Name] <String>] [[-contents] <Array>] [[-initialValue] <Object>] [[-property] <Hashtable>]
  [<CommonParameters>]
 ```
 
@@ -29,11 +29,11 @@ $files=get-childitem c:\windows -file | select-object -first 10
 
 Dialog {
     DataGrid Files -contents $files -property @{MaxWidth=600;MaxHeight=400;IsReadOnly=$true}
-}
+} -Property @{ Title = 'DataGrid' }
 
 ## PARAMETERS
 
-### -name
+### -Name
 The name of the control
 
 ```yaml
@@ -102,6 +102,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.datagrid](https://msdn.microsoft.com/en-us/library/system.windows.controls.datagrid)
+

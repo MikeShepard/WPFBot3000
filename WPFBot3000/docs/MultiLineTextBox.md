@@ -1,19 +1,19 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version:
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.menuitem
 schema: 2.0.0
 ---
 
 # MultiLineTextBox
 
 ## SYNOPSIS
-A multi-line textbox control
+A multi-line textbox control that encapsulates the Windows Presentation Foundation (WPF) System.Windows.Controls.TextBox class
 
 ## SYNTAX
 
 ```
-MultiLineTextBox [[-Name] <String>] [[-InitialValue] <String>] [[-property] <Hashtable>] [<CommonParameters>]
+MultiLineTextBox [[-Name] <String>] [[-InitialValue] <String>] [[-Property] <Hashtable>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -27,7 +27,7 @@ Dialog {
 ```
 
 MultilineTextBox Editor
-}
+}  -Property @{ Title = 'MultiLineTextBox' }
 
 ## PARAMETERS
 
@@ -61,7 +61,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -property
+### -Property
 Properties to extend/override the base properties defined in the function
 
 ```yaml
