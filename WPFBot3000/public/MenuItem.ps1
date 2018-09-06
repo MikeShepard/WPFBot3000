@@ -54,9 +54,10 @@ function MenuItem {
     if ($contents) {
         [System.Windows.UIElement[]]$c = & $Contents
         $c | foreach-object {$menuItem.Items.Add($_)| out-null}
-    }
-    else {
-        $MenuItem.Add_Click($action)
+    } else {
+        if ($Action) {
+            $MenuItem.Add_Click($Action)
+        }
     }
     $MenuItem | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
 
