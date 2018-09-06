@@ -41,6 +41,8 @@ function Button {
     $btn = New-WPFControl -type System.Windows.Controls.Button -Properties $baseProperties, $Property
 
     $btn | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
-    $btn.Add_Click($action)
+    if ($action) {
+        $btn.Add_Click($action)
+    }
     $btn
 }
