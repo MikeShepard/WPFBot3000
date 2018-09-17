@@ -31,7 +31,9 @@ function DockPanel {
     [CmdletBinding()]
     Param([Scriptblock]$Contents, $Name, $Property = @{})
 
-    $baseProperties = @{ }
+    $baseProperties = @{
+        LastChildFill=$True
+     }
     if ($Name) {
         $baseProperties.Name = $Name
     }
