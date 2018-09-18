@@ -41,7 +41,6 @@ function RepeatButton {
     }
     $btn = New-WPFControl -type System.Windows.Controls.Primitives.RepeatButton -Properties $baseProperties, $Property
 
-    $btn | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     if ($Action) {
         $btn.Add_Click($Action)
     }

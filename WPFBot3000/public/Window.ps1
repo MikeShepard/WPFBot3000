@@ -37,9 +37,7 @@ Dialog function but doesn't automatically add Ok and Cancel button.
 Window {
     Textbox Name
     Button Personalize -name mike -action {
-                                 $txt=$this.Window.GetControlByName('Name')
-                                 $lbl=$this.Window.GetControlByName('Greeting')
-                                 $lbl.Content="Hello, $($txt.Text)"}
+                                 $greeting.Content="Hello, $($name.Text)"}
     Label 'Hello, World' -name 'Greeting'
 } -ShowForValue
 

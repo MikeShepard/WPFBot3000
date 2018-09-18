@@ -45,7 +45,6 @@ function TabItem {
     $tabItem = New-WPFControl -type System.Windows.Controls.TabItem -Properties $baseProperties, $property
     [System.Windows.UIElement[]]$c = & $Contents
     $tabItem.Content = StackPanel -Contents { $c }
-    $tabItem | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $tabitem  | add-member -MemberType NoteProperty -Name HideLabel -Value $True
     $tabitem | add-member -Name GetControlValue -MemberType ScriptMethod -Value {
         $this.Content.GetControlValue()

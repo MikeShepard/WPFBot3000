@@ -50,7 +50,6 @@ function GroupBox {
     else {
         $groupbox.Content = StackPanel {$c} -Orientation Vertical -name BuiltInStackPanel
     }
-    $groupbox | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $groupbox | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
     $groupbox | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
         $this.Content | ForEach-Object {if ($_| get-member GetControlValue) {

@@ -35,6 +35,7 @@ function New-WPFControl {
     }
     $keysToRemove | ForEach-Object {$out.Remove($_)}
     $o=new-object -TypeName $type -Property $out
+    $o | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     foreach($item in $compoundProperties.GetEnumerator()){
         $typename,$property=$item.Key.Split('.')
         $type=$AttachedPropertyTypes[$typeName]

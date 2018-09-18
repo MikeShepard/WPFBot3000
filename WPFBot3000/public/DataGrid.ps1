@@ -40,6 +40,5 @@ function DataGrid {
     if ($Contents) {
         $grid.ItemsSource = $Contents
     }
-    $grid | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $grid | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$this.SelectedItem } -PassThru
 }

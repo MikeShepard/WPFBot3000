@@ -1,7 +1,7 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.menuitem
+online version: https://msdn.microsoft.com/en-us/library/system.windows.controls.textbox
 schema: 2.0.0
 ---
 
@@ -85,6 +85,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://msdn.microsoft.com/en-us/library/system.windows.controls.textbox](https://msdn.microsoft.com/en-us/library/system.windows.controls.textbox)
+

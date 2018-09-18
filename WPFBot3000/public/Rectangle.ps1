@@ -42,7 +42,5 @@ function Rectangle {
     }
     $Rectangle=New-WPFControl -type System.Windows.Shapes.Rectangle -Properties $baseProperties,$property
 
-
-    $Rectangle | Add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $Rectangle | Add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
 }

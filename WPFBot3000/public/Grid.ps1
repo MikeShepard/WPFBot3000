@@ -89,7 +89,6 @@ function Grid {
         $objectCount += 1
     }
     $Grid | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
-    $Grid | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $Grid | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
         $this.Children | ForEach-Object {if ($_| get-member GetControlValue) {
                 $d.Add($_.Name, $_.GetControlValue())

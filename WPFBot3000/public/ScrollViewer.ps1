@@ -44,7 +44,6 @@ function ScrollViewer {
     else {
         $ScrollViewer.Content = StackPanel {$c}
     }
-    $ScrollViewer | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $ScrollViewer | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
     $ScrollViewer | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
         $this.Content | ForEach-Object {if ($_| get-member GetControlValue) {

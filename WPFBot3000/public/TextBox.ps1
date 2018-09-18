@@ -35,6 +35,5 @@ function TextBox {
         Text = $InitialValue
     }
     $o = New-WPFControl -type System.Windows.Controls.TextBox -Properties $baseProperties, $property
-    $o | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $o | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Text} -PassThru
 }

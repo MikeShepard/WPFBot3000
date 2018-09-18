@@ -1,7 +1,7 @@
 ---
 external help file: WPFBot3000-help.xml
 Module Name: wpfbot3000
-online version: https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.canvas
+online version: https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.checkbox
 schema: 2.0.0
 ---
 
@@ -94,6 +94,8 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
 
 ## RELATED LINKS
+
+[https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.checkbox](https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.checkbox)
+

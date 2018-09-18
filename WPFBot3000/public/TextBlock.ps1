@@ -39,6 +39,5 @@ function TextBlock {
     }
     $textblock = New-WPFControl -type System.Windows.Controls.TextBlock -Properties $baseProperties, $Property
 
-    $textblock | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $textblock | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
 }

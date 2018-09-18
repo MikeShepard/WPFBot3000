@@ -42,6 +42,5 @@ function ComboBox {
     }
 
     $contents | ForEach-Object {$l.Items.Add($_) | out-null }
-    $l | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $l | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$this.SelectedItem} -PassThru
 }

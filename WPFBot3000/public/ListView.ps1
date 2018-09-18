@@ -65,7 +65,6 @@ function ListView {
             $l.SelectedValue = $initialValue
         }
     }
-    $l | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $l | add-member -MemberType ScriptMethod -Name GetControlValue -Value {$items = $this.SelectedItems
         foreach ($item in $items) {
             if ($item -is [System.Windows.Controls.ListViewItem] -and $item.Tag) {

@@ -46,7 +46,6 @@ function ViewBox {
     else {
         $ViewBox.Child = StackPanel {$c}
     }
-    $ViewBox | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $ViewBox | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
     $ViewBox | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
         $this.Child | ForEach-Object {if ($_| get-member GetControlValue) {

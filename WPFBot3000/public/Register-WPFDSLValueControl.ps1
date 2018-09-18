@@ -48,7 +48,6 @@ function Register-WPFDSLValueControl{
         $o = & $newWPFControl -Type $typename -properties $baseProperties,$property
 
         $o.$initialValuePropertyName=$initialValue
-        $o | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
         $o | add-member -name ValuePropertyName -MemberType NoteProperty -Value $initialValuePropertyName
         if($HideLabel){
             $o | add-member -MemberType NoteProperty -Name HideLabel -Value $True
