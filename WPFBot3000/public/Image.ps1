@@ -40,6 +40,5 @@ function Image {
         $o.LoadImage($ImageURI)
 
     }
-    $o | add-member -Name HideLabel -MemberType NoteProperty -Value $true
-    $o | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)} -PassThru
+    $o | add-member -Name HideLabel -MemberType NoteProperty -Value $true -PassThru
 }

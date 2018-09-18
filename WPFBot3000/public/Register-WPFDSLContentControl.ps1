@@ -50,7 +50,6 @@ function Register-WPFDSLContentControl {
         else {
             $o.Child = StackPanel {$c}
         }
-        $o | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
         $o | add-member -MemberType ScriptMethod -Name GetControlByName -Value $getControlMethod
         $o | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
             $this.Child | ForEach-Object {if ($_| get-member GetControlValue) {

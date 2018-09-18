@@ -106,6 +106,6 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## OUTPUTS
 
 ## NOTES
-General notes
+https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.wrappanel
 
 ## RELATED LINKS

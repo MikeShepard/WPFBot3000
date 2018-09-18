@@ -45,7 +45,6 @@ function StatusBar {
 
     [System.Windows.UIElement[]]$c = & $Contents
     $c | foreach-object {    $bar.Items.Add($_) | out-null }
-    $bar | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $bar | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
     $bar | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
         $this.Items | ForEach-Object {if (($_| get-member GetControlValue) -and $_.Name) {

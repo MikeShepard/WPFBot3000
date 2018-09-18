@@ -42,7 +42,6 @@ function CheckBox {
 
     $chk = New-WPFControl -type System.Windows.Controls.CheckBox -Properties $baseProperties, $Property
 
-    $chk | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $chk | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.IsChecked}
     $chk | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
 }

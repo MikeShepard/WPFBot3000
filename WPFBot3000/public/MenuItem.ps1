@@ -59,7 +59,5 @@ function MenuItem {
             $MenuItem.Add_Click($Action)
         }
     }
-    $MenuItem | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
-
     $menuItem
 }

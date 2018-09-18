@@ -45,6 +45,5 @@ function Slider {
     }
 
     $o = New-WPFControl -type System.Windows.Controls.Slider -Properties $baseProperties, $Property
-    $o | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $o | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Value} -PassThru
 }

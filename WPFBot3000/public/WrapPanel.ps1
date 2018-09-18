@@ -46,7 +46,6 @@ function WrapPanel {
 
     [System.Windows.UIElement[]]$c = & $Contents
     $c | foreach-object {    $stack.Children.Add($_) | out-null }
-    $stack | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $stack | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
     $stack | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
         $this.Children | ForEach-Object {if ($_| get-member GetControlValue) {

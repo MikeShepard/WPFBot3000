@@ -44,7 +44,6 @@ function Register-WPFDSLPanelControl {
         $panel = & $newWPFControl -type $TypeName -Properties $baseProperties, $property
         [System.Windows.UIElement[]]$c = & $Contents
         $c | foreach-object {    $panel.Children.Add($_) | out-null }
-        $panel | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
         $panel | add-member -MemberType ScriptMethod -Name GetControlByName -Value $GetControlMethod
         $panel | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
             $this.Children | ForEach-Object {if ($_| get-member GetControlValue) {

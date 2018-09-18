@@ -39,7 +39,6 @@ function Canvas {
 
     [System.Windows.UIElement[]]$c = & $Contents
     $c | foreach-object {    $canvas.Children.Add($_) | out-null }
-    $canvas | add-member -Name Window -MemberType ScriptProperty -Value {[System.Windows.Window]::GetWindow($this)}
     $canvas | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
     $canvas | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
         $this.Children | ForEach-Object {if ($_| get-member GetControlValue) {
