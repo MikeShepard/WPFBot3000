@@ -30,7 +30,7 @@ Copyright = '(c) 2018 Mike Shepard. All rights reserved.'
  Description = 'A lightweight DSL framework for WPF'
 
 # Minimum version of the Windows PowerShell engine required by this module
-# PowerShellVersion = ''
+ PowerShellVersion = '4.0'
 
 # Name of the Windows PowerShell host required by this module
 # PowerShellHostName = ''
@@ -66,7 +66,7 @@ Copyright = '(c) 2018 Mike Shepard. All rights reserved.'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = @('*')
+FunctionsToExport = @('Add-WPFMenu','Border','Button','Calendar','Canvas','CheckBox','ComboBox','CredentialPicker','DataEntryGrid','DataGrid','DatePicker','Dialog','DirectoryPicker','DockPanel','Expander','FilePicker','Grid','GridSplitter','GroupBox','HandlesEvent','Image','Invoke-ObjectEditor','Label','ListBox','ListView','Menu','MenuItem','MultiLineTextBox','Password','RadioButton','Rectangle','Register-WPFAttachedPropertyType','Register-WPFDSLContentControl','Register-WPFDSLitemsControl','Register-WPFDSLPanelControl','Register-WPFDSLValueControl','RepeatButton','RichTextBox','ScrollViewer','Separator','Set-WindowOutput','Slider','StackPanel','StatusBar','TabControl','TabItem','TextBlock','TextBox','Treeview','ViewBox','Window','WrapPanel')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()
@@ -75,7 +75,7 @@ CmdletsToExport = @()
 VariablesToExport = @()
 
 # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-AliasesToExport = @('*')
+AliasesToExport = @('Edit-Object')
 
 # DSC resources to export from this module
 # DscResourcesToExport = @()
