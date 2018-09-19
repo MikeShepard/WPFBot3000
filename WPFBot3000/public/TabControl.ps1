@@ -35,7 +35,7 @@ function TabControl {
     if ($Name) {
         $baseProperties.Name = $Name
     }
-    $tabControl = New-WPFControl -type System.Windows.Controls.TabControl -Properties $baseProperties, $pProperty
+    $tabControl = New-WPFControl -type System.Windows.Controls.TabControl -Properties $baseProperties, $Property
 
     [System.Windows.UIElement[]]$c = & $Contents
     $c | foreach-object {    $tabControl.Items.Add($_) | out-null }
