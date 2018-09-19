@@ -45,7 +45,7 @@ function Border {
     }
 
     $border | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
-    $border | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
+    $border | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = [Ordered]@{}
         $this.Child | ForEach-Object {if ($_| get-member GetControlValue) {
                 $d.Add($this.Name, $_.GetControlValue())
             }}

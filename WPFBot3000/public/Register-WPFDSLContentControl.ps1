@@ -51,7 +51,7 @@ function Register-WPFDSLContentControl {
             $o.Child = StackPanel {$c}
         }
         $o | add-member -MemberType ScriptMethod -Name GetControlByName -Value $getControlMethod
-        $o | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
+        $o | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = [Ordered]@{}
             $this.Child | ForEach-Object {if ($_| get-member GetControlValue) {
                     $d.Add($_.Name, $_.GetControlValue())
                 }}
