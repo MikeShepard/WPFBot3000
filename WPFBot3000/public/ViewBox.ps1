@@ -47,7 +47,7 @@ function ViewBox {
         $ViewBox.Child = StackPanel {$c}
     }
     $ViewBox | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
-    $ViewBox | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
+    $ViewBox | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = [Ordered]@{}
         $this.Child | ForEach-Object {if ($_| get-member GetControlValue) {
                 $d.Add($_.Name, $_.GetControlValue())
             }

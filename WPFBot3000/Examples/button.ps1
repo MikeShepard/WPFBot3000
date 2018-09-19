@@ -3,4 +3,4 @@
 
 dialog {
   button blah -action {$this.Window.Title='Pressed'}
-}  -property @{FontFamily='Comic Sans MS'}
+}  -property @{FontFamily='Comic Sans MS';MinWidth=250}

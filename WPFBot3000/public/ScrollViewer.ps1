@@ -45,7 +45,7 @@ function ScrollViewer {
         $ScrollViewer.Content = StackPanel {$c}
     }
     $ScrollViewer | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
-    $ScrollViewer | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
+    $ScrollViewer | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = [Ordered]@{}
         $this.Content | ForEach-Object {if ($_| get-member GetControlValue) {
                 $d.Add($_.Name, $_.GetControlValue())
             }

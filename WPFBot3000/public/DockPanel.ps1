@@ -44,7 +44,7 @@ function DockPanel {
         $c | foreach-object { $dock.Children.Add($_) | Out-Null }
     }
     $dock | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
-    $dock | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
+    $dock | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = [Ordered]@{}
         $this.Children | ForEach-Object {if (($_| get-member GetControlValue) -and $_.Name) {
                 $d.Add($_.Name, $_.GetControlValue())
             }

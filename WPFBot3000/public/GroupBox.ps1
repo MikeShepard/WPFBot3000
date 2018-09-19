@@ -51,7 +51,7 @@ function GroupBox {
         $groupbox.Content = StackPanel {$c} -Orientation Vertical -name BuiltInStackPanel
     }
     $groupbox | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
-    $groupbox | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
+    $groupbox | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = [Ordered]@{}
         $this.Content | ForEach-Object {if ($_| get-member GetControlValue) {
                 $value = $_.GetControlValue()
                 if ($_.Name -eq 'BuiltInStackPanel') {

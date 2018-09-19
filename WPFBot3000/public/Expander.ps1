@@ -44,7 +44,7 @@ function Expander {
         $Expander.Content = StackPanel {$c}
     }
     $Expander | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
-    $Expander | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
+    $Expander | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = [Ordered]@{}
         $this.Content | ForEach-Object {if ($_| get-member GetControlValue) {
                 $d.Add($_.Name, $_.GetControlValue())
             }

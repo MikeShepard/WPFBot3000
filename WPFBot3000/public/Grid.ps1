@@ -89,7 +89,7 @@ function Grid {
         $objectCount += 1
     }
     $Grid | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
-    $Grid | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = @{}
+    $Grid | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$d = [Ordered]@{}
         $this.Children | ForEach-Object {if ($_| get-member GetControlValue) {
                 $d.Add($_.Name, $_.GetControlValue())
             }
