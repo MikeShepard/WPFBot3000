@@ -63,7 +63,7 @@ function DataEntryGrid {
         $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{Width = 'Auto'}))
         $controlColumn = 1
     }
-    $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition -property @{}))
+    $grid.ColumnDefinitions.Add((new-object System.Windows.Controls.ColumnDefinition ))
     $Row = 0
     $c = & $Contents
     foreach ($control in $c) {
