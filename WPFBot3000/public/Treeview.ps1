@@ -34,9 +34,6 @@ function Treeview {
         Name = $Name
     }
     $tree = New-WPFControl -type System.Windows.Controls.TreeView -Properties $baseProperties, $property
-    if ($Contents) {
-        Write-Warning 'TreeView -Contents parameter is obsolete.  Use .AddTreeViewItem() method instead.'
-    }
     $tree | add-member -Name AddTreeViewItem -membertype ScriptMethod -value ${function:Add-TreeViewItem}
     $tree | add-member -Name GetTreeViewItemByLabel -membertype ScriptMethod -value ${function:Get-TreeViewItemByLabel}
     $tree | add-member -Name GetTreeViewItemByObject -membertype ScriptMethod -value ${function:Get-TreeViewItemByObject}
