@@ -24,26 +24,29 @@ Function FilePicker {
     Param([string]$Name,
         [string]$InitialValue)
 
-    $stack=StackPanel -Property @{
+    $stack = new-object System.Windows.Controls.StackPanel -Property @{
         Name        = $Name
         Orientation = [System.Windows.Controls.Orientation]::Horizontal
-    } -contents {
-    $(t = TextBox -Name "Temp_$name" -InitialValue $InitialValue -property @{IsReadOnly = $true})
-    Button -Property @{
+    }
+    $t = TextBox -Name "Temp_$name" -InitialValue $InitialValue -property @{IsReadOnly = $true}
+    $stack.Children.Add($t) | out-null
+    $btn = new-object System.Windows.Controls.Button -Property @{
         Content = 'Browse'
         Tag     = $t
-    } -action  {
+    }
+    $btn.Add_Click( {
             Param($sender, $e)
             $ofd = new-object Microsoft.Win32.OpenFileDialog
-            if ($t.Text) {
-                $ofd.InitialDirectory = [system.io.path]::GetDirectoryName($t.Text)
-                $ofd.FileName = [system.io.path]::GetFileName($t.Text)
+            $txt = [System.Windows.Controls.TextBox]$sender.Tag
+            if ($txt.Text) {
+                $ofd.InitialDirectory = [system.io.path]::GetDirectoryName($txt.Text)
+                $ofd.FileName = [system.io.path]::GetFileName($txt.Text)
             }
             if ($ofd.ShowDialog()) {
-                $t.Text = $ofd.FileName
+                $txt.Text = $ofd.FileName
             }
-        }
-    }
-    $stack | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Children[0].GetControlValue()} -PassThru -Force
+        })
+    $stack.Children.Add($btn) | out-null
+    $stack | add-member -Name GetControlValue -MemberType ScriptMethod -Value {$this.Children[0].GetControlValue()} -PassThru
 
 }

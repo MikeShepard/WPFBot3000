@@ -73,17 +73,19 @@ function Window {
     $w | add-member -MemberType ScriptMethod -Name ShowForValue -Value {
         if ($this.ShowDialog()) {
             if ($this | Get-Member OverrideOutput) {
-                $This.OverrideOutput
+                $output = $This.OverrideOutput
             }
             else {
                 $output = $this.GetWindowOutput()
                 if ($output | get-member BuiltinDataEntryGrid) {
-                    $output.BuiltinDataEntryGrid
+                    $output = $output.BuiltinDataEntryGrid
                 }
                 else {
-                    $output
+                    $output = $output
                 }
             }
+            $Global:LastWPFBotOutput=$output
+            $output
         }
     }
     $w | add-member -MemberType ScriptMethod -Name GetWindowOutput -value {
