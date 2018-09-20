@@ -68,7 +68,7 @@ function DataEntryGrid {
     $c = & $Contents
     foreach ($control in $c) {
         $hideControlLabel = $HideLabels
-        if ((Get-Member -InputObject $control -name HideLabel) -or ($Control.Visibility -eq 'Collapsed')) {
+        if (((Get-Member -InputObject $control -name HideLabel) -and ($control.HideLabel -eq $true)) -or ($Control.Visibility -eq 'Collapsed')) {
             $hideControlLabel = $true
         }
         if (($hideControlLabel -eq $false) -or $control.Visibility -ne 'Collapsed') {
