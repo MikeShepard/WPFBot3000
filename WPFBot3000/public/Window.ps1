@@ -61,6 +61,7 @@ function Window {
         Margin        = 10
     }
     $w = New-WPFControl -type system.windows.window -properties $BaseProperties, $Property 
+    $w.Add_Load({$w.Activate()}.GetNewClosure())
     [array]$windowContent = & $Contents
     if ($windowContent.Count -gt 1) {
         $windowContent = StackPanel {$windowContent} -Orientation Vertical
