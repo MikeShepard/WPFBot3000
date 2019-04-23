@@ -19,6 +19,8 @@ function New-WPFControl {
     [CmdletBinding()]
     Param($Type, [Hashtable[]]$Properties)
 
+    $TypeOfControlBeingCreated=$type
+    $resources=$null
     $out = $Properties[0].Clone()
     foreach ($Extension in ($properties | select-object -skip 1)) {
         foreach ($item in $Extension.GetEnumerator()) {
@@ -31,7 +33,10 @@ function New-WPFControl {
         if ($Key.Contains('.')) {
             $compoundProperties.Add($Key,$out[$key])
             $KeysToRemove.Add($Key) | out-null
-        }
+        } elseif($Key -eq 'Resources'){ 
+            $Resources=$out.Resources
+            $KeysToRemove.Add($Key) | out-null
+        }	        
     }
     $keysToRemove | ForEach-Object {$out.Remove($_)}
     $o=new-object -TypeName $type -Property $out
@@ -43,6 +48,19 @@ function New-WPFControl {
     }
     if($out.ContainsKey('Name') -and $out.Name){
         New-Variable -Name $out.Name -Value $o -Scope Global -force
+    }
+    if($Resources){
+        $resources | foreach-object {
+            if($_ | get-member -name TypeToStyle){
+                $typeToStyle=$_.TypeToStyle
+            } else {
+                $typeToStyle=$type
+            }
+            if(-not ($typeToStyle -as [type])){
+                $typeToStyle="System.Windows.Controls.$typeToStyle"
+            }
+            $o.Resources.Add(($typeToStyle -as [Type]),$_)
+        }
     }
     $o
 }
