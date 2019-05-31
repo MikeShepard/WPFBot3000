@@ -48,8 +48,8 @@ function Dialog {
     $w = Window {
         DataEntryGrid -contents {
             $c
-            StackPanel {Button OK {  $this.Window.DialogResult = $true } -property @{Margin='0,5,5,5'}
-                Button Cancel { $this.Window.DialogResult = $false} -property @{Margin=5}
+            StackPanel {Button OK {  $this.Window.DialogResult = $true } -property @{Width=50;Margin='0,5,5,5'}
+                Button Cancel { $this.Window.DialogResult = $false} -property @{Width=50;Margin=5}
             } -Orientation Horizontal -Property @{'Dockpanel.Dock' = 'Bottom'} 
         } -name BuiltinDataEntryGrid
     } @PSBoundParameters
