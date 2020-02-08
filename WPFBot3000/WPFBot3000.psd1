@@ -24,7 +24,7 @@ Author = 'Mike Shepard'
 CompanyName = 'PowerShellStation.com'
 
 # Copyright statement for this module
-Copyright = '(c) 2018 Mike Shepard. All rights reserved.'
+Copyright = '(c) 2019 Mike Shepard. All rights reserved.'
 
 # Description of the functionality provided by this module
  Description = 'A lightweight DSL framework for WPF'
@@ -66,7 +66,7 @@ Copyright = '(c) 2018 Mike Shepard. All rights reserved.'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = @('Add-WPFMenu','Border','Button','Calendar','Canvas','CheckBox','ComboBox','CredentialPicker','DataEntryGrid','DataGrid','DatePicker','Dialog','DirectoryPicker','DockPanel','Expander','FilePicker','Grid','GridSplitter','GroupBox','HandlesEvent','Image','Invoke-ObjectEditor','Label','ListBox','ListView','Menu','MenuItem','MultiLineTextBox','Password','RadioButton','Rectangle','Register-WPFAttachedPropertyType','Register-WPFDSLContentControl','Register-WPFDSLitemsControl','Register-WPFDSLPanelControl','Register-WPFDSLValueControl','RepeatButton','RichTextBox','ScrollViewer','Separator','Set-WindowOutput','Setter','Slider','StackPanel','StatusBar','Style','TabControl','TabItem','TextBlock','TextBox','Treeview','ViewBox','Window','WrapPanel')
+FunctionsToExport = '*'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()

@@ -43,7 +43,26 @@ function Dialog {
         [hashtable]$Property,
         [switch]$ShowGridLines)
     $script:ShowGridLines = $ShowGridLines.IsPresent
-    $c = & $contents
+    #infer controls for strings, hashtables, and "command not found"
+    try {
+        $saveCommandNotFound = $executionContext.SessionState.InvokeCommand.CommandNotFoundAction
+        $executionContext.SessionState.InvokeCommand.CommandNotFoundAction = {
+            param($CommandName, $CommandLookupEventArgs)
+            write-verbose "Commandnotfound handler called for $CommandName"
+            $commandLookupEventArgs.StopSearch=$false
+            if($commandname -like '*-*'){ 
+               write-verbose "WARNING: Command $Commandname not found"
+            } else {
+               write-verbose "Executing command not found handler: $commandname"
+               $commandLookupEventArgs.CommandScriptBlock={Get-InferredControl $commandName }.GetNewCLosure()
+               $commandLookupEventArgs.StopSearch=$true
+           }
+        }
+        $c = & $contents | Get-InferredControl
+    }
+    finally {
+        $executionContext.SessionState.InvokeCommand.CommandNotFoundAction = $saveCommandNotFound
+    }
     $PSBoundParameters.Remove('Contents')| Out-Null
     $w = Window {
         DataEntryGrid -contents {
