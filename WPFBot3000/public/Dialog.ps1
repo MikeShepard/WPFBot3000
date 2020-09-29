@@ -54,7 +54,7 @@ function Dialog {
                write-verbose "WARNING: Command $Commandname not found"
             } else {
                write-verbose "Executing command not found handler: $commandname"
-               $commandLookupEventArgs.CommandScriptBlock={Get-InferredControl $commandName }.GetNewCLosure()
+               $commandLookupEventArgs.CommandScriptBlock={Get-InferredControl $commandName }.GetNewClosure()
                $commandLookupEventArgs.StopSearch=$true
            }
         }
@@ -67,8 +67,8 @@ function Dialog {
     $w = Window {
         DataEntryGrid -contents {
             $c
-            StackPanel {Button OK {  $this.Window.DialogResult = $true } -property @{Width=50;Margin='0,5,5,5'}
-                Button Cancel { $this.Window.DialogResult = $false} -property @{Width=50;Margin=5}
+            StackPanel {Button OK {  $this.Window.DialogResult = $true } -property @{Width=50;Margin='0,5,5,5';IsDefault='True'}
+                Button Cancel { $this.Window.DialogResult = $false} -property @{Width=50;Margin=5;IsCancel='True'}
             } -Orientation Horizontal -Property @{'Dockpanel.Dock' = 'Bottom'} 
         } -name BuiltinDataEntryGrid
     } @PSBoundParameters
