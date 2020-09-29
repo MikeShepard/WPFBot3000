@@ -1,4 +1,5 @@
 Import-module WPFBot3000 -force
+
 Dialog {Firstname  #this will be a textbox (command not found, no pattern in name)
         'LastName'  #this will be a textbox (string in output)
         BirthDate #this will be a date picker (command not found, pattern in name)
