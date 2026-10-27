@@ -67,6 +67,8 @@ Dialog {
   - [RadioButton](WPFBot3000/docs/RadioButton.md)
   - [Separator](WPFBot3000/docs/RadioButton.md)
   - [TextBox](WPFBot3000/docs/TextBox.md)
+  - [ToolBar](WPFBot3000/docs/ToolBar.md)
+  - [ToolBarTray](WPFBot3000/docs/ToolBarTray.md)
 
 ### [Microsoft .NET WPF System.Windows.Controls Reference][microsoft-wpf-reference]
 
