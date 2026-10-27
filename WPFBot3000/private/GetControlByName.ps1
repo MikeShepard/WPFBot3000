@@ -22,6 +22,10 @@ function GetControlByName{
         $this.ToolBars
     } elseif (Get-Member -InputObject $this -Name Items) {
         $this.Items
+    } elseif (Get-Member -InputObject $this -Name Inlines) {
+        $this.Inlines
+    } elseif ((Get-Member -InputObject $this -Name Content) -and $this.Content -is [System.Windows.DependencyObject]) {
+        $this.Content
     }
     foreach ($item in $items) {
         if ($null -eq $item) { continue }

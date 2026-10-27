@@ -8,6 +8,9 @@ A TextBlock control (i.e. a static block of text, not to be confused with a Text
 .PARAMETER Text
 The text to be loaded into the TextBlock
 
+.PARAMETER Contents
+A scriptblock that outputs strings and inline elements such as Hyperlink.
+
 .PARAMETER Name
 the name of the control
 
@@ -28,7 +31,8 @@ function TextBlock {
     [CmdletBinding()]
     Param([string]$Text,
         [string]$Name,
-        [hashtable]$Property = @{})
+        [hashtable]$Property = @{},
+        [scriptblock]$Contents)
 
     $BaseProperties = @{
         Text = $text
@@ -38,6 +42,11 @@ function TextBlock {
         $BaseProperties.Name = $Name
     }
     $textblock = New-WPFControl -type System.Windows.Controls.TextBlock -Properties $baseProperties, $Property
-
+    if ($Contents) {
+        foreach ($inline in (& $Contents)) {
+            $textblock.Inlines.Add($inline)
+        }
+    }
+    $textblock | add-member -MemberType ScriptMethod -Name GetControlByName -Value $function:GetControlByName
     $textblock | add-member -MemberType NoteProperty -Name HideLabel -Value $True -PassThru
 }
