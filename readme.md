@@ -64,6 +64,7 @@ Dialog {
   - [GroupBox](WPFBot3000/docs/GroupBox.md)
   - [Label](WPFBot3000/docs/Label.md)
   - [MenuItem](WPFBot3000/docs/MenuItem.md)
+  - [Navigation and browser controls](WPFBot3000/docs/Navigation.md)
   - [RadioButton](WPFBot3000/docs/RadioButton.md)
   - [Separator](WPFBot3000/docs/RadioButton.md)
   - [TextBox](WPFBot3000/docs/TextBox.md)

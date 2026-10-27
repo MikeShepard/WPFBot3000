@@ -13,7 +13,7 @@ A TextBlock control that encapsulates the Windows Presentation Foundation (WPF) 
 ## SYNTAX
 
 ```
-TextBlock [[-Text] <String>] [[-Name] <String>] [[-Property] <Hashtable>] [<CommonParameters>]
+TextBlock [[-Text] <String>] [[-Name] <String>] [[-Property] <Hashtable>] [[-Contents] <ScriptBlock>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -74,6 +74,22 @@ Aliases:
 Required: False
 Position: 3
 Default value: @{}
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Contents
+A scriptblock that outputs strings and inline elements such as `Hyperlink`.
+See [Navigation and browser controls](Navigation.md#hyperlinks) for an example.
+
+```yaml
+Type: ScriptBlock
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
